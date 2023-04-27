@@ -20,17 +20,21 @@ module.exports = {
                 mulish: ["var(--font-mulish)", ...fontFamily.sans],
             },
             colors: {
-                dark: {
-                    50: "#FFFFFF",
-                    100: "#F4F6F7",
-                    200: "#E1E7EB",
-                    300: "#CED7DC",
-                    400: "#6C8698",
-                    500: "#4B5E69",
-                    600: "#2F3B42",
-                    700: "#212C32",
-                    800: "#191F23",
-                    900: "#151B1E",
+                transparent: "transparent",
+                current: "currentColor",
+                white: "#FFFFFF",
+                black: "#272727",
+                gray: "#D9D9D9",
+                green: "#D2D8B3",
+                pink: "#E5989B",
+                purple: "#B5838D",
+                yellow: {
+                    light: "#EFD09E",
+                    dark: "#B58266",
+                },
+                blue: {
+                    light: "#B3C6D8",
+                    dark: "#839DB5",
                 },
             },
             screens: {
