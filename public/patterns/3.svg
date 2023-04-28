@@ -1,0 +1,64 @@
+<svg width="576" height="288" viewBox="0 0 576 288" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_203_149)">
+<mask id="mask0_203_149" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="144" height="144">
+<path d="M144 0H0V144H144V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_203_149)">
+<path d="M72 72H0V144H72V72Z" fill="#B3C6D8"/>
+<path d="M144 72H72V144H144V72Z" fill="#D2D8B3"/>
+</g>
+<mask id="mask1_203_149" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="144" y="0" width="144" height="144">
+<path d="M288 0H144V144H288V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask1_203_149)">
+<path d="M216 0H144V144H216V0Z" fill="#B3C6D8"/>
+<path d="M288 0H216V144H288V0Z" fill="#E5989B"/>
+</g>
+<mask id="mask2_203_149" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="288" y="0" width="144" height="144">
+<path d="M432 0H288V144H432V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask2_203_149)">
+<path d="M288 288C367.529 288 432 223.529 432 144C432 64.471 367.529 0 288 0C208.471 0 144 64.471 144 144C144 223.529 208.471 288 288 288Z" fill="#E5989B"/>
+<path d="M288 216C327.765 216 360 183.765 360 144C360 104.235 327.765 72 288 72C248.235 72 216 104.235 216 144C216 183.765 248.235 216 288 216Z" fill="#B5838D"/>
+</g>
+<mask id="mask3_203_149" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="144" width="144" height="144">
+<path d="M144 144H0V288H144V144Z" fill="white"/>
+</mask>
+<g mask="url(#mask3_203_149)">
+<path d="M72 216C111.765 216 144 183.765 144 144C144 104.235 111.765 72 72 72C32.2355 72 0 104.235 0 144C0 183.765 32.2355 216 72 216Z" fill="#D2D8B3"/>
+<path d="M72 360C111.765 360 144 327.765 144 288C144 248.235 111.765 216 72 216C32.2355 216 0 248.235 0 288C0 327.765 32.2355 360 72 360Z" fill="#EFD09E"/>
+</g>
+<mask id="mask4_203_149" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="144" y="144" width="144" height="144">
+<path d="M288 144H144V288H288V144Z" fill="white"/>
+</mask>
+<g mask="url(#mask4_203_149)">
+<path d="M216 144H144V288H216V144Z" fill="#B3C6D8"/>
+<path d="M288 144H216V288H288V144Z" fill="#B5838D"/>
+<path d="M216 180H180V252H216V180Z" fill="#D2D8B3"/>
+<path d="M252 180H216V252H252V180Z" fill="#B5838D"/>
+</g>
+<mask id="mask5_203_149" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="288" y="144" width="144" height="144">
+<path d="M432 144H288V288H432V144Z" fill="white"/>
+</mask>
+<g mask="url(#mask5_203_149)">
+<path d="M432 144H288V216H432V144Z" fill="#EFD09E"/>
+<path d="M432 216H288V288H432V216Z" fill="#B3C6D8"/>
+</g>
+<mask id="mask6_203_149" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="432" y="144" width="144" height="144">
+<path d="M576 144H432V288H576V144Z" fill="white"/>
+</mask>
+<g mask="url(#mask6_203_149)">
+<mask id="mask7_203_149" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="432" y="144" width="144" height="144">
+<path d="M432.169 144H576V288H432.169V144Z" fill="white"/>
+</mask>
+<g mask="url(#mask7_203_149)">
+<path d="M504.084 288C464.367 288 432.169 255.765 432.169 216C432.169 176.235 464.367 144 504.084 144C543.802 144 576 176.235 576 216C576 255.765 543.802 288 504.084 288Z" fill="#E5989B"/>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_203_149">
+<rect width="576" height="288" fill="white"/>
+</clipPath>
+</defs>
+</svg>

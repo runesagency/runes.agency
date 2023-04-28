@@ -192,8 +192,8 @@ export default function HomePage() {
     return (
         <main className="flex h-full w-full flex-col">
             {/* Hero */}
-            <section className="flex flex-col items-center gap-20 bg-yellow-light pb-40 pt-20">
-                <div className="flex w-full max-w-7xl items-center justify-between">
+            <section className="relative flex flex-col items-center gap-20 bg-yellow-light pb-40 pt-20">
+                <div className="relative z-10 flex w-full max-w-7xl items-center justify-between">
                     <img src="/logo.svg" alt="Logo" className="h-10" />
 
                     <button className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2">
@@ -214,7 +214,7 @@ export default function HomePage() {
                     </button>
                 </div>
 
-                <div className="flex flex-col items-center gap-10">
+                <div className="relative z-10 flex flex-col items-center gap-10">
                     <h1 className="text-center font-playfair-display text-9xl font-medium leading-tight text-black">
                         Making Things
                         <br />
@@ -228,7 +228,7 @@ export default function HomePage() {
                     </p>
                 </div>
 
-                <div className="flex gap-10 stroke-black font-mulish text-xl font-semibold text-black">
+                <div className="relative z-10 flex gap-10 stroke-black font-mulish text-xl font-semibold text-black">
                     <button className="rounded-full bg-black px-7 py-3 font-bold text-yellow-light">See The Story</button>
 
                     <button className="flex items-center gap-4 rounded-full bg-blue-light px-7 py-3 font-bold">
@@ -242,17 +242,20 @@ export default function HomePage() {
                     </button>
                 </div>
 
-                <div className="flex max-w-full items-center gap-20 overflow-auto">
+                <div className="relative z-10 flex max-w-full items-center gap-20 overflow-auto">
                     <div className="success-story-card" />
 
                     {[...Array(9)].map((_, i) => (
-                        <img key={i} src={`/success-story/${i + 1}.JPG`} alt="Story 1" className="success-story-card rounded-xl" />
+                        <img key={i} src={`/success-story/${i + 1}.JPG`} alt="Story 1" className="success-story-card rounded-xl" loading="lazy" />
                     ))}
 
                     <div className="success-story-card" />
                 </div>
 
-                <span className="font-mulish text-2xl font-medium">Running a business alone is hard...</span>
+                <span className="relative z-10 font-mulish text-2xl font-medium">Running a business alone is hard...</span>
+
+                <img src="/patterns/1.svg" alt="" className="absolute right-0 top-0 w-full max-w-xl" loading="lazy" />
+                <img src="/patterns/2.svg" alt="" className="absolute bottom-0 left-0 w-full max-w-xl" loading="lazy" />
             </section>
 
             {/* Introduction */}
@@ -278,7 +281,7 @@ export default function HomePage() {
             </section>
 
             {/* Partners */}
-            <section className="flex flex-col items-center justify-center gap-16 pt-20">
+            <section className="relative flex flex-col items-center justify-center gap-16 pt-20">
                 <hr className="w-full max-w-lg border-gray" />
 
                 <div className="flex w-full max-w-5xl flex-col items-center gap-16">
@@ -293,7 +296,13 @@ export default function HomePage() {
                     ))}
                 </div>
 
-                <img src="/illustrations/giving.png" alt="Hupa Giving to Luna" className="h-96" />
+                <img src="/illustrations/giving.png" alt="Hupa Giving to Luna" className="relative z-20 h-96" loading="lazy" />
+
+                <img src="/patterns/3.svg" alt="" className="absolute bottom-0 left-0 z-10 h-72" loading="lazy" />
+                <img src="/patterns/4.svg" alt="" className="absolute bottom-0 right-0 z-10 h-72" loading="lazy" />
+                <svg viewBox="0 0 1920 116" className="absolute bottom-0 left-0 w-full fill-green opacity-50">
+                    <path d="M0 32.4239C752.345 -8.49521 1173.01 -13.0605 1920 32.4239V116H0V32.4239Z" />
+                </svg>
             </section>
 
             {/* Services */}
@@ -373,8 +382,16 @@ export default function HomePage() {
                         </div>
                     </div>
 
-                    <div className="w-full max-w-lg shrink-0">
-                        <img src="/illustrations/waving.png" alt="Waving" className="mx-auto" />
+                    <div className="relative w-full max-w-lg shrink-0">
+                        <img src="/illustrations/waving.png" alt="Waving" className="relative z-20 mx-auto" />
+
+                        <img src="/patterns/5.svg" alt="" className="absolute bottom-0 left-0 z-10 w-full" />
+
+                        <div className="absolute inset-0 flex h-full w-full items-end justify-center">
+                            <svg viewBox="0 0 397 400" className="h-full w-9/12 fill-yellow-light">
+                                <path d="M0.0450439 198.498C0.0450439 88.9194 88.8762 0.0883789 198.455 0.0883789C308.034 0.0883789 396.865 88.9195 396.865 198.498V517H0.0450439V198.498Z" />
+                            </svg>
+                        </div>
                     </div>
                 </main>
             </section>
@@ -403,7 +420,7 @@ export default function HomePage() {
             </section>
 
             {/* Contact */}
-            <section className="flex flex-col items-center gap-14 bg-blue-light pt-32">
+            <section className="relative flex flex-col items-center gap-14 bg-blue-light pt-32">
                 <h2 className="text-center font-playfair-display text-8xl font-semibold leading-tight text-black">
                     Every Great Thing{" "}
                     <span className="font-medium">
@@ -438,7 +455,11 @@ export default function HomePage() {
                     </button>
                 </div>
 
-                <img src="/illustrations/work-together.png" alt="Work Together" />
+                <img src="/illustrations/work-together.png" alt="Work Together" className="relative z-10" />
+
+                <div className="absolute bottom-0 left-0 flex w-full justify-center">
+                    <img src="/patterns/6.svg" alt="" className="max-w-7xl" />
+                </div>
             </section>
 
             {/* Footer */}
