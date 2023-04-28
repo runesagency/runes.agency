@@ -35,6 +35,11 @@ module.exports = {
                 light: "#B3C6D8",
                 dark: "#839DB5",
             },
+        },
+        extend: {
+            fontSize: {
+                "4.5xl": "2.5rem",
+                "6.5xl": "4rem",
             },
             screens: {
                 "3xl": "1920px",
