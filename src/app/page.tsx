@@ -246,7 +246,7 @@ export default function HomePage() {
                     <div className="success-story-card" />
 
                     {[...Array(9)].map((_, i) => (
-                        <img key={i} src={`/success-story/${i + 1}.JPG`} alt="Story 1" className="success-story-card rounded-xl" loading="lazy" />
+                        <img key={i} src={`/success-story/${i + 1}.JPG`} alt="Story 1" className="success-story-card select-none rounded-xl" loading="lazy" draggable={false} />
                     ))}
 
                     <div className="success-story-card" />
@@ -254,8 +254,8 @@ export default function HomePage() {
 
                 <span className="relative z-10 font-mulish text-2xl font-medium">Running a business alone is hard...</span>
 
-                <img src="/patterns/1.svg" alt="" className="absolute right-0 top-0 w-full max-w-xl" loading="lazy" />
-                <img src="/patterns/2.svg" alt="" className="absolute bottom-0 left-0 w-full max-w-xl" loading="lazy" />
+                <img src="/patterns/1.svg" alt="" className="absolute right-0 top-0 w-full max-w-xl select-none" loading="lazy" draggable={false} />
+                <img src="/patterns/2.svg" alt="" className="absolute bottom-0 left-0 w-full max-w-xl select-none" loading="lazy" draggable={false} />
             </section>
 
             {/* Introduction */}
@@ -290,16 +290,16 @@ export default function HomePage() {
                     {partners.map((list, i) => (
                         <div key={i} className="flex w-full items-center justify-between gap-2">
                             {list.map(({ slug, name, height }, j) => (
-                                <img key={j} src={`/partners/${slug}.png`} alt={name} style={{ height }} />
+                                <img key={j} src={`/partners/${slug}.png`} alt={name} style={{ height }} loading="lazy" className="select-none" draggable={false} />
                             ))}
                         </div>
                     ))}
                 </div>
 
-                <img src="/illustrations/giving.png" alt="Hupa Giving to Luna" className="relative z-20 h-96" loading="lazy" />
+                <img src="/illustrations/giving.png" alt="Hupa Giving to Luna" className="relative z-20 h-96 select-none" loading="lazy" draggable={false} />
 
-                <img src="/patterns/3.svg" alt="" className="absolute bottom-0 left-0 z-10 h-72" loading="lazy" />
-                <img src="/patterns/4.svg" alt="" className="absolute bottom-0 right-0 z-10 h-72" loading="lazy" />
+                <img src="/patterns/3.svg" alt="" className="absolute bottom-0 left-0 z-10 h-72 select-none" loading="lazy" draggable={false} />
+                <img src="/patterns/4.svg" alt="" className="absolute bottom-0 right-0 z-10 h-72 select-none" loading="lazy" draggable={false} />
                 <svg viewBox="0 0 1920 116" className="absolute bottom-0 left-0 w-full fill-green opacity-50">
                     <path d="M0 32.4239C752.345 -8.49521 1173.01 -13.0605 1920 32.4239V116H0V32.4239Z" />
                 </svg>
@@ -383,9 +383,9 @@ export default function HomePage() {
                     </div>
 
                     <div className="relative w-full max-w-lg shrink-0">
-                        <img src="/illustrations/waving.png" alt="Waving" className="relative z-20 mx-auto" />
+                        <img src="/illustrations/waving.png" alt="Waving" className="relative z-20 mx-auto select-none" draggable={false} loading="lazy" />
 
-                        <img src="/patterns/5.svg" alt="" className="absolute bottom-0 left-0 z-10 w-full" />
+                        <img src="/patterns/5.svg" alt="" className="absolute bottom-0 left-0 z-10 w-full select-none" draggable={false} loading="lazy" />
 
                         <div className="absolute inset-0 flex h-full w-full items-end justify-center">
                             <svg viewBox="0 0 397 400" className="h-full w-9/12 fill-yellow-light">
@@ -455,10 +455,10 @@ export default function HomePage() {
                     </button>
                 </div>
 
-                <img src="/illustrations/work-together.png" alt="Work Together" className="relative z-10" />
+                <img src="/illustrations/work-together.png" alt="Work Together" className="relative z-10 select-none" draggable={false} />
 
                 <div className="absolute bottom-0 left-0 flex w-full justify-center">
-                    <img src="/patterns/6.svg" alt="" className="max-w-7xl" />
+                    <img src="/patterns/6.svg" alt="" className="max-w-7xl select-none" loading="lazy" draggable={false} />
                 </div>
             </section>
 
