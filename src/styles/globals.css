@@ -12,3 +12,11 @@
         @apply !box-border;
     }
 }
+
+@layer components {
+    .success-story-card {
+        @apply shrink-0;
+        height: 520px;
+        width: 520px;
+    }
+}
