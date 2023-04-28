@@ -441,6 +441,7 @@ export default function HomePage() {
                 <img src="/illustrations/work-together.png" alt="Work Together" />
             </section>
 
+            {/* Footer */}
             <footer className="flex flex-col items-center gap-20 bg-black py-20">
                 <main className="flex w-full max-w-7xl justify-between">
                     <div className="flex flex-col gap-8">
