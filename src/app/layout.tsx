@@ -12,7 +12,7 @@ const playfairDisplay = Playfair_Display({
     display: "swap",
     fallback: ["serif"],
     weight: ["400", "500", "600", "700"],
-    style: ["normal"],
+    style: ["normal", "italic"],
     subsets: ["latin", "latin-ext"],
 });
 
@@ -23,7 +23,7 @@ const mulish = Mulish({
     display: "swap",
     fallback: ["sans-serif"],
     weight: ["400", "500", "600", "700"],
-    style: ["normal"],
+    style: ["normal", "italic"],
     subsets: ["latin", "latin-ext"],
 });
 
