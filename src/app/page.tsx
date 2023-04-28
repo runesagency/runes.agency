@@ -260,16 +260,9 @@ export default function HomePage() {
 
             {/* Introduction */}
             <section className="flex flex-col items-center justify-center gap-14 py-44">
-                <svg width="118" height="58" viewBox="0 0 118 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clipPath="url(#clip0_197_66)">
-                        <path d="M29.75 58C45.9043 58 59 45.0163 59 29C59 12.9837 45.9043 0 29.75 0C13.5957 0 0.5 12.9837 0.5 29C0.5 45.0163 13.5957 58 29.75 58Z" fill="#B3C6D8" />
-                        <path d="M88.25 0L59 29L88.25 58L117.5 29L88.25 0Z" fill="#E5989B" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_197_66">
-                            <rect width="117" height="58" fill="white" transform="translate(0.5)" />
-                        </clipPath>
-                    </defs>
+                <svg className="h-14" viewBox="0 0 118 58">
+                    <path d="M29.75 58C45.9043 58 59 45.0163 59 29C59 12.9837 45.9043 0 29.75 0C13.5957 0 0.5 12.9837 0.5 29C0.5 45.0163 13.5957 58 29.75 58Z" className="fill-blue-light" />
+                    <path d="M88.25 0L59 29L88.25 58L117.5 29L88.25 0Z" className="fill-pink" />
                 </svg>
 
                 <p className="max-w-5xl text-center font-mulish text-4.5xl text-black">
