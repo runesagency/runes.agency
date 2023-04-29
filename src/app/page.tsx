@@ -144,10 +144,15 @@ export default function HomePage() {
 
             {/* Introduction */}
             <section className="flex flex-col items-center justify-center gap-14 py-44">
-                <svg className="h-14" viewBox="0 0 118 58">
-                    <path d="M29.75 58C45.9043 58 59 45.0163 59 29C59 12.9837 45.9043 0 29.75 0C13.5957 0 0.5 12.9837 0.5 29C0.5 45.0163 13.5957 58 29.75 58Z" className="fill-blue-light" />
-                    <path d="M88.25 0L59 29L88.25 58L117.5 29L88.25 0Z" className="fill-pink" />
-                </svg>
+                <div className="flex">
+                    <svg viewBox="0 0 59 58" className="bounce2 h-14 fill-blue-light">
+                        <path d="M29.75 58C45.9043 58 59 45.0163 59 29C59 12.9837 45.9043 0 29.75 0C13.5957 0 0.5 12.9837 0.5 29C0.5 45.0163 13.5957 58 29.75 58Z" />
+                    </svg>
+
+                    <svg viewBox="0 0 59 58" className="elastic-spin h-14 origin-center fill-pink">
+                        <path d="M29.25 0L0 29L29.25 58L58.5 29L29.25 0Z" />
+                    </svg>
+                </div>
 
                 <p className="max-w-5xl text-center font-mulish text-4.5xl text-black">
                     We believe that every process should be <b>simple and easy</b> for everyone to understand.

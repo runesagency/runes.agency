@@ -13,10 +13,48 @@
     }
 }
 
-@layer components {
-    .success-story-card {
-        @apply shrink-0;
-        height: 520px;
-        width: 520px;
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .hide-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .elastic-spin {
+        animation: elastic-spin infinite 2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    @keyframes elastic-spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(90deg)
+        }
+    }
+
+    .bounce2 {
+        animation: bounce2 2s ease infinite;
+    }
+    
+    @keyframes bounce2 {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-30px);
+        }
+        60% {
+            transform: translateY(-15px);
+        }
     }
 }
