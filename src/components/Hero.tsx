@@ -1,59 +1,70 @@
 import { IconChevronDown, IconCurrencyDollar, IconPresentation } from "@tabler/icons-react";
 import clsx from "clsx";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+const subtitles = [
+    "Running a business alone is hard...",
+    undefined,
+    undefined,
+    "You get tired, and sometimes you get stressed...",
+    undefined,
+    "But don't worry, we're here to help you!",
+    undefined,
+    undefined,
+    "Let's grow together and make your business shine! ✨",
+];
+
+const getSubtitle = (index: number): string => {
+    const subtitle = subtitles[index];
+    if (subtitle !== undefined) return subtitle;
+    return getSubtitle(index - 1);
+};
 
 export default function Hero() {
-    const hero = useRef<HTMLDivElement>(null);
-    const storyboard = useRef<HTMLDivElement>(null);
-    const stories = useRef<(HTMLDivElement | null)[]>([]);
-    const storySubtitle = useRef<HTMLSpanElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const storyboardContainerRef = useRef<HTMLDivElement>(null);
+    const storyboardRef = useRef<HTMLDivElement>(null);
+    const storiesRefs = useRef<HTMLDivElement[]>([]);
+    const subtitleRef = useRef<HTMLSpanElement>(null);
 
-    const [currentStoryIndex, setStoryIndex] = useState(0);
+    const [storyIndex, setStoryIndex] = useState(0);
+
+    const setStoryRef = useCallback((element: HTMLDivElement | null, index: number) => {
+        if (!element) return;
+        storiesRefs.current[index] = element;
+    }, []);
 
     useEffect(() => {
-        if (!storyboard.current || !hero.current) return;
+        const container = containerRef.current;
+        if (!container) return;
+
+        const storyboardContainer = storyboardContainerRef.current;
+        if (!storyboardContainer) return;
+
+        const storyboard = storyboardRef.current;
+        if (!storyboard) return;
 
         // Get the scroll of the previous sibling so the current story was snapped in the middle
-        const storiesScrollLength = stories.current.map((story) => (story?.previousElementSibling as HTMLDivElement)?.offsetLeft);
+        const storiesScrollLength = storiesRefs.current.map((story) => (story?.previousElementSibling as HTMLDivElement)?.offsetLeft);
 
         let lastSlideIndex = -1;
         let lastTypewritingInterval: NodeJS.Timeout | undefined = undefined;
         let lastSubtitle = "";
 
-        const heroGapSize = Number(getComputedStyle(hero.current).gap.replace("px", ""));
-        const heroHeightSize = hero.current.getBoundingClientRect().height ?? 0;
+        const heroGapSize = Number(getComputedStyle(containerRef.current).gap.replace("px", ""));
+        const heroHeightSize = containerRef.current.getBoundingClientRect().height ?? 0;
 
-        const storyboardParentPreviousSibling = storyboard.current.parentElement?.previousElementSibling;
-        if (!storyboardParentPreviousSibling) return;
+        const storyboardContainerPreviousSibling = storyboardContainer.previousElementSibling;
+        if (!storyboardContainerPreviousSibling) return;
 
-        const storyboardParentPreviousSiblingRect = storyboardParentPreviousSibling.getBoundingClientRect();
+        const storyboardParentPreviousSiblingRect = storyboardContainerPreviousSibling.getBoundingClientRect();
         const storyboardParentPreviousSiblingToTop = storyboardParentPreviousSiblingRect.top + storyboardParentPreviousSiblingRect.height + heroGapSize + window.scrollY;
 
-        const storySubtitles = [
-            "Running a business alone is hard...",
-            undefined,
-            undefined,
-            "You get tired, and sometimes you get stressed...",
-            undefined,
-            "But don't worry, we're here to help you!",
-            undefined,
-            undefined,
-            "Let's grow together and make your business shine! ✨",
-        ];
-
-        storyboard.current.scrollTo({ left: 0 });
-
-        const getSubtitle = (index: number): string => {
-            const subtitle = storySubtitles[index];
-            if (subtitle !== undefined) return subtitle;
-            return getSubtitle(index - 1);
-        };
-
         const onScroll = () => {
-            const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+            const scrollPosition = window.scrollY;
 
             if (scrollPosition > storyboardParentPreviousSiblingToTop && scrollPosition < heroHeightSize) {
-                const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+                const viewportHeight = window.innerHeight;
 
                 const totalHeight = Math.max(
                     document.body.scrollHeight,
@@ -75,18 +86,18 @@ export default function Hero() {
                     )
                 );
 
-                const distanceBetweenSlide = 100 / stories.current.length;
+                const distanceBetweenSlide = 100 / storiesRefs.current.length;
                 const slideIndex = Math.round(scrollPercentage / distanceBetweenSlide) - 1;
 
                 if (slideIndex === lastSlideIndex || slideIndex < 0) return;
 
                 const subtitle = getSubtitle(slideIndex);
 
-                if (storySubtitle.current && subtitle !== lastSubtitle) {
+                if (subtitleRef.current && subtitle !== lastSubtitle) {
                     if (lastTypewritingInterval) {
                         clearInterval(lastTypewritingInterval);
                         lastTypewritingInterval = undefined;
-                        storySubtitle.current.innerText = "";
+                        subtitleRef.current.innerText = "";
                     }
 
                     const subtitleText = subtitle.split("");
@@ -98,20 +109,20 @@ export default function Hero() {
                             return;
                         }
 
-                        storySubtitle.current?.append(subtitleText[subtitleIndex]);
+                        subtitleRef.current?.append(subtitleText[subtitleIndex]);
                         subtitleIndex++;
                     }, 50);
 
                     lastSubtitle = subtitle;
                 }
-                storyboard.current?.scrollTo({
+
+                storyboardRef.current?.scrollTo({
                     left: storiesScrollLength[slideIndex],
                     behavior: "smooth",
                 });
 
                 setStoryIndex(slideIndex);
                 lastSlideIndex = slideIndex;
-                console.log(slideIndex);
             }
         };
 
@@ -123,7 +134,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section ref={hero} className="relative flex flex-col items-center gap-20 bg-yellow-light pt-20" style={{ height: "8000px" }}>
+        <section ref={containerRef} className="relative flex flex-col items-center gap-20 bg-yellow-light pt-20" style={{ height: "8000px" }}>
             <div className="relative z-10 flex w-full max-w-7xl items-center justify-between">
                 <img src="/logo.svg" alt="Logo" className="h-10" />
 
