@@ -16,7 +16,9 @@ import {
     IconMapPin,
     IconPresentation,
 } from "@tabler/icons-react";
+import clsx from "clsx";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 export default function HomePage() {
     type Partner = {
@@ -72,11 +74,129 @@ export default function HomePage() {
         ],
     ];
 
+    const hero = useRef<HTMLDivElement>(null);
+    const storyboard = useRef<HTMLDivElement>(null);
+    const stories = useRef<(HTMLDivElement | null)[]>([]);
+    const storySubtitle = useRef<HTMLSpanElement>(null);
+
+    const [currentStoryIndex, setStoryIndex] = useState(0);
+
+    useEffect(() => {
+        if (!storyboard.current || !hero.current) return;
+
+        // Get the scroll of the previous sibling so the current story was snapped in the middle
+        const storiesScrollLength = stories.current.map((story) => (story?.previousElementSibling as HTMLDivElement)?.offsetLeft);
+
+        let lastSlideIndex = -1;
+        let lastTypewritingInterval: NodeJS.Timeout | undefined = undefined;
+        let lastSubtitle = "";
+
+        const heroGapSize = Number(getComputedStyle(hero.current).gap.replace("px", ""));
+        const heroHeightSize = hero.current.getBoundingClientRect().height ?? 0;
+
+        const storyboardParentPreviousSibling = storyboard.current.parentElement?.previousElementSibling;
+        if (!storyboardParentPreviousSibling) return;
+
+        const storyboardParentPreviousSiblingRect = storyboardParentPreviousSibling.getBoundingClientRect();
+        const storyboardParentPreviousSiblingToTop = storyboardParentPreviousSiblingRect.top + storyboardParentPreviousSiblingRect.height + heroGapSize + window.scrollY;
+
+        const storySubtitles = [
+            "Running a business alone is hard...",
+            undefined,
+            undefined,
+            "You get tired, and sometimes you get stressed...",
+            undefined,
+            "But don't worry, we're here to help you!",
+            undefined,
+            undefined,
+            "Let's grow together and make your business shine! ✨",
+        ];
+
+        storyboard.current.scrollTo({ left: 0 });
+
+        const getSubtitle = (index: number): string => {
+            const subtitle = storySubtitles[index];
+            if (subtitle !== undefined) return subtitle;
+            return getSubtitle(index - 1);
+        };
+
+        const onScroll = () => {
+            const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+            if (scrollPosition > storyboardParentPreviousSiblingToTop && scrollPosition < heroHeightSize) {
+                const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+                const totalHeight = Math.max(
+                    document.body.scrollHeight,
+                    document.body.offsetHeight,
+                    document.documentElement.clientHeight,
+                    document.documentElement.scrollHeight,
+                    document.documentElement.offsetHeight
+                );
+
+                const totalScrollableHeight = totalHeight - viewportHeight;
+
+                const scrollPercentage = Math.max(
+                    0,
+                    Math.min(
+                        100,
+                        ((scrollPosition - storyboardParentPreviousSiblingToTop) / (heroHeightSize - storyboardParentPreviousSiblingToTop)) *
+                            100 *
+                            (totalScrollableHeight / (totalHeight - storyboardParentPreviousSiblingToTop - viewportHeight))
+                    )
+                );
+
+                const distanceBetweenSlide = 100 / stories.current.length;
+                const slideIndex = Math.round(scrollPercentage / distanceBetweenSlide) - 1;
+
+                if (slideIndex === lastSlideIndex || slideIndex < 0) return;
+
+                const subtitle = getSubtitle(slideIndex);
+
+                if (storySubtitle.current && subtitle !== lastSubtitle) {
+                    if (lastTypewritingInterval) {
+                        clearInterval(lastTypewritingInterval);
+                        lastTypewritingInterval = undefined;
+                        storySubtitle.current.innerText = "";
+                    }
+
+                    const subtitleText = subtitle.split("");
+                    let subtitleIndex = 0;
+
+                    lastTypewritingInterval = setInterval(() => {
+                        if (subtitleIndex >= subtitleText.length) {
+                            clearInterval(lastTypewritingInterval);
+                            return;
+                        }
+
+                        storySubtitle.current?.append(subtitleText[subtitleIndex]);
+                        subtitleIndex++;
+                    }, 50);
+
+                    lastSubtitle = subtitle;
+                }
+                storyboard.current?.scrollTo({
+                    left: storiesScrollLength[slideIndex],
+                    behavior: "smooth",
+                });
+
+                setStoryIndex(slideIndex);
+                lastSlideIndex = slideIndex;
+                console.log(slideIndex);
+            }
+        };
+
+        window.addEventListener("scroll", onScroll);
+
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+        };
+    }, []);
 
     return (
         <main className="flex h-full w-full flex-col">
             {/* Hero */}
-            <section className="relative flex flex-col items-center gap-20 bg-yellow-light pb-40 pt-20">
+            <section ref={hero} className="relative flex flex-col items-center gap-20 bg-yellow-light pt-20" style={{ height: "8000px" }}>
                 <div className="relative z-10 flex w-full max-w-7xl items-center justify-between">
                     <img src="/logo.svg" alt="Logo" className="h-10" />
 
@@ -113,7 +233,9 @@ export default function HomePage() {
                 </div>
 
                 <div className="relative z-10 flex gap-10 stroke-black font-mulish text-xl font-semibold text-black">
-                    <button className="rounded-full bg-black px-7 py-3 font-bold text-yellow-light">See The Story</button>
+                    <a href="#story" className="rounded-full bg-black px-7 py-3 font-bold text-yellow-light">
+                        See The Story
+                    </a>
 
                     <button className="flex items-center gap-4 rounded-full bg-blue-light px-7 py-3 font-bold">
                         <IconPresentation size={24} />
@@ -126,20 +248,32 @@ export default function HomePage() {
                     </button>
                 </div>
 
-                <div className="relative z-10 flex max-w-full items-center gap-20 overflow-auto">
-                    <div className="success-story-card" />
+                <div className="sticky top-10 z-10 flex min-h-screen w-full flex-col items-center gap-20 pb-40">
+                    <div ref={storyboard} id="story" className="hide-scrollbar relative z-10 flex w-full snap-x items-center gap-20 overflow-x-auto overflow-y-visible scroll-smooth">
+                        <div className="aspect-square h-full w-full max-w-md shrink-0" />
 
-                    {[...Array(9)].map((_, i) => (
-                        <img key={i} src={`/success-story/${i + 1}.JPG`} alt="Story 1" className="success-story-card select-none rounded-xl" loading="lazy" draggable={false} />
-                    ))}
+                        {[...Array(9)].map((_, i) => (
+                            <div
+                                key={i}
+                                ref={(ref) => (stories.current[i] = ref)}
+                                className={clsx(
+                                    "aspect-square max-w-md shrink-0 select-none snap-center overflow-hidden rounded-xl transition-all duration-500",
+                                    currentStoryIndex === i ? "scale-100" : " scale-90 opacity-40"
+                                )}
+                            >
+                                <img src={`/success-story/${i + 1}.JPG`} alt="Story 1" className="h-full w-full object-cover object-center" loading="lazy" draggable={false} />
+                            </div>
+                        ))}
 
-                    <div className="success-story-card" />
+                        <div className="aspect-square h-full w-full max-w-md shrink-0" />
+                    </div>
+
+                    <span ref={storySubtitle} className=" relative z-10 max-w-md text-center font-mulish text-2xl font-medium" />
+
+                    <img src="/patterns/2.svg" alt="" className="absolute bottom-0 left-0 w-full max-w-xl select-none" loading="lazy" draggable={false} />
                 </div>
 
-                <span className="relative z-10 font-mulish text-2xl font-medium">Running a business alone is hard...</span>
-
                 <img src="/patterns/1.svg" alt="" className="absolute right-0 top-0 w-full max-w-xl select-none" loading="lazy" draggable={false} />
-                <img src="/patterns/2.svg" alt="" className="absolute bottom-0 left-0 w-full max-w-xl select-none" loading="lazy" draggable={false} />
             </section>
 
             {/* Introduction */}
