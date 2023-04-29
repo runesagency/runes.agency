@@ -175,27 +175,32 @@ export default function Hero() {
                 </button>
             </div>
 
-            <div className="sticky top-10 z-10 flex min-h-screen w-full flex-col items-center gap-20 pb-40">
-                <div ref={storyboard} id="story" className="hide-scrollbar relative z-10 flex w-full snap-x items-center gap-20 overflow-x-auto overflow-y-visible scroll-smooth">
-                    <div className="aspect-square h-full w-full max-w-md shrink-0" />
+            <div ref={storyboardContainerRef} className="sticky top-1 z-10 min-h-screen w-full pb-40">
+                <div className="relative z-10 flex w-full translate-y-1/3 flex-col items-center gap-20">
+                    <div ref={storyboardRef} className="hide-scrollbar flex w-full snap-x items-center gap-20 overflow-x-auto overflow-y-visible scroll-smooth">
+                        <div className="aspect-square h-full w-full max-w-md shrink-0" />
+                        <div className="aspect-square h-full w-full max-w-md shrink-0" />
 
-                    {[...Array(9)].map((_, i) => (
-                        <div
-                            key={i}
-                            ref={(ref) => (stories.current[i] = ref)}
-                            className={clsx(
-                                "aspect-square max-w-md shrink-0 select-none snap-center overflow-hidden rounded-xl transition-all duration-500",
-                                currentStoryIndex === i ? "scale-100" : " scale-90 opacity-40"
-                            )}
-                        >
-                            <img src={`/success-story/${i + 1}.JPG`} alt="Story 1" className="h-full w-full object-cover object-center" loading="lazy" draggable={false} />
-                        </div>
-                    ))}
+                        {[...Array(subtitles.length)].map((_, i) => (
+                            <div
+                                key={i}
+                                ref={(ref) => setStoryRef(ref, i)}
+                                data-index={i}
+                                className={clsx(
+                                    "aspect-square max-w-md shrink-0 select-none snap-center overflow-hidden rounded-xl transition-all duration-500",
+                                    storyIndex === i ? "scale-100" : "scale-90 opacity-40"
+                                )}
+                            >
+                                <img src={`/success-story/${i + 1}.JPG`} alt="Story 1" className="h-full w-full object-cover object-center" loading="lazy" draggable={false} />
+                            </div>
+                        ))}
 
-                    <div className="aspect-square h-full w-full max-w-md shrink-0" />
+                        <div className="aspect-square h-full w-full max-w-md shrink-0" />
+                        <div className="aspect-square h-full w-full max-w-md shrink-0" />
+                    </div>
+
+                    <span ref={subtitleRef} id="story" className="max-w-md text-center font-mulish text-2xl font-medium" />
                 </div>
-
-                <span ref={storySubtitle} className=" relative z-10 max-w-md text-center font-mulish text-2xl font-medium" />
 
                 <img src="/patterns/2.svg" alt="" className="absolute bottom-0 left-0 w-full max-w-xl select-none" loading="lazy" draggable={false} />
             </div>
