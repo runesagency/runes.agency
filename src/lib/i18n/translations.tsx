@@ -99,10 +99,10 @@ const id: typeof en = {
         faqTitle: ["Kamu Mungkin", "Menayakan", "Hal Berikut"],
         blogTitle: "Blog & Wawasan",
         blogButton: "Cek Blog Kami",
-        contactTitle: ["Setiap Hal Hebat", "Pastinya", "Selalu", "Dibuat", "Bersama"],
+        contactTitle: ["Setiap Hal Hebat", "Pasti", "Selalu", "Dibuat", "Bersama"],
         contactSubtitle: [
             "Siap membawa bisnis Anda ke tingkat berikutnya?",
-            "Apakah Anda memiliki proyek tertentu dalam pikiran atau membutuhkan dukungan berkelanjutan, tim kami ada di sini untuk memberi Anda layanan terkemuka dan solusi kreatif.",
+            "Jika anda sudah memiliki sebuah ide atau butuh bantuan, tim kami akan siap memberi Anda layanan terkemuka dan solusi kreatif.",
         ],
         contactMeetingButton: ["Jadwalkan", "Meeting"],
         contactUsButton: "Kontak Kami",
