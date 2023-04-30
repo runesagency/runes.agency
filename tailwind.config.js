@@ -39,10 +39,14 @@ module.exports = {
         extend: {
             fontSize: {
                 "4.5xl": "2.5rem",
+                "5.5xl": "3.5rem",
                 "6.5xl": "4rem",
             },
             screens: {
                 "3xl": "1920px",
+            },
+            strokeWidth: {
+                1.5: "1.5",
             },
         },
     },
