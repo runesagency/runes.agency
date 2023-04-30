@@ -245,14 +245,19 @@ export default function HomePage() {
                 </p>
 
                 <div className="flex flex-col gap-4 md:flex-row md:gap-10">
-                    <button className="flex items-center justify-center gap-4 rounded-full bg-yellow-light px-6 py-3 lg:gap-6 lg:px-9 lg:py-5">
+                    <a
+                        href="https://calendly.com/runesagency/30min"
+                        target="_blank"
+                        className="flex items-center justify-center gap-4 rounded-full bg-yellow-light px-6 py-3 duration-200 hover:scale-105 lg:gap-6 lg:px-9 lg:py-5"
+                        rel="noreferrer"
+                    >
                         <IconCalendarTime className="h-6 w-6 shrink-0 stroke-black stroke-1.5 lg:h-10 lg:w-10" />
 
                         <span className="font-mulish text-xl font-semibold text-black lg:text-2xl">
                             <span>{t.contactMeetingButton[0]} </span>
                             <span className="font-bold italic">{t.contactMeetingButton[1]}</span>
                         </span>
-                    </button>
+                    </a>
 
                     <button className="flex items-center justify-center gap-4 rounded-full bg-black px-6 py-3 lg:gap-6 lg:px-9 lg:py-5">
                         <IconHeartHandshake className="h-6 w-6 shrink-0 stroke-white stroke-1.5 lg:h-10 lg:w-10" />
@@ -278,21 +283,21 @@ export default function HomePage() {
 
                         <div className="group flex items-center gap-6">
                             {socials.map(({ icon: Icon, href, label }, index) => (
-                                <a key={index} href={href} aria-label={label}>
+                                <a key={index} href={href} aria-label={label} target="_blank" rel="noreferrer">
                                     <Icon className="h-10 w-10 stroke-yellow-light stroke-1.5 duration-200 hover:!opacity-100 group-hover:opacity-40" />
                                 </a>
                             ))}
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-6">
+                    <div className="group flex flex-col gap-6">
                         <h3 className="font-playfair-display text-2xl font-medium text-yellow-light">
                             <span>{t.footerContactTitle[0]} </span>
                             <span className="font-bold italic">{t.footerContactTitle[1]}</span>
                         </h3>
 
                         {contacts.map(({ icon: Icon, href, label }, index) => (
-                            <a key={index} href={href} target="_blank" className="flex items-center gap-6" rel="noreferrer">
+                            <a key={index} href={href} target="_blank" className="flex items-center gap-6 duration-200 hover:!opacity-100 group-hover:opacity-40" rel="noreferrer">
                                 <Icon className="h-8 w-8 shrink-0 stroke-yellow-light stroke-1.5" />
                                 <p className={clsx("max-w-sm text-left font-mulish text-lg text-white lg:text-xl", index === 0 && "font-bold")}>{label}</p>
                             </a>
@@ -301,7 +306,7 @@ export default function HomePage() {
                 </main>
 
                 <div className="flex w-full max-w-sm flex-col justify-between gap-6 font-mulish text-white md:max-w-2xl md:flex-row md:items-end lg:max-w-4xl xl:max-w-7xl">
-                    <div className="max-w-xs space-y-2">
+                    <div className="max-w-sm space-y-2">
                         <p>© 2023 Runes. All Rights Reserved.</p>
 
                         <p>

@@ -151,19 +151,19 @@ export default function Hero() {
             </div>
 
             <div className="relative z-10 flex flex-wrap justify-center gap-6 stroke-black text-center font-mulish text-xl font-semibold text-black md:gap-10">
-                <a href="#story" className="hidden rounded-full bg-black px-7 py-3 font-bold text-yellow-light lg:block">
+                <a href="#story" className="hidden rounded-full bg-black px-7 py-3 font-bold text-yellow-light duration-200 hover:scale-105 lg:block">
                     {t.mainStoryButton}
                 </a>
 
-                <button className="flex items-center gap-4 rounded-full bg-blue-light px-7 py-3 font-bold">
+                <a href="/runes-capabilities-deck.pdf" target="_blank" className="flex items-center gap-4 rounded-full bg-blue-light px-7 py-3 font-bold duration-200 hover:scale-105">
                     <IconPresentation className="h-6 w-6" />
                     <span>{t.mainDeckButton}</span>
-                </button>
+                </a>
 
-                <button className="flex items-center gap-4 rounded-full bg-pink px-7 py-3 font-bold">
+                <a href="/pricing-guide.pdf" target="_blank" className="flex items-center gap-4 rounded-full bg-pink px-7 py-3 font-bold duration-200 hover:scale-105">
                     <IconCurrencyDollar className="h-6 w-6" />
                     <span>{t.mainPricingButton}</span>
-                </button>
+                </a>
             </div>
 
             <div ref={storyboardContainerRef} className="sticky top-1 z-10 min-h-screen w-full pb-40">

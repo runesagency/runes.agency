@@ -126,7 +126,7 @@ export default function Services() {
 
     return (
         <section className="flex flex-col gap-10 py-20 md:gap-20 lg:py-32">
-            <div ref={headerRef} className="mx-auto flex w-full max-w-sm items-center justify-between md:max-w-2xl lg:max-w-4xl 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
+            <div ref={headerRef} className="mx-auto flex w-full max-w-sm items-center justify-between gap-4 md:max-w-2xl lg:max-w-4xl 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
                 <h2 className="font-playfair-display text-5xl font-medium leading-tight text-black lg:text-6.5xl">
                     <span>{t.servicesTitle[0]} </span>
                     <span className="font-semibold">{t.servicesTitle[1]} </span>
