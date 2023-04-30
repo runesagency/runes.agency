@@ -1,5 +1,6 @@
 "use client";
 
+import Blog from "@/components/Blog";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 
@@ -15,7 +16,6 @@ import {
     IconMail,
     IconMapPin,
 } from "@tabler/icons-react";
-import Link from "next/link";
 
 export default function HomePage() {
     type Partner = {
@@ -175,27 +175,7 @@ export default function HomePage() {
             </section>
 
             {/* Blogs */}
-            <section className="flex flex-col gap-10 py-20">
-                <div className="flex w-full max-w-screen-2xl items-center justify-between">
-                    <h2 className="font-playfair-display text-4.5xl font-semibold text-black">Blogs & Insights</h2>
-                    <button className="rounded-full bg-black px-7 py-3 font-mulish font-bold text-white">See More</button>
-                </div>
-
-                <div className="flex gap-7">
-                    <Link href="#" className="flex w-full max-w-lg flex-col gap-5">
-                        <div className="h-80 w-full overflow-hidden rounded-xl bg-gray">
-                            <img
-                                src="https://images.unsplash.com/photo-1682277149061-69bb5222036f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8YWxsfDV8fHx8fHwyfHwxNjgyNTg0Mzgz&ixlib=rb-4.0.3&q=80&w=1200"
-                                alt="Cover"
-                                className="h-full w-full object-cover object-center"
-                                loading="lazy"
-                            />
-                        </div>
-
-                        <p className="font-mulish text-2xl font-medium text-black">Belajar Branding Ala Redbull</p>
-                    </Link>
-                </div>
-            </section>
+            <Blog />
 
             {/* Contact */}
             <section className="relative flex flex-col items-center gap-14 bg-blue-light pt-32">
