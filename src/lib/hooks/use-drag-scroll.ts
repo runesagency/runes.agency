@@ -65,7 +65,6 @@ export const useDragScroll = <T extends HTMLElement = HTMLButtonElement>() => {
 
     const onMouseUp = useCallback(() => {
         if (!isDragging) return;
-
         setIsDragging(false);
 
         const container = containerRef.current;
@@ -107,6 +106,18 @@ export const useDragScroll = <T extends HTMLElement = HTMLButtonElement>() => {
         },
         [isDragging]
     );
+
+    const onTouchStart = useCallback(() => {
+        // don't touch, it's just work this way
+        setIsHovering(true);
+    }, []);
+
+    const onTouchEnd = useCallback(() => {
+        // don't touch, it's just work this way
+        setIsHovering(false);
+        setIsDragging(true);
+        onMouseUp();
+    }, [onMouseUp]);
 
     const scrollCheckTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
     const onScroll = useCallback(() => {
@@ -200,6 +211,8 @@ export const useDragScroll = <T extends HTMLElement = HTMLButtonElement>() => {
             onMouseUp,
             onMouseMove,
             onScroll,
+            onTouchStart,
+            onTouchEnd,
         },
         onScrollLeftClick,
         onScrollRightClick,
