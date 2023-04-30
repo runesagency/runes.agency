@@ -25,10 +25,9 @@ export default function Blog() {
     const { isDragging, setBlockRef, headerRef, containerProps, containerRef } = useDragScroll<HTMLAnchorElement | HTMLDivElement>();
     const isActuallyDragging = useLatest(isDragging);
 
-    const fetcher = (url: string) => fetch(url).then((res) => res.json());
-    const { data, error, isLoading } = usePosts();
+    const { data, isLoading } = usePosts();
 
-    const dataFillerCount = data && data.posts.length < 5 ? 5 - data.posts.length : 5;
+    const dataFillerCount = data && data.posts.length < 3 ? 3 - data.posts.length : 3;
 
     const onLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
