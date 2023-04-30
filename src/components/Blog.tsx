@@ -1,5 +1,6 @@
 import { useDragScroll } from "@/lib/hooks/use-drag-scroll";
 import { useLatest } from "@/lib/hooks/use-latest";
+import { useLanguage } from "@/lib/i18n/i18n";
 
 import clsx from "clsx";
 import useSWR from "swr";
@@ -20,6 +21,7 @@ const usePosts = () => {
 };
 
 export default function Blog() {
+    const { t } = useLanguage();
     const { isDragging, setBlockRef, headerRef, containerProps, containerRef } = useDragScroll<HTMLAnchorElement | HTMLDivElement>();
     const isActuallyDragging = useLatest(isDragging);
 
@@ -48,10 +50,10 @@ export default function Blog() {
     return (
         <section className="flex flex-col gap-10 py-20">
             <div ref={headerRef} className="mx-auto flex w-full max-w-sm flex-col items-center justify-between gap-4 md:max-w-2xl md:flex-row lg:max-w-4xl 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
-                <h2 className="font-playfair-display text-4.5xl font-semibold text-black">Blogs & Insights</h2>
+                <h2 className="font-playfair-display text-4.5xl font-semibold text-black">{t.blogTitle}</h2>
 
                 <a href="https://blog.runes.agency" target="_blank" className="rounded-full bg-black px-7 py-3 font-mulish font-bold text-white" rel="noreferrer">
-                    Check Our Blog
+                    {t.blogButton}
                 </a>
             </div>
 

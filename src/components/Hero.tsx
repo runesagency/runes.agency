@@ -1,28 +1,12 @@
-import { LanguageChooser } from "@/lib/i18n/i18n";
+import { LanguageChooser, useLanguage } from "@/lib/i18n/i18n";
 
 import { IconCurrencyDollar, IconPresentation } from "@tabler/icons-react";
 import clsx from "clsx";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const subtitles = [
-    "Running a business alone is hard...",
-    undefined,
-    undefined,
-    "You get tired, and sometimes you get stressed...",
-    undefined,
-    "But don't worry, we're here to help you!",
-    undefined,
-    undefined,
-    "Let's grow together and make your business shine! ✨",
-];
-
-const getSubtitle = (index: number): string => {
-    const subtitle = subtitles[index];
-    if (subtitle !== undefined) return subtitle;
-    return getSubtitle(index - 1);
-};
-
 export default function Hero() {
+    const { t } = useLanguage();
+
     const containerRef = useRef<HTMLDivElement>(null);
     const storyboardContainerRef = useRef<HTMLDivElement>(null);
     const storyboardRef = useRef<HTMLDivElement>(null);
@@ -35,6 +19,15 @@ export default function Hero() {
         if (!element) return;
         storiesRefs.current[index] = element;
     }, []);
+
+    const getSubtitle = useCallback(
+        (index: number): string => {
+            const subtitle = t.mainStorySubtitles[index];
+            if (subtitle !== undefined) return subtitle;
+            return getSubtitle(index - 1);
+        },
+        [t]
+    );
 
     useEffect(() => {
         const container = containerRef.current;
@@ -133,7 +126,7 @@ export default function Hero() {
         return () => {
             window.removeEventListener("scroll", onScroll);
         };
-    }, []);
+    }, [getSubtitle]);
 
     return (
         <section ref={containerRef} className="relative flex flex-col items-center gap-20 bg-yellow-light pt-20" style={{ height: "8000px" }}>
@@ -145,31 +138,31 @@ export default function Hero() {
 
             <div className="relative z-10 flex flex-col items-center gap-4 md:gap-10">
                 <h1 className="text-center font-playfair-display text-5.5xl font-medium text-black md:text-8xl xl:text-9xl">
-                    <span className="block md:pb-6">Making Things</span>
+                    <span className="block md:pb-6">{t.mainTitle[0]}</span>
 
                     <span className="font-semibold">
-                        <i>Simple</i> For You
+                        <i>{t.mainTitle[1]}</i> {t.mainTitle[2]}
                     </span>
                 </h1>
 
                 <p className="max-w-sm text-center font-mulish text-lg leading-normal md:max-w-2xl md:text-2xl lg:max-w-3xl">
-                    <b>Let's grow your brand together</b>. We know handling business is hard, let us help you so you don't have to do everything yourself.
+                    <b>{t.mainSubtitle[0]}</b> {t.mainSubtitle[1]}
                 </p>
             </div>
 
             <div className="relative z-10 flex flex-wrap justify-center gap-6 stroke-black text-center font-mulish text-xl font-semibold text-black md:gap-10">
                 <a href="#story" className="hidden rounded-full bg-black px-7 py-3 font-bold text-yellow-light lg:block">
-                    See The Story
+                    {t.mainStoryButton}
                 </a>
 
                 <button className="flex items-center gap-4 rounded-full bg-blue-light px-7 py-3 font-bold">
                     <IconPresentation className="h-6 w-6" />
-                    <span>View Our Company Deck</span>
+                    <span>{t.mainDeckButton}</span>
                 </button>
 
                 <button className="flex items-center gap-4 rounded-full bg-pink px-7 py-3 font-bold">
                     <IconCurrencyDollar className="h-6 w-6" />
-                    <span>View Our Pricing</span>
+                    <span>{t.mainPricingButton}</span>
                 </button>
             </div>
 
@@ -179,7 +172,7 @@ export default function Hero() {
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
 
-                        {[...Array(subtitles.length)].map((_, i) => (
+                        {[...Array(t.mainStorySubtitles.length)].map((_, i) => (
                             <div
                                 key={i}
                                 ref={(ref) => setStoryRef(ref, i)}

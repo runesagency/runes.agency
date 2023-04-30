@@ -1,4 +1,5 @@
 import { useDragScroll } from "@/lib/hooks/use-drag-scroll";
+import { useLanguage } from "@/lib/i18n/i18n";
 import { theme } from "tailwind.config";
 
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
@@ -120,16 +121,17 @@ const services: Service[] = [
 ];
 
 export default function Services() {
+    const { t } = useLanguage();
     const { headerRef, onScrollLeftClick, onScrollRightClick, containerRef, containerProps, setBlockRef, isDragging } = useDragScroll();
 
     return (
         <section className="flex flex-col gap-10 py-20 md:gap-20 lg:py-32">
             <div ref={headerRef} className="mx-auto flex w-full max-w-sm items-center justify-between md:max-w-2xl lg:max-w-4xl 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
                 <h2 className="font-playfair-display text-5xl font-medium leading-tight text-black lg:text-6.5xl">
-                    <span>We Do </span>
-                    <span className="font-semibold">A Lot </span>
-                    <span>Of </span>
-                    <span className="font-semibold italic">Things</span>
+                    <span>{t.servicesTitle[0]} </span>
+                    <span className="font-semibold">{t.servicesTitle[1]} </span>
+                    <span>{t.servicesTitle[2]} </span>
+                    <span className="font-semibold italic">{t.servicesTitle[3]}</span>
                 </h2>
 
                 <div className="hidden gap-6 md:flex">

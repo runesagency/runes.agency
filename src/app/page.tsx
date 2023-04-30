@@ -3,7 +3,7 @@
 import Blog from "@/components/Blog";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
-import { LanguageChooser } from "@/lib/i18n/i18n";
+import { LanguageChooser, useLanguage } from "@/lib/i18n/i18n";
 
 import {
     IconBrandBehance,
@@ -20,6 +20,8 @@ import {
 import clsx from "clsx";
 
 export default function HomePage() {
+    const { t } = useLanguage();
+
     type Partner = {
         name: string;
         slug: string;
@@ -130,13 +132,13 @@ export default function HomePage() {
                     </svg>
                 </div>
 
-                <div className="max-w-sm space-y-4 text-center font-mulish text-2xl text-black md:max-w-2xl md:text-4xl lg:max-w-4xl xl:max-w-5xl xl:text-4.5xl">
+                <div className="max-w-sm space-y-4 text-center font-mulish text-2xl text-black md:max-w-2xl md:text-4xl lg:max-w-4xl lg:space-y-8 xl:max-w-5xl xl:text-4.5xl">
                     <p className="leading-normal">
-                        We believe that every process should be <b>simple and easy</b> for everyone to understand.
+                        {t.introText1[0]} <b>{t.introText1[1]}</b> {t.introText1[2]}
                     </p>
 
                     <p className="leading-normal">
-                        And we also believe that great products <b>should be delivered to everyone</b> regardless of market level or anything.
+                        {t.introText2[0]} <b>{t.introText2[1]}</b> {t.introText2[2]}
                     </p>
                 </div>
             </section>
@@ -146,9 +148,7 @@ export default function HomePage() {
                 <hr className="w-full max-w-xs border-gray md:max-w-lg" />
 
                 <div className="flex w-full max-w-4xl flex-col items-center gap-16 xl:max-w-5xl">
-                    <p className="max-w-xs text-center font-mulish text-xl italic text-black md:max-w-2xl md:text-2xl lg:max-w-none">
-                        These were the brands who trusted us to grow their brand to the top.
-                    </p>
+                    <p className="max-w-xs text-center font-mulish text-xl italic text-black md:max-w-2xl md:text-2xl lg:max-w-none">{t.partnersText}</p>
 
                     <div className="grid w-full max-w-xs grid-cols-2 gap-6 md:max-w-2xl md:grid-cols-4 lg:max-w-none">
                         {partners.map(({ slug, name }, j) => (
@@ -173,7 +173,7 @@ export default function HomePage() {
             {/* Portfolio */}
             <section className="hidden flex-col items-center bg-green py-20 lg:flex">
                 <div className="flex flex-col items-center gap-10 text-black">
-                    <h2 className="font-playfair-display text-6.5xl font-semibold">Featured Projects</h2>
+                    <h2 className="font-playfair-display text-6.5xl font-semibold">{t.portfolioTitle}</h2>
 
                     <div className="flex gap-10 font-mulish text-xl text-black">
                         <button className="rounded-full border-2 border-black bg-black px-6 py-3 text-white">Graphic Design</button>
@@ -191,10 +191,10 @@ export default function HomePage() {
                     <div className="mx-auto flex max-w-sm flex-1 flex-col gap-10 md:mx-0 md:max-w-none">
                         <h2 className="font-playfair-display text-5xl font-medium leading-snug text-black xl:text-6.5xl">
                             <span className="block">
-                                You Probably <b>Ask</b>
+                                {t.faqTitle[0]} <b>{t.faqTitle[1]}</b>
                             </span>
 
-                            <span className="font-bold italic">This Questions</span>
+                            <span className="font-bold italic">{t.faqTitle[2]}</span>
                         </h2>
 
                         <div className="flex flex-col gap-10">
@@ -228,21 +228,20 @@ export default function HomePage() {
             <section className="relative flex flex-col items-center gap-10 bg-blue-light pt-32 xl:gap-14">
                 <h2 className="text-center font-playfair-display text-4xl font-semibold text-black md:text-6xl lg:text-7xl xl:text-8xl">
                     <span className="block pb-2 md:pb-4">
-                        <span>Every Great Thing </span>
-                        <span className="font-medium">Is</span>
+                        <span>{t.contactTitle[0]} </span>
+                        <span className="font-medium">{t.contactTitle[1]}</span>
                     </span>
 
                     <span>
-                        <span className="font-medium">Always </span>
+                        <span className="font-medium">{t.contactTitle[2]} </span>
                         <span>
-                            Made <i>Together</i>
+                            {t.contactTitle[3]} <i>{t.contactTitle[4]}</i>
                         </span>
                     </span>
                 </h2>
 
                 <p className="max-w-sm text-center font-mulish text-lg leading-normal text-black md:max-w-2xl lg:max-w-3xl lg:text-2xl xl:max-w-4xl">
-                    <b>Ready to take your business to the next level?</b> Whether you have a specific project in mind or need ongoing support, our team is here to provide you with top-notch service
-                    and creative solutions.
+                    <b>{t.contactSubtitle[0]}</b> {t.contactSubtitle[1]}
                 </p>
 
                 <div className="flex flex-col gap-4 md:flex-row md:gap-10">
@@ -250,15 +249,15 @@ export default function HomePage() {
                         <IconCalendarTime className="h-6 w-6 shrink-0 stroke-black stroke-1.5 lg:h-10 lg:w-10" />
 
                         <span className="font-mulish text-xl font-semibold text-black lg:text-2xl">
-                            <span>Schedule A </span>
-                            <span className="font-bold italic">Meeting</span>
+                            <span>{t.contactMeetingButton[0]} </span>
+                            <span className="font-bold italic">{t.contactMeetingButton[1]}</span>
                         </span>
                     </button>
 
                     <button className="flex items-center justify-center gap-4 rounded-full bg-black px-6 py-3 lg:gap-6 lg:px-9 lg:py-5">
                         <IconHeartHandshake className="h-6 w-6 shrink-0 stroke-white stroke-1.5 lg:h-10 lg:w-10" />
 
-                        <span className="font-mulish text-xl font-semibold text-white lg:text-2xl">Contact Us</span>
+                        <span className="font-mulish text-xl font-semibold text-white lg:text-2xl">{t.contactUsButton}</span>
                     </button>
                 </div>
 
@@ -288,8 +287,8 @@ export default function HomePage() {
 
                     <div className="flex flex-col gap-6">
                         <h3 className="font-playfair-display text-2xl font-medium text-yellow-light">
-                            <span>Let's Get </span>
-                            <span className="font-bold italic">Connected</span>
+                            <span>{t.footerContactTitle[0]} </span>
+                            <span className="font-bold italic">{t.footerContactTitle[1]}</span>
                         </h3>
 
                         {contacts.map(({ icon: Icon, href, label }, index) => (
@@ -306,7 +305,7 @@ export default function HomePage() {
                         <p>© 2023 Runes. All Rights Reserved.</p>
 
                         <p>
-                            A brand of <b>PT Rumah Kreasi Bersama</b>, company registered in Indonesia.
+                            {t.footerAttributionText[0]} <b>PT Rumah Kreasi Bersama</b>, {t.footerAttributionText[1]}.
                         </p>
                     </div>
 
