@@ -1,5 +1,6 @@
 "use client";
 
+import { LanguageProvider } from "@/lib/i18n/i18n";
 import "@/styles/globals.css";
 
 import clsx from "clsx";
@@ -30,7 +31,9 @@ const mulish = Mulish({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <body className={clsx(playfairDisplay.variable, mulish.variable, "h-full w-full")}>{children}</body>
+            <body className={clsx(playfairDisplay.variable, mulish.variable, "h-full w-full")}>
+                <LanguageProvider>{children}</LanguageProvider>
+            </body>
         </html>
     );
 }

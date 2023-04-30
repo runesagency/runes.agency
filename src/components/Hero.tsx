@@ -1,4 +1,6 @@
 import { IconChevronDown, IconCurrencyDollar, IconPresentation } from "@tabler/icons-react";
+import { LanguageChooser } from "@/lib/i18n/i18n";
+
 import clsx from "clsx";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -138,22 +140,7 @@ export default function Hero() {
             <div className="relative z-10 flex w-full max-w-7xl items-center justify-between">
                 <img src="/logo.svg" alt="Logo" className="h-10" />
 
-                <button className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2">
-                    <svg width="32" height="21" viewBox="0 0 32 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M28.4444 0H3.55556C2.61256 0 1.70819 0.340383 1.0414 0.94627C0.374602 1.55216 0 2.37392 0 3.23077L0 10.5H32V3.23077C32 2.37392 31.6254 1.55216 30.9586 0.94627C30.2918 0.340383 29.3874 0 28.4444 0Z"
-                            fill="#DC1F26"
-                        />
-                        <path
-                            d="M32 17.7692C32 18.6261 31.6254 19.4478 30.9586 20.0537C30.2918 20.6596 29.3874 21 28.4444 21H3.55556C2.61256 21 1.70819 20.6596 1.0414 20.0537C0.374602 19.4478 0 18.6261 0 17.7692V10.5H32V17.7692Z"
-                            fill="#EEEEEE"
-                        />
-                    </svg>
-
-                    <p className="font-mulish text-lg text-white">Bahasa Indonesia</p>
-
-                    <IconChevronDown className="stroke-white" />
-                </button>
+                <LanguageChooser />
             </div>
 
             <div className="relative z-10 flex flex-col items-center gap-10">
