@@ -1,7 +1,7 @@
 export type LanguageData = {
     name: string;
     flag: React.ReactNode;
-    translations: Record<string, string | (string | undefined)[]>;
+    translations: Record<string, string | (string | undefined | object)[]>;
 };
 
 const en = {
@@ -45,6 +45,40 @@ const en = {
         partnersText: "These were the brands who trusted us to grow their brand to the top.",
         portfolioTitle: "Featured Projects",
         servicesTitle: ["We Do", "A Lot", "Of", "Things"],
+        servicesList: [
+            {
+                name: "Graphic Design",
+                description: "Build your own imaginative world.",
+            },
+            {
+                name: "UI/UX Design",
+                description: "Designing experiences that delight and inspire.",
+            },
+            {
+                name: "Chat Bot",
+                description: "Revolutionize your customer support with chatbots",
+            },
+            {
+                name: "Social Media Management",
+                description: "Boost your brand with strategic social media.",
+            },
+            {
+                name: "Digital Advertising",
+                description: "Maximizing your online presence with targeted ads.",
+            },
+            {
+                name: "Web Development",
+                description: "Building digital solutions that power your business.",
+            },
+            {
+                name: "Branding",
+                description: "Crafting identities that leave a lasting impression.",
+            },
+            {
+                name: "Managed Hosting",
+                description: "Secure, reliable, and hassle-free hosting solutions.",
+            },
+        ],
         faqTitle: ["You Probably", "Ask", "These Questions"],
         blogTitle: "Blogs & Insights",
         blogButton: "Check Our Blog",
@@ -96,6 +130,40 @@ const id: typeof en = {
         partnersText: "Ini adalah merek yang mempercayai kami untuk menumbuhkan merek mereka ke atas.",
         portfolioTitle: "Pekerjaan Kami",
         servicesTitle: ["Kami Melalukan", "Banyak", "Sekali", "Hal"],
+        servicesList: [
+            {
+                name: "Desain Grafis",
+                description: "Bangun dunia imajinatif Anda sendiri.",
+            },
+            {
+                name: "Desain UI/UX",
+                description: "Merancang pengalaman yang menyenangkan dan menginspirasi.",
+            },
+            {
+                name: "Chat Bot",
+                description: "Buat pelanggan Anda lebih cepat berkomunikasi dengan chatbots",
+            },
+            {
+                name: "Manajemen Media Sosial",
+                description: "Tingkatkan merek Anda dengan media sosial yang strategis.",
+            },
+            {
+                name: "Iklan Digital",
+                description: "Memaksimalkan kehadiran online Anda dengan iklan bertarget.",
+            },
+            {
+                name: "Pengembangan Web",
+                description: "Membangun solusi digital yang memberi daya pada bisnis Anda.",
+            },
+            {
+                name: "Branding",
+                description: "Membuat identitas yang meninggalkan kesan abadi.",
+            },
+            {
+                name: "Pengelolaan Hosting",
+                description: "Solusi hosting yang aman, andal, dan bebas repot.",
+            },
+        ],
         faqTitle: ["Kamu Mungkin", "Menayakan", "Hal Berikut"],
         blogTitle: "Blog & Wawasan",
         blogButton: "Cek Blog Kami",

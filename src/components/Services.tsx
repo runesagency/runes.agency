@@ -6,16 +6,12 @@ import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import clsx from "clsx";
 
 type Service = {
-    name: string;
-    description: string;
     color: string;
     icon: (props: React.SVGProps<SVGSVGElement>) => React.ReactElement;
 };
 
 const services: Service[] = [
     {
-        name: "Graphic Design",
-        description: "Build your own imaginative world.",
         color: theme.colors.green,
         icon: (props) => (
             <svg {...props} viewBox="0 0 80 80">
@@ -24,8 +20,6 @@ const services: Service[] = [
         ),
     },
     {
-        name: "UI/UX Design",
-        description: "Designing experiences that delight and inspire.",
         color: theme.colors.yellow.light,
         icon: (props) => (
             <svg {...props} viewBox="0 0 70 80">
@@ -41,8 +35,6 @@ const services: Service[] = [
         ),
     },
     {
-        name: "Chat Bot",
-        description: "Revolutionize your customer support with chatbots",
         color: theme.colors.blue.light,
         icon: (props) => (
             <svg {...props} viewBox="0 0 160 80">
@@ -52,8 +44,6 @@ const services: Service[] = [
         ),
     },
     {
-        name: "Social Media Management",
-        description: "Boost your brand with strategic social media.",
         color: theme.colors.pink,
         icon: (props) => (
             <svg {...props} viewBox="0 0 73 80">
@@ -69,8 +59,6 @@ const services: Service[] = [
         ),
     },
     {
-        name: "Digital Advertising",
-        description: "Maximizing your online presence with targeted ads.",
         color: theme.colors.green,
         icon: (props) => (
             <svg {...props} viewBox="0 0 80 80">
@@ -86,8 +74,6 @@ const services: Service[] = [
         ),
     },
     {
-        name: "Web Development",
-        description: "Building digital solutions that power your business.",
         color: theme.colors.yellow.light,
         icon: (props) => (
             <svg {...props} viewBox="0 0 122 80">
@@ -97,8 +83,6 @@ const services: Service[] = [
         ),
     },
     {
-        name: "Branding",
-        description: "Crafting identities that leave a lasting impression.",
         color: theme.colors.blue.light,
         icon: (props) => (
             <svg {...props} viewBox="0 0 80 80">
@@ -108,8 +92,6 @@ const services: Service[] = [
         ),
     },
     {
-        name: "Managed Hosting",
-        description: "Secure, reliable, and hassle-free hosting solutions.",
         color: theme.colors.pink,
         icon: (props) => (
             <svg {...props} viewBox="0 0 80 80">
@@ -148,30 +130,34 @@ export default function Services() {
             <div ref={containerRef} className={clsx("hide-scrollbar flex w-full select-none gap-10 overflow-auto", isDragging ? "cursor-grabbing" : "cursor-grab")} {...containerProps}>
                 <div className="aspect-square h-full w-full max-w-sm shrink-0 md:max-w-md xl:max-w-lg" />
 
-                {services.map(({ color, name, description, icon: Icon }, i) => (
-                    <button
-                        ref={setBlockRef}
-                        key={i}
-                        className="flex aspect-square h-full w-full max-w-sm shrink-0 flex-col items-start justify-between p-10 md:max-w-md xl:max-w-lg"
-                        style={{ backgroundColor: color }}
-                    >
-                        <section className="flex flex-col gap-5 text-left font-mulish text-black">
-                            <h3 className="text-3xl font-bold lg:text-4xl">{name}</h3>
-                            <p className="text-lg lg:text-2xl">{description}</p>
-                        </section>
+                {services.map(({ color, icon: Icon }, i) => {
+                    const { name, description } = t.servicesList[i];
 
-                        <section className="flex w-full items-center justify-between">
-                            <Icon className="h-20" />
+                    return (
+                        <button
+                            ref={setBlockRef}
+                            key={i}
+                            className="flex aspect-square h-full w-full max-w-sm shrink-0 flex-col items-start justify-between p-10 md:max-w-md xl:max-w-lg"
+                            style={{ backgroundColor: color }}
+                        >
+                            <section className="flex flex-col gap-5 text-left font-mulish text-black">
+                                <h3 className="text-3xl font-bold lg:text-4xl">{name}</h3>
+                                <p className="text-lg lg:text-2xl">{description}</p>
+                            </section>
 
-                            <svg width="41" height="16" viewBox="0 0 41 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M40.7071 8.70711C41.0976 8.31658 41.0976 7.68342 40.7071 7.29289L34.3431 0.928932C33.9526 0.538408 33.3195 0.538408 32.9289 0.928932C32.5384 1.31946 32.5384 1.95262 32.9289 2.34315L38.5858 8L32.9289 13.6569C32.5384 14.0474 32.5384 14.6805 32.9289 15.0711C33.3195 15.4616 33.9526 15.4616 34.3431 15.0711L40.7071 8.70711ZM0 9H40V7H0V9Z"
-                                    fill="#272727"
-                                />
-                            </svg>
-                        </section>
-                    </button>
-                ))}
+                            <section className="flex w-full items-center justify-between">
+                                <Icon className="h-20" />
+
+                                <svg width="41" height="16" viewBox="0 0 41 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M40.7071 8.70711C41.0976 8.31658 41.0976 7.68342 40.7071 7.29289L34.3431 0.928932C33.9526 0.538408 33.3195 0.538408 32.9289 0.928932C32.5384 1.31946 32.5384 1.95262 32.9289 2.34315L38.5858 8L32.9289 13.6569C32.5384 14.0474 32.5384 14.6805 32.9289 15.0711C33.3195 15.4616 33.9526 15.4616 34.3431 15.0711L40.7071 8.70711ZM0 9H40V7H0V9Z"
+                                        fill="#272727"
+                                    />
+                                </svg>
+                            </section>
+                        </button>
+                    );
+                })}
 
                 <div className="aspect-square h-full w-full max-w-sm shrink-0 md:max-w-md xl:max-w-lg" />
             </div>
