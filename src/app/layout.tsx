@@ -31,6 +31,27 @@ const mulish = Mulish({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
+            <head>
+                {/* <!-- Primary Meta Tags --> */}
+                <title>Runes | Digital Creative Agency</title>
+                <meta name="title" content="Runes | Digital Creative Agency" />
+                <meta name="description" content="We help grow, elevating your brand from other competitors. We make solutions so that you don’t have to work it yourself." />
+
+                {/* <!-- Open Graph / Facebook --> */}
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://metatags.io/" />
+                <meta property="og:title" content="Runes | Digital Creative Agency" />
+                <meta property="og:description" content="We help grow, elevating your brand from other competitors. We make solutions so that you don’t have to work it yourself." />
+                <meta property="og:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png" />
+
+                {/* <!-- Twitter --> */}
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta property="twitter:url" content="https://metatags.io/" />
+                <meta property="twitter:title" content="Runes | Digital Creative Agency" />
+                <meta property="twitter:description" content="We help grow, elevating your brand from other competitors. We make solutions so that you don’t have to work it yourself." />
+                <meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png" />
+            </head>
+
             <body className={clsx(playfairDisplay.variable, mulish.variable, "h-full w-full")}>
                 <LanguageProvider>{children}</LanguageProvider>
             </body>
