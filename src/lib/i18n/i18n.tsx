@@ -55,9 +55,13 @@ export const LanguageChooser = ({ className }: LanguageChooserProps) => {
 
     return (
         <div className={clsx("flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2", className)}>
-            <label htmlFor="language">{flag}</label>
+            {flag}
 
-            <select id="language" onChange={onLanguageChange} value={languageCode} className="bg-transparent font-mulish text-base text-white focus:outline-none md:text-lg">
+            <select
+                onChange={onLanguageChange}
+                value={languageCode}
+                className="cursor-pointer bg-transparent font-mulish text-base text-white duration-200 hover:opacity-75 focus:outline-none md:text-lg"
+            >
                 {Object.entries(translations).map(([key, { name }]) => (
                     <option key={key} value={key} className="text-black">
                         {name}&nbsp;
