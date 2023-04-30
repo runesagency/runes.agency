@@ -123,31 +123,39 @@ export default function Services() {
     const { headerRef, onScrollLeftClick, onScrollRightClick, containerRef, containerProps, setBlockRef, isDragging } = useDragScroll();
 
     return (
-        <section className="flex flex-col gap-20 py-32">
-            <div ref={headerRef} className="mx-auto flex w-full max-w-screen-2xl items-center justify-between">
-                <h2 className="font-playfair-display text-6.5xl font-medium text-black">
-                    We Do <span className="font-semibold">A Lot</span> Of <span className="font-semibold italic">Things</span>
+        <section className="flex flex-col gap-10 py-20 md:gap-20 lg:py-32">
+            <div ref={headerRef} className="mx-auto flex w-full max-w-sm items-center justify-between md:max-w-2xl lg:max-w-4xl 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
+                <h2 className="font-playfair-display text-5xl font-medium leading-tight text-black lg:text-6.5xl">
+                    <span>We Do </span>
+                    <span className="font-semibold">A Lot </span>
+                    <span>Of </span>
+                    <span className="font-semibold italic">Things</span>
                 </h2>
 
-                <div className="flex gap-6">
-                    <button className="flex h-14 w-14 items-center justify-center rounded-full bg-black" onClick={onScrollLeftClick}>
-                        <IconArrowLeft width={20} className="stroke-white" />
+                <div className="hidden gap-6 md:flex">
+                    <button className="flex h-14 w-14 items-center justify-center rounded-full bg-black" onClick={onScrollLeftClick} aria-label="Scroll Left">
+                        <IconArrowLeft className="w-5 stroke-white" />
                     </button>
 
-                    <button className="flex h-14 w-14 items-center justify-center rounded-full bg-black" onClick={onScrollRightClick}>
-                        <IconArrowRight width={20} className="stroke-white" />
+                    <button className="flex h-14 w-14 items-center justify-center rounded-full bg-black" onClick={onScrollRightClick} aria-label="Scroll Right">
+                        <IconArrowRight className="w-5 stroke-white" />
                     </button>
                 </div>
             </div>
 
             <div ref={containerRef} className={clsx("hide-scrollbar flex w-full select-none gap-10 overflow-auto", isDragging ? "cursor-grabbing" : "cursor-grab")} {...containerProps}>
-                <div className="aspect-square h-full w-full max-w-lg shrink-0" />
+                <div className="aspect-square h-full w-full max-w-sm shrink-0 md:max-w-md xl:max-w-lg" />
 
                 {services.map(({ color, name, description, icon: Icon }, i) => (
-                    <button ref={setBlockRef} key={i} className="flex aspect-square h-full w-full max-w-lg shrink-0 flex-col items-start justify-between p-10" style={{ backgroundColor: color }}>
+                    <button
+                        ref={setBlockRef}
+                        key={i}
+                        className="flex aspect-square h-full w-full max-w-sm shrink-0 flex-col items-start justify-between p-10 md:max-w-md xl:max-w-lg"
+                        style={{ backgroundColor: color }}
+                    >
                         <section className="flex flex-col gap-5 text-left font-mulish text-black">
-                            <h3 className="text-4xl font-bold">{name}</h3>
-                            <p className="text-2xl">{description}</p>
+                            <h3 className="text-3xl font-bold lg:text-4xl">{name}</h3>
+                            <p className="text-lg lg:text-2xl">{description}</p>
                         </section>
 
                         <section className="flex w-full items-center justify-between">
@@ -163,7 +171,7 @@ export default function Services() {
                     </button>
                 ))}
 
-                <div className="aspect-square h-full w-full max-w-lg shrink-0" />
+                <div className="aspect-square h-full w-full max-w-sm shrink-0 md:max-w-md xl:max-w-lg" />
             </div>
         </section>
     );

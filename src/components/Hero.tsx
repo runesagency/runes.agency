@@ -1,6 +1,6 @@
-import { IconChevronDown, IconCurrencyDollar, IconPresentation } from "@tabler/icons-react";
 import { LanguageChooser } from "@/lib/i18n/i18n";
 
+import { IconCurrencyDollar, IconPresentation } from "@tabler/icons-react";
 import clsx from "clsx";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -137,45 +137,45 @@ export default function Hero() {
 
     return (
         <section ref={containerRef} className="relative flex flex-col items-center gap-20 bg-yellow-light pt-20" style={{ height: "8000px" }}>
-            <div className="relative z-10 flex w-full max-w-7xl items-center justify-between">
+            <div className="relative z-10 flex w-full flex-col items-center justify-between gap-4 md:max-w-2xl md:flex-row lg:max-w-4xl xl:max-w-7xl">
                 <img src="/logo.svg" alt="Logo" className="h-10" />
 
                 <LanguageChooser />
             </div>
 
-            <div className="relative z-10 flex flex-col items-center gap-10">
-                <h1 className="text-center font-playfair-display text-9xl font-medium leading-tight text-black">
-                    Making Things
-                    <br />
+            <div className="relative z-10 flex flex-col items-center gap-4 md:gap-10">
+                <h1 className="text-center font-playfair-display text-5.5xl font-medium text-black md:text-8xl xl:text-9xl">
+                    <span className="block md:pb-6">Making Things</span>
+
                     <span className="font-semibold">
                         <i>Simple</i> For You
                     </span>
                 </h1>
 
-                <p className="max-w-3xl text-center font-mulish text-2xl leading-normal">
+                <p className="max-w-sm text-center font-mulish text-lg leading-normal md:max-w-2xl md:text-2xl lg:max-w-3xl">
                     <b>Let's grow your brand together</b>. We know handling business is hard, let us help you so you don't have to do everything yourself.
                 </p>
             </div>
 
-            <div className="relative z-10 flex gap-10 stroke-black font-mulish text-xl font-semibold text-black">
-                <a href="#story" className="rounded-full bg-black px-7 py-3 font-bold text-yellow-light">
+            <div className="relative z-10 flex flex-wrap justify-center gap-6 stroke-black text-center font-mulish text-xl font-semibold text-black md:gap-10">
+                <a href="#story" className="hidden rounded-full bg-black px-7 py-3 font-bold text-yellow-light lg:block">
                     See The Story
                 </a>
 
                 <button className="flex items-center gap-4 rounded-full bg-blue-light px-7 py-3 font-bold">
-                    <IconPresentation size={24} />
+                    <IconPresentation className="h-6 w-6" />
                     <span>View Our Company Deck</span>
                 </button>
 
                 <button className="flex items-center gap-4 rounded-full bg-pink px-7 py-3 font-bold">
-                    <IconCurrencyDollar size={24} />
+                    <IconCurrencyDollar className="h-6 w-6" />
                     <span>View Our Pricing</span>
                 </button>
             </div>
 
             <div ref={storyboardContainerRef} className="sticky top-1 z-10 min-h-screen w-full pb-40">
-                <div className="relative z-10 flex w-full translate-y-1/3 flex-col items-center gap-20">
-                    <div ref={storyboardRef} className="hide-scrollbar flex w-full snap-x items-center gap-20 overflow-x-auto overflow-y-visible scroll-smooth">
+                <div className="relative z-10 flex w-full translate-y-10 flex-col items-center gap-12 md:translate-y-12 xl:translate-y-24 xl:gap-20 3xl:translate-y-1/3">
+                    <div ref={storyboardRef} className="hide-scrollbar relative flex w-full snap-x items-center gap-20 overflow-x-auto overflow-y-visible">
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
 
@@ -185,11 +185,11 @@ export default function Hero() {
                                 ref={(ref) => setStoryRef(ref, i)}
                                 data-index={i}
                                 className={clsx(
-                                    "aspect-square max-w-md shrink-0 select-none snap-center overflow-hidden rounded-xl transition-all duration-500",
+                                    "aspect-square max-w-sm shrink-0 select-none snap-center overflow-hidden rounded-xl transition-all duration-500 xl:max-w-md",
                                     storyIndex === i ? "scale-100" : "scale-90 opacity-40"
                                 )}
                             >
-                                <img src={`/success-story/${i + 1}.JPG`} alt="Story 1" className="h-full w-full object-cover object-center" loading="lazy" draggable={false} />
+                                <img src={`/success-story/${i + 1}.webp`} alt="Story 1" className="h-full w-full object-cover object-center" loading="lazy" draggable={false} />
                             </div>
                         ))}
 
@@ -198,12 +198,14 @@ export default function Hero() {
                     </div>
 
                     <span ref={subtitleRef} id="story" className="max-w-md text-center font-mulish text-2xl font-medium" />
+
+                    <div className="absolute z-10 h-full w-full" />
                 </div>
 
-                <img src="/patterns/2.svg" alt="" className="absolute bottom-0 left-0 w-full max-w-xl select-none" loading="lazy" draggable={false} />
+                <img src="/patterns/2.svg" alt="" className="absolute bottom-0 left-0 w-full max-w-md select-none 2xl:max-w-xl" loading="lazy" draggable={false} />
             </div>
 
-            <img src="/patterns/1.svg" alt="" className="absolute right-0 top-0 w-full max-w-xl select-none" loading="lazy" draggable={false} />
+            <img src="/patterns/1.svg" alt="" className="absolute right-0 top-0 w-full max-w-xs select-none md:max-w-sm lg:max-w-md 2xl:max-w-xl" loading="eager" draggable={false} />
         </section>
     );
 }

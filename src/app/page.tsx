@@ -17,59 +17,100 @@ import {
     IconMail,
     IconMapPin,
 } from "@tabler/icons-react";
+import clsx from "clsx";
 
 export default function HomePage() {
     type Partner = {
         name: string;
         slug: string;
-        height: number;
     };
 
-    const partners: Partner[][] = [
-        [
-            {
-                name: "Feby Putri",
-                slug: "feby-putri",
-                height: 55,
-            },
-            {
-                name: "Madaya Group",
-                slug: "madaya-group",
-                height: 56,
-            },
-            {
-                name: "Briton English",
-                slug: "briton-english",
-                height: 57,
-            },
-            {
-                name: "Araloka Studio",
-                slug: "araloka-studio",
-                height: 49,
-            },
-        ],
-        [
-            {
-                name: "Tune",
-                slug: "tune",
-                height: 56,
-            },
-            {
-                name: "Green Bot",
-                slug: "green-bot",
-                height: 60,
-            },
-            {
-                name: "Invite Manager",
-                slug: "invite-manager",
-                height: 36,
-            },
-            {
-                name: "HarvPort",
-                slug: "harvport",
-                height: 58,
-            },
-        ],
+    const partners: Partner[] = [
+        {
+            name: "Feby Putri",
+            slug: "feby-putri",
+        },
+        {
+            name: "Madaya Group",
+            slug: "madaya-group",
+        },
+        {
+            name: "Briton English",
+            slug: "briton-english",
+        },
+        {
+            name: "Araloka Studio",
+            slug: "araloka-studio",
+        },
+        {
+            name: "Tune",
+            slug: "tune",
+        },
+        {
+            name: "Green Bot",
+            slug: "green-bot",
+        },
+        {
+            name: "Invite Manager",
+            slug: "invite-manager",
+        },
+        {
+            name: "HarvPort",
+            slug: "harvport",
+        },
+    ];
+
+    type Social = {
+        icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+        href: string;
+        label: string;
+    };
+
+    const socials: Social[] = [
+        {
+            icon: IconBrandTiktok,
+            href: "https://www.tiktok.com/@runesagency",
+            label: "TikTok",
+        },
+        {
+            icon: IconBrandInstagram,
+            href: "https://www.instagram.com/runesagency",
+            label: "Instagram",
+        },
+        {
+            icon: IconBrandLinkedin,
+            href: "https://www.linkedin.com/company/runesagency",
+            label: "LinkedIn",
+        },
+        {
+            icon: IconBrandBehance,
+            href: "https://www.behance.net/runesagency",
+            label: "Behance",
+        },
+    ];
+
+    type Contact = {
+        icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+        href: string;
+        label: string;
+    };
+
+    const contacts: Contact[] = [
+        {
+            icon: IconMail,
+            href: "mailto:team@runes.agency",
+            label: "team@runes.agency",
+        },
+        {
+            icon: IconBrandWhatsapp,
+            href: "https://wa.me/6285156582791",
+            label: "+62 851 5658 2791",
+        },
+        {
+            icon: IconMapPin,
+            href: "https://goo.gl/maps/XoCYnXCsd19bn6YN9",
+            label: "Jl. Inpres Raya No.5, Kelurahan Gaga, Larangan, Tangerang, Banten, Indonesia 15154",
+        },
     ];
 
     return (
@@ -89,34 +130,38 @@ export default function HomePage() {
                     </svg>
                 </div>
 
-                <p className="max-w-5xl text-center font-mulish text-4.5xl text-black">
-                    We believe that every process should be <b>simple and easy</b> for everyone to understand.
-                    <br />
-                    <br />
-                    And we also believe that great products <b>should be delivered to everyone</b> regardless of market level or anything.
-                </p>
+                <div className="max-w-sm space-y-4 text-center font-mulish text-2xl text-black md:max-w-2xl md:text-4xl lg:max-w-4xl xl:max-w-5xl xl:text-4.5xl">
+                    <p className="leading-normal">
+                        We believe that every process should be <b>simple and easy</b> for everyone to understand.
+                    </p>
+
+                    <p className="leading-normal">
+                        And we also believe that great products <b>should be delivered to everyone</b> regardless of market level or anything.
+                    </p>
+                </div>
             </section>
 
             {/* Partners */}
             <section className="relative flex flex-col items-center justify-center gap-16 pt-20">
-                <hr className="w-full max-w-lg border-gray" />
+                <hr className="w-full max-w-xs border-gray md:max-w-lg" />
 
-                <div className="flex w-full max-w-5xl flex-col items-center gap-16">
-                    <p className="font-mulish text-2xl italic">These were the brands who trusted us to grow their brand to the top.</p>
+                <div className="flex w-full max-w-4xl flex-col items-center gap-16 xl:max-w-5xl">
+                    <p className="max-w-xs text-center font-mulish text-xl italic text-black md:max-w-2xl md:text-2xl lg:max-w-none">
+                        These were the brands who trusted us to grow their brand to the top.
+                    </p>
 
-                    {partners.map((list, i) => (
-                        <div key={i} className="flex w-full items-center justify-between gap-2">
-                            {list.map(({ slug, name, height }, j) => (
-                                <img key={j} src={`/partners/${slug}.png`} alt={name} style={{ height }} loading="lazy" className="select-none" draggable={false} />
-                            ))}
-                        </div>
-                    ))}
+                    <div className="grid w-full max-w-xs grid-cols-2 gap-6 md:max-w-2xl md:grid-cols-4 lg:max-w-none">
+                        {partners.map(({ slug, name }, j) => (
+                            <img key={j} src={`/partners/${slug}.png`} alt={name} loading="lazy" className="h-14 w-full select-none object-contain object-center" draggable={false} />
+                        ))}
+                    </div>
                 </div>
 
-                <img src="/illustrations/giving.png" alt="Hupa Giving to Luna" className="relative z-20 h-96 select-none" loading="lazy" draggable={false} />
+                <img src="/illustrations/giving.webp" alt="Hupa Giving to Luna" className="relative z-20 h-96 max-w-full select-none" loading="lazy" draggable={false} />
 
-                <img src="/patterns/3.svg" alt="" className="absolute bottom-0 left-0 z-10 h-72 select-none" loading="lazy" draggable={false} />
-                <img src="/patterns/4.svg" alt="" className="absolute bottom-0 right-0 z-10 h-72 select-none" loading="lazy" draggable={false} />
+                <img src="/patterns/3.svg" alt="" className="absolute bottom-0 left-0 z-10 hidden h-56 select-none md:block xl:h-72" loading="lazy" draggable={false} />
+                <img src="/patterns/4.svg" alt="" className="absolute bottom-0 right-0 z-10 h-56 select-none xl:h-72" loading="lazy" draggable={false} />
+
                 <svg viewBox="0 0 1920 116" className="absolute bottom-0 left-0 w-full fill-green opacity-50">
                     <path d="M0 32.4239C752.345 -8.49521 1173.01 -13.0605 1920 32.4239V116H0V32.4239Z" />
                 </svg>
@@ -126,9 +171,10 @@ export default function HomePage() {
             <Services />
 
             {/* Portfolio */}
-            <section className="flex flex-col items-center bg-green py-20">
+            <section className="hidden flex-col items-center bg-green py-20 lg:flex">
                 <div className="flex flex-col items-center gap-10 text-black">
                     <h2 className="font-playfair-display text-6.5xl font-semibold">Featured Projects</h2>
+
                     <div className="flex gap-10 font-mulish text-xl text-black">
                         <button className="rounded-full border-2 border-black bg-black px-6 py-3 text-white">Graphic Design</button>
                         <button className="rounded-full border-2 border-black px-6 py-3">UI/UX Design</button>
@@ -140,29 +186,29 @@ export default function HomePage() {
             </section>
 
             {/* FAQ */}
-            <section className="py-32">
-                <main className="mx-auto flex w-full max-w-7xl gap-20">
-                    <div className="flex flex-1 flex-col gap-10">
-                        <h2 className="font-playfair-display text-6.5xl font-medium text-black">
-                            You Probably <b>Ask</b>
-                            <br />
-                            <b>
-                                <i>This Questions</i>
-                            </b>
+            <section className="pb-0 pt-20 lg:py-32">
+                <main className="mx-auto flex w-full max-w-2xl flex-col gap-12 lg:max-w-4xl lg:flex-row xl:max-w-7xl xl:gap-20">
+                    <div className="mx-auto flex max-w-sm flex-1 flex-col gap-10 md:mx-0 md:max-w-none">
+                        <h2 className="font-playfair-display text-5xl font-medium leading-snug text-black xl:text-6.5xl">
+                            <span className="block">
+                                You Probably <b>Ask</b>
+                            </span>
+
+                            <span className="font-bold italic">This Questions</span>
                         </h2>
 
                         <div className="flex flex-col gap-10">
                             <article className="flex flex-col gap-5">
                                 <section className="flex items-center justify-between">
-                                    <h3 className="font-mulish text-2xl font-bold text-black">I have a question?</h3>
-                                    <IconChevronDown width={24} className="stroke-black" />
+                                    <h3 className="font-mulish text-xl font-bold text-black xl:text-2xl">I have a question?</h3>
+                                    <IconChevronDown className="w-6 stroke-black" />
                                 </section>
                             </article>
                         </div>
                     </div>
 
-                    <div className="relative w-full max-w-lg shrink-0">
-                        <img src="/illustrations/waving.png" alt="Waving" className="relative z-20 mx-auto select-none" draggable={false} loading="lazy" />
+                    <div className="relative mx-auto w-full max-w-md shrink-0 xl:max-w-lg">
+                        <img src="/illustrations/waving.webp" alt="Waving" className="relative z-20 mx-auto select-none" draggable={false} loading="lazy" />
 
                         <img src="/patterns/5.svg" alt="" className="absolute bottom-0 left-0 z-10 w-full select-none" draggable={false} loading="lazy" />
 
@@ -179,94 +225,90 @@ export default function HomePage() {
             <Blog />
 
             {/* Contact */}
-            <section className="relative flex flex-col items-center gap-14 bg-blue-light pt-32">
-                <h2 className="text-center font-playfair-display text-8xl font-semibold leading-tight text-black">
-                    Every Great Thing{" "}
-                    <span className="font-medium">
-                        Is
-                        <br /> Always
-                    </span>{" "}
-                    Made <i>Together</i>
+            <section className="relative flex flex-col items-center gap-10 bg-blue-light pt-32 xl:gap-14">
+                <h2 className="text-center font-playfair-display text-4xl font-semibold text-black md:text-6xl lg:text-7xl xl:text-8xl">
+                    <span className="block pb-2 md:pb-4">
+                        <span>Every Great Thing </span>
+                        <span className="font-medium">Is</span>
+                    </span>
+
+                    <span>
+                        <span className="font-medium">Always </span>
+                        <span>
+                            Made <i>Together</i>
+                        </span>
+                    </span>
                 </h2>
 
-                <p className="max-w-4xl text-center font-mulish text-2xl leading-normal text-black">
+                <p className="max-w-sm text-center font-mulish text-lg leading-normal text-black md:max-w-2xl lg:max-w-3xl lg:text-2xl xl:max-w-4xl">
                     <b>Ready to take your business to the next level?</b> Whether you have a specific project in mind or need ongoing support, our team is here to provide you with top-notch service
                     and creative solutions.
                 </p>
 
-                <div className="flex gap-10">
-                    <button className="flex items-center justify-center gap-6 rounded-full bg-yellow-light px-9 py-5">
-                        <IconCalendarTime size={40} stroke={1} className="stroke-black" />
+                <div className="flex flex-col gap-4 md:flex-row md:gap-10">
+                    <button className="flex items-center justify-center gap-4 rounded-full bg-yellow-light px-6 py-3 lg:gap-6 lg:px-9 lg:py-5">
+                        <IconCalendarTime className="h-6 w-6 shrink-0 stroke-black stroke-1.5 lg:h-10 lg:w-10" />
 
-                        <span className="font-mulish text-2xl font-semibold text-black">
-                            {" "}
-                            Schedule A{" "}
-                            <b>
-                                <i>Meeting</i>
-                            </b>
+                        <span className="font-mulish text-xl font-semibold text-black lg:text-2xl">
+                            <span>Schedule A </span>
+                            <span className="font-bold italic">Meeting</span>
                         </span>
                     </button>
 
-                    <button className="flex items-center justify-center gap-6 rounded-full bg-black px-9 py-5">
-                        <IconHeartHandshake size={40} stroke={1} className="stroke-white" />
+                    <button className="flex items-center justify-center gap-4 rounded-full bg-black px-6 py-3 lg:gap-6 lg:px-9 lg:py-5">
+                        <IconHeartHandshake className="h-6 w-6 shrink-0 stroke-white stroke-1.5 lg:h-10 lg:w-10" />
 
-                        <span className="font-mulish text-2xl font-semibold text-white">Contact Us</span>
+                        <span className="font-mulish text-xl font-semibold text-white lg:text-2xl">Contact Us</span>
                     </button>
                 </div>
 
-                <img src="/illustrations/work-together.png" alt="Work Together" className="relative z-10 select-none" draggable={false} />
+                <img src="/illustrations/work-together.webp" alt="Work Together" className="relative z-10 max-w-full select-none" draggable={false} />
 
                 <div className="absolute bottom-0 left-0 flex w-full justify-center">
-                    <img src="/patterns/6.svg" alt="" className="max-w-7xl select-none" loading="lazy" draggable={false} />
+                    <img src="/patterns/6.svg" alt="" className="w-full max-w-7xl select-none" loading="lazy" draggable={false} />
                 </div>
             </section>
 
             {/* Footer */}
             <footer className="flex flex-col items-center gap-20 bg-black py-20">
-                <main className="flex w-full max-w-7xl justify-between">
+                <main className="flex w-full max-w-sm flex-col items-start justify-between gap-10 md:max-w-2xl lg:max-w-4xl lg:flex-row xl:max-w-7xl">
                     <div className="flex flex-col gap-8">
                         <img src="/logo-yellow.svg" alt="Logo" className="h-14" />
 
                         <LanguageChooser className="!justify-start !p-0" />
 
-                        <div className="flex items-center gap-6">
-                            <IconBrandTiktok size={40} stroke={1} className="stroke-yellow-light" />
-                            <IconBrandInstagram size={40} stroke={1} className="stroke-yellow-light" />
-                            <IconBrandLinkedin size={40} stroke={1} className="stroke-yellow-light" />
-                            <IconBrandBehance size={40} stroke={1} className="stroke-yellow-light" />
+                        <div className="group flex items-center gap-6">
+                            {socials.map(({ icon: Icon, href, label }, index) => (
+                                <a key={index} href={href} aria-label={label}>
+                                    <Icon className="h-10 w-10 stroke-yellow-light stroke-1.5 duration-200 hover:!opacity-100 group-hover:opacity-40" />
+                                </a>
+                            ))}
                         </div>
                     </div>
 
                     <div className="flex flex-col gap-6">
                         <h3 className="font-playfair-display text-2xl font-medium text-yellow-light">
-                            Let's Get{" "}
-                            <b>
-                                <i>Connected</i>
-                            </b>
+                            <span>Let's Get </span>
+                            <span className="font-bold italic">Connected</span>
                         </h3>
 
-                        <button className="flex items-center gap-6">
-                            <IconMail size={32} className="stroke-yellow-light" />
-                            <p className="font-mulish text-xl font-bold text-white">team@runes.asia</p>
-                        </button>
-
-                        <button className="flex items-center gap-6">
-                            <IconBrandWhatsapp size={32} className="stroke-yellow-light" />
-                            <p className="font-mulish text-xl text-white">+62 851-5658-2791 (Text Only)</p>
-                        </button>
-
-                        <button className="flex items-center gap-6">
-                            <IconMapPin size={32} className="stroke-yellow-light" />
-                            <p className="max-w-sm text-left font-mulish text-xl leading-relaxed text-white">JL. Inpres Raya No. 5, Larangan, Kota Tangerang, Banten, Indonesia 15154</p>
-                        </button>
+                        {contacts.map(({ icon: Icon, href, label }, index) => (
+                            <a key={index} href={href} target="_blank" className="flex items-center gap-6" rel="noreferrer">
+                                <Icon className="h-8 w-8 shrink-0 stroke-yellow-light stroke-1.5" />
+                                <p className={clsx("max-w-sm text-left font-mulish text-lg text-white lg:text-xl", index === 0 && "font-bold")}>{label}</p>
+                            </a>
+                        ))}
                     </div>
                 </main>
 
-                <div className="flex w-full max-w-7xl items-end justify-between font-mulish text-white">
-                    <span>
-                        © 2023 Runes. All Rights Reserved.
-                        <br />A brand of <b>PT Rumah Kreasi Bersama</b>, company registered in Indonesia.
-                    </span>
+                <div className="flex w-full max-w-sm flex-col justify-between gap-6 font-mulish text-white md:max-w-2xl md:flex-row md:items-end lg:max-w-4xl xl:max-w-7xl">
+                    <div className="max-w-xs space-y-2">
+                        <p>© 2023 Runes. All Rights Reserved.</p>
+
+                        <p>
+                            A brand of <b>PT Rumah Kreasi Bersama</b>, company registered in Indonesia.
+                        </p>
+                    </div>
 
                     <span>
                         Made With 💖 in <b>Indonesia</b>.

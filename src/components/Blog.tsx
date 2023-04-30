@@ -26,7 +26,7 @@ export default function Blog() {
     const fetcher = (url: string) => fetch(url).then((res) => res.json());
     const { data, error, isLoading } = usePosts();
 
-    const dataFillerCount = data && data.posts.length < 5 ? 5 - data.posts.length : 0;
+    const dataFillerCount = data && data.posts.length < 5 ? 5 - data.posts.length : 5;
 
     const onLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
@@ -47,16 +47,16 @@ export default function Blog() {
 
     return (
         <section className="flex flex-col gap-10 py-20">
-            <div ref={headerRef} className="mx-auto flex w-full max-w-screen-2xl items-center justify-between">
+            <div ref={headerRef} className="mx-auto flex w-full max-w-sm flex-col items-center justify-between gap-4 md:max-w-2xl md:flex-row lg:max-w-4xl 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
                 <h2 className="font-playfair-display text-4.5xl font-semibold text-black">Blogs & Insights</h2>
 
                 <a href="https://blog.runes.agency" target="_blank" className="rounded-full bg-black px-7 py-3 font-mulish font-bold text-white" rel="noreferrer">
-                    See More
+                    Check Our Blog
                 </a>
             </div>
 
             <div ref={containerRef} className={clsx("hide-scrollbar flex w-full select-none gap-7 overflow-auto", isDragging ? "cursor-grabbing" : "cursor-grab")} {...containerProps}>
-                <div className="h-full w-full max-w-lg shrink-0" />
+                <div className="h-full w-full max-w-sm shrink-0 md:max-w-lg" />
 
                 {!isLoading &&
                     data &&
@@ -66,7 +66,7 @@ export default function Blog() {
                             ref={setBlockRef}
                             href={url}
                             target="_blank"
-                            className="flex w-full max-w-lg shrink-0 flex-col gap-5"
+                            className="flex w-full max-w-sm shrink-0 flex-col gap-5 md:max-w-lg"
                             draggable={false}
                             onClick={onLinkClick}
                             onMouseDown={onLinkPress}
@@ -82,12 +82,12 @@ export default function Blog() {
 
                 {dataFillerCount > 0 &&
                     [...Array(dataFillerCount)].map((_, i) => (
-                        <div key={i} ref={setBlockRef} className="flex w-full max-w-lg shrink-0 flex-col gap-5" draggable={false} rel="noreferrer">
+                        <div key={i} ref={setBlockRef} className="flex w-full max-w-sm shrink-0 flex-col gap-5 md:max-w-lg" draggable={false} rel="noreferrer">
                             <div className="h-80 w-full overflow-hidden rounded-xl bg-gray" />
                         </div>
                     ))}
 
-                <div className="h-full w-full max-w-lg shrink-0" />
+                <div className="h-full w-full max-w-sm shrink-0 md:max-w-lg" />
             </div>
         </section>
     );
