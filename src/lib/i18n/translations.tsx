@@ -160,7 +160,7 @@ const id: typeof en = {
         </svg>
     ),
     translations: {
-        mainTitle: ["Membuat Semuanya", "Lebih Sederhana", "Untukmu"],
+        mainTitle: ["Membuat Semuanya", "Sederhana", "Untukmu"],
         mainSubtitle: ["Mari berkembang bersama.", "Kami tahu menangani bisnis itu sulit, biarkan kami membantu Anda sehingga Anda tidak perlu melakukan semuanya sendiri."],
         mainStoryButton: "Lihat Cerita Kami",
         mainDeckButton: "Lihat Presentasi Kami",
