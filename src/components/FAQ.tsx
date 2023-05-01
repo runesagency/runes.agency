@@ -38,8 +38,13 @@ export default function FAQ() {
                                     <IconChevronDown className="w-6 stroke-black" />
                                 </section>
 
-                                <p className="text-xl">{answer}</p>
-                            </article>
+                                {faqIndex === i &&
+                                    answer.map((paragraph, i) => (
+                                        <p key={i} className="text-lg leading-normal">
+                                            {paragraph}
+                                        </p>
+                                    ))}
+                            </button>
                         ))}
                     </div>
                 </div>
