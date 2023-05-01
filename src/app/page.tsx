@@ -18,9 +18,10 @@ import {
     IconMapPin,
 } from "@tabler/icons-react";
 import clsx from "clsx";
+import { useCallback } from "react";
 
 export default function HomePage() {
-    const { t } = useLanguage();
+    const { t, code: languageCode } = useLanguage();
 
     type Partner = {
         name: string;
@@ -114,6 +115,16 @@ export default function HomePage() {
             label: "Jl. Inpres Raya No.5, Kelurahan Gaga, Larangan, Tangerang, Banten, Indonesia 15154",
         },
     ];
+
+    const typeformsIds = {
+        en: "XWnO26mK",
+        id: "A9T5d7yX",
+    };
+
+    const onScheduleMeetingClick = useCallback(() => {
+        window.Calendly.initPopupWidget({ url: "https://calendly.com/runesagency/30min" });
+        return false;
+    }, []);
 
     return (
         <main className="flex h-full w-full flex-col">
@@ -245,11 +256,9 @@ export default function HomePage() {
                 </p>
 
                 <div className="flex flex-col gap-4 md:flex-row md:gap-10">
-                    <a
-                        href="https://calendly.com/runesagency/30min"
-                        target="_blank"
+                    <button
+                        onClick={onScheduleMeetingClick}
                         className="flex items-center justify-center gap-4 rounded-full bg-yellow-light px-6 py-3 duration-200 hover:scale-105 lg:gap-6 lg:px-9 lg:py-5"
-                        rel="noreferrer"
                     >
                         <IconCalendarTime className="h-6 w-6 shrink-0 stroke-black stroke-1.5 lg:h-10 lg:w-10" />
 
@@ -257,13 +266,27 @@ export default function HomePage() {
                             <span>{t.contactMeetingButton[0]} </span>
                             <span className="font-bold italic">{t.contactMeetingButton[1]}</span>
                         </span>
-                    </a>
-
-                    <button className="flex items-center justify-center gap-4 rounded-full bg-black px-6 py-3 lg:gap-6 lg:px-9 lg:py-5">
-                        <IconHeartHandshake className="h-6 w-6 shrink-0 stroke-white stroke-1.5 lg:h-10 lg:w-10" />
-
-                        <span className="font-mulish text-xl font-semibold text-white lg:text-2xl">{t.contactUsButton}</span>
                     </button>
+
+                    {Object.entries(typeformsIds).map(([langCode, typeformId]) => (
+                        <button
+                            key={typeformId}
+                            data-tf-popup={typeformId}
+                            data-tf-opacity="100"
+                            data-tf-size="100"
+                            data-tf-iframe-props="title=Runes Contact"
+                            data-tf-transitive-search-params
+                            data-tf-medium="snippet"
+                            className={clsx(
+                                "flex items-center justify-center gap-4 rounded-full bg-black px-6 py-3 duration-200 hover:scale-105 lg:gap-6 lg:px-9 lg:py-5",
+                                langCode !== languageCode && "hidden"
+                            )}
+                        >
+                            <IconHeartHandshake className="h-6 w-6 shrink-0 stroke-white stroke-1.5 lg:h-10 lg:w-10" />
+
+                            <span className="font-mulish text-xl font-semibold text-white lg:text-2xl">{t.contactUsButton}</span>
+                        </button>
+                    ))}
                 </div>
 
                 <img src="/illustrations/work-together.webp" alt="Work Together" className="relative z-10 max-w-full select-none" draggable={false} />

@@ -5,6 +5,7 @@ import "@/styles/globals.css";
 
 import clsx from "clsx";
 import { Playfair_Display, Mulish } from "next/font/google";
+import Script from "next/script";
 
 const playfairDisplay = Playfair_Display({
     variable: "--font-playfair-display",
@@ -50,10 +51,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <meta property="twitter:title" content="Runes | Digital Creative Agency" />
                 <meta property="twitter:description" content="We help grow, elevating your brand from other competitors. We make solutions so that you don’t have to work it yourself." />
                 <meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png" />
+
+                <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
             </head>
 
             <body className={clsx(playfairDisplay.variable, mulish.variable, "h-full w-full")}>
                 <LanguageProvider>{children}</LanguageProvider>
+
+                <Script src="//embed.typeform.com/next/embed.js" />
+                <Script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async />
             </body>
         </html>
     );
