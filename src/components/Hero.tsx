@@ -14,6 +14,7 @@ export default function Hero() {
     const subtitleRef = useRef<HTMLSpanElement>(null);
 
     const [storyIndex, setStoryIndex] = useState(0);
+    const [storyPercentage, setStoryPercentage] = useState(0);
 
     const setStoryRef = useCallback((element: HTMLDivElement | null, index: number) => {
         if (!element) return;
@@ -80,6 +81,8 @@ export default function Hero() {
                             (totalScrollableHeight / (totalHeight - storyboardParentPreviousSiblingToTop - viewportHeight))
                     )
                 );
+
+                setStoryPercentage(scrollPercentage);
 
                 const distanceBetweenSlide = 100 / storiesRefs.current.length;
                 const slideIndex = Math.round(scrollPercentage / distanceBetweenSlide) - 1;
@@ -166,7 +169,7 @@ export default function Hero() {
                 </a>
             </div>
 
-            <div ref={storyboardContainerRef} className="sticky top-1 z-10 min-h-screen w-full pb-40">
+            <div ref={storyboardContainerRef} className="sticky top-0 z-10 min-h-screen w-full pb-40">
                 <div className="relative z-10 flex w-full translate-y-10 flex-col items-center gap-12 md:translate-y-12 xl:translate-y-24 xl:gap-20 3xl:translate-y-1/3">
                     <div ref={storyboardRef} className="hide-scrollbar relative flex w-full snap-x items-center gap-20 overflow-x-auto overflow-y-visible">
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
@@ -196,6 +199,10 @@ export default function Hero() {
                 </div>
 
                 <img src="/patterns/2.svg" alt="" className="absolute bottom-0 left-0 w-full max-w-md select-none 2xl:max-w-xl" loading="lazy" draggable={false} />
+
+                <div className="absolute left-0 top-0 z-10 h-1 w-full">
+                    <div className={clsx("h-full bg-black duration-500", (storyPercentage < 10 || storyPercentage > 93) && "opacity-0")} style={{ width: storyPercentage + "%" }} />
+                </div>
             </div>
 
             <img src="/patterns/1.svg" alt="" className="absolute right-0 top-0 w-full max-w-xs select-none md:max-w-sm lg:max-w-md 2xl:max-w-xl" loading="eager" draggable={false} />
