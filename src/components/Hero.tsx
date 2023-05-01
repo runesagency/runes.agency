@@ -139,8 +139,8 @@ export default function Hero() {
                 <LanguageChooser />
             </div>
 
-            <div className="relative z-10 flex flex-col items-center gap-4 md:gap-10">
-                <h1 className="text-center font-playfair-display text-5.5xl font-medium text-black md:text-8xl xl:text-9xl">
+            <div className="relative z-10 flex flex-col items-center gap-4 text-black md:gap-10">
+                <h1 className="text-center font-playfair-display text-5.5xl font-medium md:text-8xl xl:text-9xl">
                     <span className="block md:pb-6">{t.mainTitle[0]}</span>
 
                     <span className="font-semibold">
@@ -193,7 +193,7 @@ export default function Hero() {
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
                     </div>
 
-                    <span ref={subtitleRef} id="story" className="max-w-md text-center font-mulish text-2xl font-medium" />
+                    <span ref={subtitleRef} id="story" className="max-w-md text-center font-mulish text-2xl font-medium text-black" />
 
                     <div className="absolute z-10 h-full w-full" />
                 </div>

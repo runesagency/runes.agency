@@ -30,9 +30,9 @@ export default function FAQ() {
                         <span className="font-bold italic">{t.faqTitle[2]}</span>
                     </h2>
 
-                    <div className="flex flex-col gap-10">
+                    <div className="group flex flex-col gap-10">
                         {t.faqContents.map(({ question, answer }, i) => (
-                            <button key={i} className="flex flex-col gap-5 text-left font-mulish text-black">
+                            <button key={i} className="flex flex-col gap-5 text-left font-mulish text-black duration-200 hover:!opacity-100 group-hover:opacity-40">
                                 <section className="flex w-full items-center justify-between gap-4" onClick={onFaqClick(i)}>
                                     <h3 className="text-xl font-bold xl:text-2xl">{question}</h3>
                                     <IconChevronDown className="w-6 stroke-black" />
