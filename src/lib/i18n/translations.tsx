@@ -44,6 +44,8 @@ const en = {
         introText2: ["And we also believe that great products", "should be delivered to everyone", "regardless of market level or anything."],
         partnersText: "These were the brands who trusted us to grow their brand to the top.",
         portfolioTitle: "Featured Projects",
+        portfolioCategories: ["Graphic Design", "UI/UX Design", "Chat Bot", "Web Development", "Social Media Management"],
+        portfolioButton: "View All Projects",
         servicesTitle: ["We Do", "A Lot", "Of", "Things"],
         servicesList: [
             {
@@ -178,6 +180,8 @@ const id: typeof en = {
         introText2: ["Dan kami juga percaya bahwa produk hebat", "seharusnya dapat diberikan kepada semua orang", "terlepas dari tingkat pasar atau apapun."],
         partnersText: "Ini adalah merek yang mempercayai kami untuk menumbuhkan merek mereka ke atas.",
         portfolioTitle: "Pekerjaan Kami",
+        portfolioCategories: ["Desain Grafis", "Desain UI/UX", "Chat Bot", "Pengembangan Web", "Manajemen Media Sosial"],
+        portfolioButton: "Lihat Semua Pekerjaan Kami",
         servicesTitle: ["Kami Melakukan", "Banyak", "", "Hal"],
         servicesList: [
             {
