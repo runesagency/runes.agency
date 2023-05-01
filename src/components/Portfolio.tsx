@@ -338,7 +338,7 @@ export default function Portfolio() {
             <div className="flex w-full flex-col items-center gap-10 text-black">
                 <h2 className="text-center font-playfair-display text-6.5xl font-semibold">{t.portfolioTitle}</h2>
 
-                <div className="flex max-w-2xl flex-wrap items-center justify-center gap-4 lg:max-w-none xl:gap-10">
+                <div className="flex max-w-2xl flex-wrap items-center justify-center gap-4 lg:max-w-none xl:gap-8">
                     {t.portfolioCategories.map((item, index) => (
                         <button
                             key={index}

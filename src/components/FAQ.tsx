@@ -49,7 +49,7 @@ export default function FAQ() {
                     </div>
                 </div>
 
-                <div className="sticky top-5 mx-auto h-max w-full max-w-md shrink-0 xl:max-w-lg">
+                <div className="sticky top-10 mx-auto h-full w-full max-w-md shrink-0 xl:max-w-lg">
                     <img src="/illustrations/waving.webp" alt="Waving" className="relative z-20 mx-auto select-none" draggable={false} loading="lazy" />
 
                     <img src="/patterns/5.svg" alt="" className="absolute bottom-0 left-0 z-10 w-full select-none" draggable={false} loading="lazy" />
