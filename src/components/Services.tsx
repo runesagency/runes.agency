@@ -1,5 +1,5 @@
 import { useDragScroll } from "@/lib/hooks/use-drag-scroll";
-import { useLanguage } from "@/lib/i18n/i18n";
+import { useLanguage } from "@/lib/i18n";
 import { theme } from "tailwind.config";
 
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";

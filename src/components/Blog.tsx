@@ -1,6 +1,6 @@
 import { useDragScroll } from "@/lib/hooks/use-drag-scroll";
 import { useLatest } from "@/lib/hooks/use-latest";
-import { useLanguage } from "@/lib/i18n/i18n";
+import { useLanguage } from "@/lib/i18n";
 
 import clsx from "clsx";
 import useSWR from "swr";

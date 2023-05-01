@@ -3,7 +3,6 @@
 import Blog from "@/components/Blog";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
-import { LanguageChooser, useLanguage } from "@/lib/i18n/i18n";
 
 import {
     IconBrandBehance,
@@ -17,6 +16,7 @@ import {
     IconMail,
     IconMapPin,
 } from "@tabler/icons-react";
+import { LanguageChooser, useLanguage } from "@/lib/i18n";
 import clsx from "clsx";
 import { useCallback } from "react";
 

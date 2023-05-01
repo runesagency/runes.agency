@@ -1,4 +1,4 @@
-import { LanguageChooser, useLanguage } from "@/lib/i18n/i18n";
+import { LanguageChooser, useLanguage } from "@/lib/i18n";
 
 import { IconCurrencyDollar, IconPresentation } from "@tabler/icons-react";
 import clsx from "clsx";

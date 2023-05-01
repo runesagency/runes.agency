@@ -1,6 +1,6 @@
 "use client";
 
-import { LanguageProvider } from "@/lib/i18n/i18n";
+import { LanguageProvider } from "@/lib/i18n";
 import "@/styles/globals.css";
 
 import clsx from "clsx";
