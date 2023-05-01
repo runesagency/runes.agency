@@ -49,34 +49,42 @@ const en = {
             {
                 name: "Graphic Design",
                 description: "Build your own imaginative world.",
+                sub: ["Poster", "Logo", "Packaging", "Icon Design"],
             },
             {
                 name: "UI/UX Design",
                 description: "Designing experiences that delight and inspire.",
+                sub: ["User Research", "Wireframing", "Prototyping", "Visual Design"],
             },
             {
                 name: "Chat Bot",
                 description: "Revolutionize your customer support with chatbots",
+                sub: ["WhatsApp Bot", "Telegram Bot", "Discord Bot"],
             },
             {
                 name: "Social Media Management",
                 description: "Boost your brand with strategic social media.",
+                sub: ["Content Creation", "Community Management", "Influencer Outreach"],
             },
             {
                 name: "Digital Advertising",
                 description: "Maximizing your online presence with targeted ads.",
+                sub: ["Google Ads", "Tiktok Ads", "Facebook & Instagram / Meta Ads"],
             },
             {
                 name: "Web Development",
                 description: "Building digital solutions that power your business.",
+                sub: ["Landing Page", "Company Profile", "Marketplace / E-Commerce", "Content Management System (CMS)"],
             },
             {
                 name: "Branding",
                 description: "Crafting identities that leave a lasting impression.",
+                sub: ["Brand Strategy", "Logo Design", "Brand Guidelines", "Web Development"],
             },
             {
                 name: "Managed Hosting",
                 description: "Secure, reliable, and hassle-free hosting solutions.",
+                sub: ["Website Hosting", "Application Hosting", "Managed Database"],
             },
         ],
         faqTitle: ["You Probably", "Ask", "These Questions"],
@@ -88,10 +96,6 @@ const en = {
                 ],
             },
             {
-                question: "Do you offer web maintenance service?",
-                answer: ["Yes, we do. We offer web maintenance service for all of our clients. We'll make sure your website is always up-to-date and secure."],
-            },
-            {
                 question: "Why don't i just hire a freelancer?",
                 answer: [
                     "Hiring a freelancer is a great idea, but it's not always the best option. Hiring a freelancer means you have to spend time and effort to find the right person for the job. With us, you don't have to worry about any of that. We'll take care of everything for you.",
@@ -99,17 +103,21 @@ const en = {
                 ],
             },
             {
-                question: "How do managed hosting work?",
-                answer: [
-                    "Our managed hosting service let you focus on your business while we take care of your application's infrastructure. We'll make sure your application is always up-to-date and secure.",
-                    "We'll keeping the uptime of your application as high as possible. We'll also make sure your application is always up-to-date and secure.",
-                ],
-            },
-            {
                 question: "Can i contact the team directly?",
                 answer: [
                     "Unfortunately, no. We don't allow direct contact between our clients and our team. This is to ensure that our team can focus on their work without any distractions.",
                     "But don't worry, we have a dedicated project manager who will be your point of contact. You can contact them anytime you want. They'll be happy to help you with anything you need.",
+                ],
+            },
+            {
+                question: "Do you offer web maintenance service?",
+                answer: ["Yes, we do. We offer web maintenance service for all of our clients. We'll make sure your website is always up-to-date and secure."],
+            },
+            {
+                question: "How do managed hosting work?",
+                answer: [
+                    "Our managed hosting service let you focus on your business while we take care of your application's infrastructure. We'll make sure your application is always up-to-date and secure.",
+                    "We'll keeping the uptime of your application as high as possible. We'll also make sure your application is always up-to-date and secure.",
                 ],
             },
             {
@@ -170,39 +178,47 @@ const id: typeof en = {
         introText2: ["Dan kami juga percaya bahwa produk hebat", "seharusnya dapat diberikan kepada semua orang", "terlepas dari tingkat pasar atau apapun."],
         partnersText: "Ini adalah merek yang mempercayai kami untuk menumbuhkan merek mereka ke atas.",
         portfolioTitle: "Pekerjaan Kami",
-        servicesTitle: ["Kami Melalukan", "Banyak", "Sekali", "Hal"],
+        servicesTitle: ["Kami Melakukan", "Banyak", "", "Hal"],
         servicesList: [
             {
                 name: "Desain Grafis",
                 description: "Bangun dunia imajinatif Anda sendiri.",
+                sub: ["Poster", "Logo", "Kemasan", "Desain Ikon"],
             },
             {
                 name: "Desain UI/UX",
                 description: "Merancang pengalaman yang menyenangkan dan menginspirasi.",
+                sub: ["Penelitian Pengguna", "Wireframing", "Prototyping", "Desain Visual"],
             },
             {
                 name: "Chat Bot",
                 description: "Buat pelanggan Anda lebih cepat berkomunikasi dengan chatbots",
+                sub: ["WhatsApp Bot", "Telegram Bot", "Discord Bot"],
             },
             {
                 name: "Manajemen Media Sosial",
                 description: "Tingkatkan merek Anda dengan media sosial yang strategis.",
+                sub: ["Pembuatan Konten", "Manajemen Komunitas", "Penjangkauan Influencer"],
             },
             {
                 name: "Iklan Digital",
                 description: "Memaksimalkan kehadiran online Anda dengan iklan bertarget.",
+                sub: ["Google Ads", "Tiktok Ads", "Facebook & Instagram / Meta Ads"],
             },
             {
                 name: "Pengembangan Web",
                 description: "Membangun solusi digital yang memberi daya pada bisnis Anda.",
+                sub: ["Landing Page", "Company Profile", "Marketplace / Toko Online", "Sistem Manajemen Konten (CMS)"],
             },
             {
                 name: "Branding",
                 description: "Membuat identitas yang meninggalkan kesan abadi.",
+                sub: ["Strategi Merek", "Desain Logo", "Pedoman Merek", "Pengembangan Web"],
             },
             {
                 name: "Pengelolaan Hosting",
                 description: "Solusi hosting yang aman, andal, dan bebas repot.",
+                sub: ["Hosting Website", "Hosting Aplikasi", "Hosting Database"],
             },
         ],
         faqTitle: ["Kamu Mungkin", "Menayakan", "Hal Berikut"],
@@ -214,10 +230,6 @@ const id: typeof en = {
                 ],
             },
             {
-                question: "Apakah Anda menawarkan layanan pemeliharaan web?",
-                answer: ["Ya, kami menawarkan layanan pemeliharaan web untuk semua klien kami. Kami akan memastikan situs web Anda selalu terkini dan aman."],
-            },
-            {
                 question: "Mengapa saya tidak menyewa freelancer saja?",
                 answer: [
                     "Menyewa freelancer adalah ide yang bagus, tetapi itu tidak selalu merupakan pilihan terbaik. Menyewa freelancer berarti Anda harus menghabiskan waktu dan upaya untuk menemukan orang yang tepat untuk pekerjaan itu. Bersama kami, Anda tidak perlu khawatir tentang semua itu. Kami akan mengurus semuanya untuk Anda.",
@@ -225,17 +237,21 @@ const id: typeof en = {
                 ],
             },
             {
-                question: "Bagaimana cara kerja pengelolaan hosting?",
-                answer: [
-                    "Layanan hosting terkelola kami memungkinkan Anda untuk fokus pada bisnis Anda sementara kami mengurus infrastruktur aplikasi Anda. Kami akan memastikan aplikasi Anda selalu diperbarui dan aman.",
-                    "Kami akan menjaga waktu aktif aplikasi Anda setinggi mungkin. Kami juga akan memastikan aplikasi Anda selalu diperbarui dan aman.",
-                ],
-            },
-            {
                 question: "Dapatkah saya menghubungi tim secara langsung?",
                 answer: [
                     "Sayangnya tidak. Kami tidak mengizinkan kontak langsung antara klien kami dan tim kami. Ini untuk memastikan bahwa tim kami dapat fokus pada pekerjaan mereka tanpa gangguan apa pun.",
                     "Tapi jangan khawatir, kami memiliki manajer proyek khusus yang akan menjadi titik kontak Anda. Anda dapat menghubungi mereka kapan saja Anda mau. Mereka akan dengan senang hati membantu Anda dengan apa pun yang Anda butuhkan.",
+                ],
+            },
+            {
+                question: "Apakah Anda menawarkan layanan pemeliharaan web?",
+                answer: ["Ya, kami menawarkan layanan pemeliharaan web untuk semua klien kami. Kami akan memastikan situs web Anda selalu terkini dan aman."],
+            },
+            {
+                question: "Bagaimana cara kerja pengelolaan hosting?",
+                answer: [
+                    "Layanan hosting terkelola kami memungkinkan Anda untuk fokus pada bisnis Anda sementara kami mengurus infrastruktur aplikasi Anda. Kami akan memastikan aplikasi Anda selalu diperbarui dan aman.",
+                    "Kami akan menjaga waktu aktif aplikasi Anda setinggi mungkin. Kami juga akan memastikan aplikasi Anda selalu diperbarui dan aman.",
                 ],
             },
             {
@@ -252,7 +268,7 @@ const id: typeof en = {
         contactTitle: ["Setiap Hal Hebat", "Pasti", "Selalu", "Dibuat", "Bersama"],
         contactSubtitle: [
             "Siap membawa bisnis Anda ke tingkat berikutnya?",
-            "Jika anda sudah memiliki sebuah ide atau butuh bantuan, tim kami akan siap memberi Anda layanan terkemuka dan solusi kreatif.",
+            "Jika Anda sudah memiliki sebuah ide atau butuh bantuan, tim kami akan siap memberi Anda layanan terkemuka dan solusi kreatif.",
         ],
         contactMeetingButton: ["Jadwalkan", "Meeting"],
         contactUsButton: "Kontak Kami",

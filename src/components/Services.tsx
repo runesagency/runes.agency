@@ -2,7 +2,7 @@ import { useDragScroll } from "@/lib/hooks/use-drag-scroll";
 import { useLanguage } from "@/lib/i18n";
 import { theme } from "tailwind.config";
 
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import { IconArrowLeft, IconArrowRight, IconChevronRight } from "@tabler/icons-react";
 import clsx from "clsx";
 
 type Service = {
@@ -139,29 +139,33 @@ export default function Services() {
                 <div className="aspect-square h-full w-full max-w-sm shrink-0 md:max-w-md xl:max-w-lg" />
 
                 {services.map(({ color, icon: Icon }, i) => {
-                    const { name, description } = t.servicesList[i];
+                    const { name, description, sub } = t.servicesList[i];
 
                     return (
                         <button
                             ref={setBlockRef}
                             key={i}
-                            className="flex aspect-square h-full w-full max-w-sm shrink-0 flex-col items-start justify-between p-10 md:max-w-md xl:max-w-lg"
+                            className="flex w-full max-w-sm shrink-0 flex-col items-start justify-between gap-4 p-10 font-mulish text-black md:aspect-square md:h-full md:max-w-md xl:max-w-lg"
                             style={{ backgroundColor: color }}
                         >
-                            <section className="flex flex-col gap-5 text-left font-mulish text-black">
-                                <h3 className="text-3xl font-bold lg:text-4xl">{name}</h3>
-                                <p className="text-lg lg:text-2xl">{description}</p>
+                            <section className="flex w-full flex-col gap-4 lg:gap-8">
+                                <div className="flex flex-col gap-5 text-left">
+                                    <h3 className="text-3xl font-bold lg:text-4xl">{name}</h3>
+                                    <p className="text-lg lg:text-2xl">{description}</p>
+                                </div>
+
+                                <div className="flex flex-col gap-2">
+                                    {sub.map((item, i) => (
+                                        <div key={i} className="flex items-center gap-2 text-base lg:text-xl">
+                                            <IconChevronRight className="h-3 w-auto" />
+                                            <span>{item}</span>
+                                        </div>
+                                    ))}
+                                </div>
                             </section>
 
                             <section className="flex w-full items-center justify-between">
                                 <Icon className="h-20" />
-
-                                <svg width="41" height="16" viewBox="0 0 41 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M40.7071 8.70711C41.0976 8.31658 41.0976 7.68342 40.7071 7.29289L34.3431 0.928932C33.9526 0.538408 33.3195 0.538408 32.9289 0.928932C32.5384 1.31946 32.5384 1.95262 32.9289 2.34315L38.5858 8L32.9289 13.6569C32.5384 14.0474 32.5384 14.6805 32.9289 15.0711C33.3195 15.4616 33.9526 15.4616 34.3431 15.0711L40.7071 8.70711ZM0 9H40V7H0V9Z"
-                                        fill="#272727"
-                                    />
-                                </svg>
                             </section>
                         </button>
                     );
