@@ -151,7 +151,7 @@ export default function HomePage() {
                 <div className="flex w-full max-w-4xl flex-col items-center gap-16 xl:max-w-5xl">
                     <p className="max-w-xs text-center font-mulish text-xl italic text-black md:max-w-2xl md:text-2xl lg:max-w-none">{t.partnersText}</p>
 
-                    <div className="grid w-full max-w-xs grid-cols-2 gap-6 md:max-w-2xl md:grid-cols-4 lg:max-w-none">
+                    <div className="grid w-full max-w-xs grid-cols-2 gap-x-6 gap-y-8 md:max-w-2xl md:grid-cols-4 lg:max-w-none">
                         {partners.map(({ slug, name }, j) => (
                             <img key={j} src={`/partners/${slug}.png`} alt={name} loading="lazy" className="h-14 w-full select-none object-contain object-center" draggable={false} />
                         ))}

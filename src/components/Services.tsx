@@ -145,7 +145,7 @@ export default function Services() {
                         <button
                             ref={setBlockRef}
                             key={i}
-                            className="flex w-full max-w-sm shrink-0 flex-col items-start justify-between gap-4 p-10 font-mulish text-black md:aspect-square md:h-full md:max-w-md xl:max-w-lg"
+                            className="flex w-full max-w-sm shrink-0 flex-col items-start justify-between gap-4 p-10 font-mulish text-black md:aspect-square md:h-full md:max-w-md lg:gap-8 xl:max-w-lg"
                             style={{ backgroundColor: color }}
                         >
                             <section className="flex w-full flex-col gap-4 lg:gap-8">

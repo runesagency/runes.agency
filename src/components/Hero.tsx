@@ -132,7 +132,8 @@ export default function Hero() {
     }, [getSubtitle]);
 
     return (
-        <section ref={containerRef} className="relative flex flex-col items-center gap-20 bg-yellow-light pt-20" style={{ height: "8000px" }}>
+        // eslint-disable-next-line tailwindcss/no-arbitrary-value
+        <section ref={containerRef} className="relative flex h-[8000px] flex-col items-center gap-20 bg-yellow-light pt-20">
             <div className="relative z-10 flex w-full flex-col items-center justify-between gap-4 md:max-w-2xl md:flex-row lg:max-w-4xl xl:max-w-7xl">
                 <img src="/logo.svg" alt="Logo" className="h-10" />
 
@@ -201,7 +202,12 @@ export default function Hero() {
                 <img src="/patterns/2.svg" alt="" className="absolute bottom-0 left-0 w-full max-w-md select-none 2xl:max-w-xl" loading="lazy" draggable={false} />
 
                 <div className="absolute left-0 top-0 z-10 h-1 w-full">
-                    <div className={clsx("h-full bg-black duration-500", (storyPercentage < 10 || storyPercentage > 93) && "opacity-0")} style={{ width: storyPercentage + "%" }} />
+                    <div
+                        className={clsx("h-full bg-black duration-500", (storyPercentage < 10 || storyPercentage > 93) && "opacity-0")}
+                        style={{
+                            width: storyPercentage + "%",
+                        }}
+                    />
                 </div>
             </div>
 
