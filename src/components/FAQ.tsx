@@ -1,9 +1,22 @@
 import { useLanguage } from "@/lib/i18n";
 
 import { IconChevronDown } from "@tabler/icons-react";
+import { useCallback, useState } from "react";
 
 export default function FAQ() {
-    const { t, code: languageCode } = useLanguage();
+    const { t } = useLanguage();
+    const [faqIndex, setFaqIndex] = useState(-1);
+
+    const onFaqClick = useCallback(
+        (index: number) => () => {
+            if (faqIndex === index) {
+                setFaqIndex(-1);
+            } else {
+                setFaqIndex(index);
+            }
+        },
+        [faqIndex]
+    );
 
     return (
         <section className="pb-0 pt-20 lg:py-32">
@@ -19,8 +32,8 @@ export default function FAQ() {
 
                     <div className="flex flex-col gap-10">
                         {t.faqContents.map(({ question, answer }, i) => (
-                            <article key={i} className="flex flex-col gap-5 font-mulish text-black">
-                                <section className="flex items-center justify-between">
+                            <button key={i} className="flex flex-col gap-5 text-left font-mulish text-black">
+                                <section className="flex w-full items-center justify-between gap-4" onClick={onFaqClick(i)}>
                                     <h3 className="text-xl font-bold xl:text-2xl">{question}</h3>
                                     <IconChevronDown className="w-6 stroke-black" />
                                 </section>
