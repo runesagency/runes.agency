@@ -116,12 +116,20 @@ export default function Services() {
                     <span className="font-semibold italic">{t.servicesTitle[3]}</span>
                 </h2>
 
-                <div className="hidden gap-6 md:flex">
-                    <button className="flex h-14 w-14 items-center justify-center rounded-full bg-black" onClick={onScrollLeftClick} aria-label="Scroll Left">
+                <div className="group hidden gap-6 md:flex">
+                    <button
+                        className="flex h-14 w-14 items-center justify-center rounded-full bg-black duration-200 hover:!opacity-100 group-hover:opacity-50"
+                        onClick={onScrollLeftClick}
+                        aria-label="Scroll Left"
+                    >
                         <IconArrowLeft className="w-5 stroke-white" />
                     </button>
 
-                    <button className="flex h-14 w-14 items-center justify-center rounded-full bg-black" onClick={onScrollRightClick} aria-label="Scroll Right">
+                    <button
+                        className="flex h-14 w-14 items-center justify-center rounded-full bg-black duration-200 hover:!opacity-100 group-hover:opacity-50"
+                        onClick={onScrollRightClick}
+                        aria-label="Scroll Right"
+                    >
                         <IconArrowRight className="w-5 stroke-white" />
                     </button>
                 </div>

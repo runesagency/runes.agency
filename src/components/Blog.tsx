@@ -49,12 +49,12 @@ export default function Blog() {
             <div ref={headerRef} className="mx-auto flex w-full max-w-sm flex-col items-center justify-between gap-4 md:max-w-2xl md:flex-row lg:max-w-4xl 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
                 <h2 className="font-playfair-display text-4.5xl font-semibold text-black">{t.blogTitle}</h2>
 
-                <a href="https://blog.runes.agency" target="_blank" className="rounded-full bg-black px-7 py-3 font-mulish font-bold text-white" rel="noreferrer">
+                <a href="https://blog.runes.agency" target="_blank" className="rounded-full bg-black px-7 py-3 font-mulish font-bold text-white duration-200 hover:opacity-75" rel="noreferrer">
                     {t.blogButton}
                 </a>
             </div>
 
-            <div ref={containerRef} className={clsx("hide-scrollbar flex w-full select-none gap-7 overflow-auto", isDragging ? "cursor-grabbing" : "cursor-grab")} {...containerProps}>
+            <div ref={containerRef} className={clsx("hide-scrollbar group flex w-full select-none gap-7 overflow-auto", isDragging ? "cursor-grabbing" : "cursor-grab")} {...containerProps}>
                 <div className="h-full w-full max-w-sm shrink-0 md:max-w-lg" />
 
                 {!isLoading &&
@@ -65,7 +65,7 @@ export default function Blog() {
                             ref={setBlockRef}
                             href={url}
                             target="_blank"
-                            className="flex w-full max-w-sm shrink-0 flex-col gap-5 md:max-w-lg"
+                            className="flex w-full max-w-sm shrink-0 flex-col gap-5 duration-200 hover:!opacity-100 group-hover:opacity-50 md:max-w-lg"
                             draggable={false}
                             onClick={onLinkClick}
                             onMouseDown={onLinkPress}
