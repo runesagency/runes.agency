@@ -27,8 +27,6 @@ export default function Blog() {
 
     const { data, isLoading } = usePosts();
 
-    const dataFillerCount = data && data.posts.length < 3 ? 3 - data.posts.length : 3;
-
     const onLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
     };
@@ -79,13 +77,6 @@ export default function Blog() {
 
                             <p className="font-mulish text-2xl font-medium text-black">{title}</p>
                         </a>
-                    ))}
-
-                {dataFillerCount > 0 &&
-                    [...Array(dataFillerCount)].map((_, i) => (
-                        <div key={i} ref={setBlockRef} className="flex w-full max-w-sm shrink-0 flex-col gap-5 md:max-w-lg" draggable={false} rel="noreferrer">
-                            <div className="h-80 w-full overflow-hidden rounded-xl bg-gray" />
-                        </div>
                     ))}
 
                 <div className="h-full w-full max-w-sm shrink-0 md:max-w-lg" />
