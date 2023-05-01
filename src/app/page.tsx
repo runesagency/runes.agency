@@ -118,7 +118,6 @@ export default function HomePage() {
 
     return (
         <main className="flex h-full w-full flex-col">
-            {/* Hero */}
             <Hero />
 
             {/* Introduction */}
@@ -168,7 +167,6 @@ export default function HomePage() {
                 </svg>
             </section>
 
-            {/* Services */}
             <Services />
 
             {/* Portfolio */}
@@ -186,10 +184,8 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* FAQ */}
             <FAQ />
 
-            {/* Blogs */}
             <Blog />
 
             {/* Contact */}
