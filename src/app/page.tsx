@@ -209,12 +209,16 @@ export default function HomePage() {
                         </h2>
 
                         <div className="flex flex-col gap-10">
-                            <article className="flex flex-col gap-5">
-                                <section className="flex items-center justify-between">
-                                    <h3 className="font-mulish text-xl font-bold text-black xl:text-2xl">I have a question?</h3>
-                                    <IconChevronDown className="w-6 stroke-black" />
-                                </section>
-                            </article>
+                            {t.faqContents.map(({ question, answer }, i) => (
+                                <article key={i} className="flex flex-col gap-5 font-mulish text-black">
+                                    <section className="flex items-center justify-between">
+                                        <h3 className="text-xl font-bold xl:text-2xl">{question}</h3>
+                                        <IconChevronDown className="w-6 stroke-black" />
+                                    </section>
+
+                                    <p className="text-xl">{answer}</p>
+                                </article>
+                            ))}
                         </div>
                     </div>
 

@@ -80,6 +80,47 @@ const en = {
             },
         ],
         faqTitle: ["You Probably", "Ask", "These Questions"],
+        faqContents: [
+            {
+                question: "Why don't i just hire an in-house team?",
+                answer: [
+                    "Hiring an in-house team is a great idea, but it's not always the best option. Hiring an in-house team means you have to pay for their salary, insurance, and other benefits. Not to mention the time and effort you have to spend to find the right people for the job. With us, you don't have to worry about any of that. We'll take care of everything for you.",
+                ],
+            },
+            {
+                question: "Do you offer web maintenance service?",
+                answer: ["Yes, we do. We offer web maintenance service for all of our clients. We'll make sure your website is always up-to-date and secure."],
+            },
+            {
+                question: "Why don't i just hire a freelancer?",
+                answer: [
+                    "Hiring a freelancer is a great idea, but it's not always the best option. Hiring a freelancer means you have to spend time and effort to find the right person for the job. With us, you don't have to worry about any of that. We'll take care of everything for you.",
+                    "Also with us, you'll get a team of experts working on your project instead of just one person. This means you'll get better results in less time.",
+                ],
+            },
+            {
+                question: "How do managed hosting work?",
+                answer: [
+                    "Our managed hosting service let you focus on your business while we take care of your application's infrastructure. We'll make sure your application is always up-to-date and secure.",
+                    "We'll keeping the uptime of your application as high as possible. We'll also make sure your application is always up-to-date and secure.",
+                ],
+            },
+            {
+                question: "Can i contact the team directly?",
+                answer: [
+                    "Unfortunately, no. We don't allow direct contact between our clients and our team. This is to ensure that our team can focus on their work without any distractions.",
+                    "But don't worry, we have a dedicated project manager who will be your point of contact. You can contact them anytime you want. They'll be happy to help you with anything you need.",
+                ],
+            },
+            {
+                question: "What's the difference between logo and branding?",
+                answer: [
+                    "Logo is a symbol or other small design adopted by an organization to identify its products, uniform, vehicles, etc.",
+                    "Branding is the process of creating a unique name and image for a product in the consumers' mind, mainly through advertising campaigns with a consistent theme.",
+                    "In short, logo is a part of branding. Branding is a bigger concept than logo.",
+                ],
+            },
+        ],
         blogTitle: "Blogs & Insights",
         blogButton: "Check Our Blog",
         contactTitle: ["Every Great Thing", "Is", "Always", "Made", "Together"],
@@ -165,6 +206,47 @@ const id: typeof en = {
             },
         ],
         faqTitle: ["Kamu Mungkin", "Menayakan", "Hal Berikut"],
+        faqContents: [
+            {
+                question: "Mengapa saya tidak mempekerjakan tim internal saja??",
+                answer: [
+                    "Menyewa tim internal adalah ide yang bagus, tetapi itu tidak selalu merupakan pilihan terbaik. Menyewa tim internal berarti Anda harus membayar gaji, asuransi, dan tunjangan lainnya. Belum lagi waktu dan upaya yang harus Anda habiskan untuk menemukan orang yang tepat untuk pekerjaan itu. Bersama kami, Anda tidak perlu khawatir tentang semua itu. Kami akan mengurus semuanya untuk Anda.",
+                ],
+            },
+            {
+                question: "Apakah Anda menawarkan layanan pemeliharaan web?",
+                answer: ["Ya, kita lakukan. Kami menawarkan layanan pemeliharaan web untuk semua klien kami. Kami akan memastikan situs web Anda selalu terkini dan aman."],
+            },
+            {
+                question: "Mengapa saya tidak menyewa freelancer saja?",
+                answer: [
+                    "Menyewa freelancer adalah ide yang bagus, tetapi itu tidak selalu merupakan pilihan terbaik. Menyewa freelancer berarti Anda harus menghabiskan waktu dan upaya untuk menemukan orang yang tepat untuk pekerjaan itu. Bersama kami, Anda tidak perlu khawatir tentang semua itu. Kami akan mengurus semuanya untuk Anda.",
+                    "Juga dengan kami, Anda akan mendapatkan tim ahli yang mengerjakan proyek Anda, bukan hanya satu orang. Ini berarti Anda akan mendapatkan hasil yang lebih baik dalam waktu yang lebih sedikit.",
+                ],
+            },
+            {
+                question: "Bagaimana cara kerja pengelolaan hosting?",
+                answer: [
+                    "Layanan hosting terkelola kami memungkinkan Anda untuk fokus pada bisnis Anda sementara kami mengurus infrastruktur aplikasi Anda. Kami akan memastikan aplikasi Anda selalu diperbarui dan aman.",
+                    "Kami akan menjaga waktu aktif aplikasi Anda setinggi mungkin. Kami juga akan memastikan aplikasi Anda selalu diperbarui dan aman.",
+                ],
+            },
+            {
+                question: "Dapatkah saya menghubungi tim secara langsung?",
+                answer: [
+                    "Sayangnya tidak ada. Kami tidak mengizinkan kontak langsung antara klien kami dan tim kami. Ini untuk memastikan bahwa tim kami dapat fokus pada pekerjaan mereka tanpa gangguan apa pun.",
+                    "Tapi jangan khawatir, kami memiliki manajer proyek khusus yang akan menjadi titik kontak Anda. Anda dapat menghubungi mereka kapan saja Anda mau. Mereka akan dengan senang hati membantu Anda dengan apa pun yang Anda butuhkan.",
+                ],
+            },
+            {
+                question: "Apa perbedaan antara logo dan branding?",
+                answer: [
+                    "Logo adalah simbol atau desain kecil lainnya yang diadopsi oleh organisasi untuk mengidentifikasi produk, seragam, kendaraan, dll.",
+                    "Branding adalah proses menciptakan nama dan gambar yang unik untuk suatu produk dalam pikiran konsumen, terutama melalui kampanye iklan dengan tema yang konsisten.",
+                    "Singkatnya, logo adalah bagian dari branding. Branding adalah konsep yang lebih besar dari logo.",
+                ],
+            },
+        ],
         blogTitle: "Blog & Wawasan",
         blogButton: "Cek Blog Kami",
         contactTitle: ["Setiap Hal Hebat", "Pasti", "Selalu", "Dibuat", "Bersama"],
