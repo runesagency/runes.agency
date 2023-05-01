@@ -208,14 +208,14 @@ const id: typeof en = {
         faqTitle: ["Kamu Mungkin", "Menayakan", "Hal Berikut"],
         faqContents: [
             {
-                question: "Mengapa saya tidak mempekerjakan tim internal saja??",
+                question: "Mengapa saya tidak mempekerjakan tim internal saja?",
                 answer: [
                     "Menyewa tim internal adalah ide yang bagus, tetapi itu tidak selalu merupakan pilihan terbaik. Menyewa tim internal berarti Anda harus membayar gaji, asuransi, dan tunjangan lainnya. Belum lagi waktu dan upaya yang harus Anda habiskan untuk menemukan orang yang tepat untuk pekerjaan itu. Bersama kami, Anda tidak perlu khawatir tentang semua itu. Kami akan mengurus semuanya untuk Anda.",
                 ],
             },
             {
                 question: "Apakah Anda menawarkan layanan pemeliharaan web?",
-                answer: ["Ya, kita lakukan. Kami menawarkan layanan pemeliharaan web untuk semua klien kami. Kami akan memastikan situs web Anda selalu terkini dan aman."],
+                answer: ["Ya, kami menawarkan layanan pemeliharaan web untuk semua klien kami. Kami akan memastikan situs web Anda selalu terkini dan aman."],
             },
             {
                 question: "Mengapa saya tidak menyewa freelancer saja?",
@@ -234,7 +234,7 @@ const id: typeof en = {
             {
                 question: "Dapatkah saya menghubungi tim secara langsung?",
                 answer: [
-                    "Sayangnya tidak ada. Kami tidak mengizinkan kontak langsung antara klien kami dan tim kami. Ini untuk memastikan bahwa tim kami dapat fokus pada pekerjaan mereka tanpa gangguan apa pun.",
+                    "Sayangnya tidak. Kami tidak mengizinkan kontak langsung antara klien kami dan tim kami. Ini untuk memastikan bahwa tim kami dapat fokus pada pekerjaan mereka tanpa gangguan apa pun.",
                     "Tapi jangan khawatir, kami memiliki manajer proyek khusus yang akan menjadi titik kontak Anda. Anda dapat menghubungi mereka kapan saja Anda mau. Mereka akan dengan senang hati membantu Anda dengan apa pun yang Anda butuhkan.",
                 ],
             },
