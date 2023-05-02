@@ -50,5 +50,6 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    // @ts-ignore
+    plugins: [require("tailwindcss-animated")],
 };
