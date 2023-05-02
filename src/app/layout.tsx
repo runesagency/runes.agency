@@ -106,8 +106,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <meta property="og:url" content={metadata.openGraph.url} />
                 {metadata.openGraph.images.map((image, index) => (
                     <Fragment key={index}>
-                        {Object.entries(image).map(([key, value]) => {
-                            return <meta key={index} property={`og:image:${key}`} content={String(value)} />;
+                        {Object.entries(image).map(([key, value], jIndex) => {
+                            return <meta key={jIndex} property={`og:image:${key}`} content={String(value)} />;
                         })}
                     </Fragment>
                 ))}
