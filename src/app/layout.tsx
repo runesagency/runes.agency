@@ -5,7 +5,6 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 
 import { LanguageProvider } from "@/lib/i18n";
-import { theme } from "tailwind.config";
 
 import clsx from "clsx";
 import { Playfair_Display, Mulish } from "next/font/google";
@@ -57,7 +56,7 @@ const metadata = {
         "creative strategy",
         "visual storytelling",
     ],
-    themeColor: theme.colors.yellow.light,
+    themeColor: "EFD09E",
     icons: {
         icon: "/icon.png",
     },
