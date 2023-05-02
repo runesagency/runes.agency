@@ -43,7 +43,7 @@ export const useAOS = () => {
                 });
             },
             {
-                rootMargin: "-100px",
+                threshold: 0.5,
             }
         );
 
