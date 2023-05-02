@@ -1,3 +1,4 @@
+import { useAOS } from "@/lib/hooks/use-aos";
 import { LanguageChooser, useLanguage } from "@/lib/i18n";
 
 import { IconCurrencyDollar, IconPresentation } from "@tabler/icons-react";
@@ -6,6 +7,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function Hero() {
     const { t } = useLanguage();
+    const { setRefForAOS } = useAOS();
 
     const containerRef = useRef<HTMLDivElement>(null);
     const storyboardContainerRef = useRef<HTMLDivElement>(null);
@@ -131,17 +133,22 @@ export default function Hero() {
         };
     }, [getSubtitle]);
 
+    useEffect(() => {
+        if (!storyboardContainerRef.current) return;
+        setRefForAOS(storyboardContainerRef.current);
+    }, [storyboardContainerRef, setRefForAOS]);
+
     return (
         // eslint-disable-next-line tailwindcss/no-arbitrary-value
         <section ref={containerRef} className="relative flex h-[8000px] flex-col items-center gap-20 bg-yellow-light pt-20">
             <div className="relative z-10 flex w-full flex-col items-center justify-between gap-4 md:max-w-2xl md:flex-row lg:max-w-4xl xl:max-w-7xl">
-                <img src="/logo.svg" alt="Logo" className="h-10" />
+                <img ref={setRefForAOS} src="/logo.svg" alt="Logo" className="h-10 animate-fade-right" />
 
-                <LanguageChooser />
+                <LanguageChooser innerRef={setRefForAOS} className="animate-fade-left" />
             </div>
 
             <div className="relative z-10 flex flex-col items-center gap-4 text-black md:gap-10">
-                <h1 className="text-center font-playfair-display text-5.5xl font-medium md:text-8xl xl:text-9xl">
+                <h1 ref={setRefForAOS} className="animate-fade-up text-center font-playfair-display text-5.5xl font-medium md:text-8xl xl:text-9xl">
                     <span className="block md:pb-6">{t.mainTitle[0]}</span>
 
                     <span className="font-semibold">
@@ -149,28 +156,42 @@ export default function Hero() {
                     </span>
                 </h1>
 
-                <p className="max-w-sm text-center font-mulish text-lg leading-normal md:max-w-2xl md:text-2xl lg:max-w-3xl">
+                <p ref={setRefForAOS} className="max-w-sm animate-fade-up text-center font-mulish text-lg leading-normal animate-delay-200 md:max-w-2xl md:text-2xl lg:max-w-3xl">
                     <b>{t.mainSubtitle[0]}</b> {t.mainSubtitle[1]}
                 </p>
             </div>
 
             <div className="relative z-10 flex flex-wrap justify-center gap-6 stroke-black text-center font-mulish text-xl font-semibold text-black md:gap-10">
-                <a href="#story" className="hidden rounded-full bg-black px-7 py-3 font-bold text-yellow-light duration-200 hover:scale-105 lg:block">
+                <a
+                    ref={setRefForAOS}
+                    href="#story"
+                    className="hidden animate-fade-up rounded-full bg-black px-7 py-3 font-bold text-yellow-light duration-200 animate-delay-300 hover:scale-105 lg:block"
+                >
                     {t.mainStoryButton}
                 </a>
 
-                <a href="/runes-capabilities-deck.pdf" target="_blank" className="flex items-center gap-4 rounded-full bg-blue-light px-7 py-3 font-bold duration-200 hover:scale-105">
+                <a
+                    ref={setRefForAOS}
+                    href="/runes-capabilities-deck.pdf"
+                    target="_blank"
+                    className="flex animate-fade-up items-center gap-4 rounded-full bg-blue-light px-7 py-3 font-bold duration-200 animate-delay-500 hover:scale-105"
+                >
                     <IconPresentation className="h-6 w-6" />
                     <span>{t.mainDeckButton}</span>
                 </a>
 
-                <a href="/pricing-guide.pdf" target="_blank" className="flex items-center gap-4 rounded-full bg-pink px-7 py-3 font-bold duration-200 hover:scale-105">
+                <a
+                    ref={setRefForAOS}
+                    href="/pricing-guide.pdf"
+                    target="_blank"
+                    className="flex animate-fade-up items-center gap-4 rounded-full bg-pink px-7 py-3 font-bold duration-200 animate-delay-700 hover:scale-105"
+                >
                     <IconCurrencyDollar className="h-6 w-6" />
                     <span>{t.mainPricingButton}</span>
                 </a>
             </div>
 
-            <div ref={storyboardContainerRef} className="sticky top-0 z-10 min-h-screen w-full pb-40">
+            <div ref={storyboardContainerRef} className="sticky top-0 z-10 min-h-screen w-full animate-fade-up pb-40">
                 <div className="relative z-10 flex w-full translate-y-10 flex-col items-center gap-12 md:translate-y-12 xl:translate-y-24 xl:gap-20 3xl:translate-y-1/3">
                     <div ref={storyboardRef} className="hide-scrollbar relative flex w-full snap-x items-center gap-20 overflow-x-auto overflow-y-visible">
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
@@ -199,7 +220,14 @@ export default function Hero() {
                     <div className="absolute z-10 h-full w-full" />
                 </div>
 
-                <img src="/patterns/2.svg" alt="" className="absolute bottom-0 left-0 w-full max-w-md select-none 2xl:max-w-xl" loading="lazy" draggable={false} />
+                <img
+                    ref={setRefForAOS}
+                    src="/patterns/2.svg"
+                    alt=""
+                    className="absolute bottom-0 left-0 w-full max-w-md animate-fade-right select-none 2xl:max-w-xl"
+                    loading="lazy"
+                    draggable={false}
+                />
 
                 <div className="absolute left-0 top-0 z-10 h-1 w-full">
                     <div
@@ -211,7 +239,14 @@ export default function Hero() {
                 </div>
             </div>
 
-            <img src="/patterns/1.svg" alt="" className="absolute right-0 top-0 w-full max-w-xs select-none md:max-w-sm lg:max-w-md 2xl:max-w-xl" loading="eager" draggable={false} />
+            <img
+                ref={setRefForAOS}
+                src="/patterns/1.svg"
+                alt=""
+                className="absolute right-0 top-0 w-full max-w-xs animate-fade-down select-none animate-delay-150 md:max-w-sm lg:max-w-md 2xl:max-w-xl"
+                loading="eager"
+                draggable={false}
+            />
         </section>
     );
 }

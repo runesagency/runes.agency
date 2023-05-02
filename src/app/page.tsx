@@ -5,6 +5,7 @@ import FAQ from "@/components/FAQ";
 import Hero from "@/components/Hero";
 import Portfolio from "@/components/Portfolio";
 import Services from "@/components/Services";
+import { useAOS } from "@/lib/hooks/use-aos";
 import { LanguageChooser, useLanguage } from "@/lib/i18n";
 
 import { IconBrandBehance, IconBrandInstagram, IconBrandLinkedin, IconBrandTiktok, IconBrandWhatsapp, IconCalendarTime, IconHeartHandshake, IconMail, IconMapPin } from "@tabler/icons-react";
@@ -13,6 +14,7 @@ import { useCallback } from "react";
 
 export default function HomePage() {
     const { t, code: languageCode } = useLanguage();
+    const { setRefForAOS } = useAOS();
 
     type Partner = {
         name: string;
@@ -134,11 +136,11 @@ export default function HomePage() {
                 </div>
 
                 <div className="max-w-sm space-y-4 text-center font-mulish text-2xl text-black md:max-w-2xl md:text-4xl lg:max-w-4xl lg:space-y-8 xl:max-w-5xl xl:text-4.5xl">
-                    <p className="leading-normal">
+                    <p ref={setRefForAOS} className="animate-fade-up leading-normal animate-duration-1000">
                         {t.introText1[0]} <b>{t.introText1[1]}</b> {t.introText1[2]}
                     </p>
 
-                    <p className="leading-normal">
+                    <p ref={setRefForAOS} className="animate-fade-up leading-normal animate-delay-500 animate-duration-1000">
                         {t.introText2[0]} <b>{t.introText2[1]}</b> {t.introText2[2]}
                     </p>
                 </div>
@@ -149,21 +151,54 @@ export default function HomePage() {
                 <hr className="w-full max-w-xs border-gray md:max-w-lg" />
 
                 <div className="flex w-full max-w-4xl flex-col items-center gap-16 xl:max-w-5xl">
-                    <p className="max-w-xs text-center font-mulish text-xl italic text-black md:max-w-2xl md:text-2xl lg:max-w-none">{t.partnersText}</p>
+                    <p ref={setRefForAOS} className="max-w-xs animate-fade text-center font-mulish text-xl italic text-black md:max-w-2xl md:text-2xl lg:max-w-none">
+                        {t.partnersText}
+                    </p>
 
                     <div className="grid w-full max-w-xs grid-cols-2 gap-x-6 gap-y-8 md:max-w-2xl md:grid-cols-4 lg:max-w-none">
-                        {partners.map(({ slug, name }, j) => (
-                            <img key={j} src={`/partners/${slug}.png`} alt={name} loading="lazy" className="h-14 w-full select-none object-contain object-center" draggable={false} />
+                        {partners.map(({ slug, name }, index) => (
+                            <img
+                                ref={setRefForAOS}
+                                key={index}
+                                src={`/partners/${slug}.png`}
+                                alt={name}
+                                loading="lazy"
+                                className="h-14 w-full animate-fade-up select-none object-contain object-center"
+                                draggable={false}
+                                style={{ animationDelay: `${index * 200}ms` }}
+                            />
                         ))}
                     </div>
                 </div>
 
-                <img src="/illustrations/giving.webp" alt="Hupa Giving to Luna" className="relative z-20 h-96 max-w-full select-none" loading="lazy" draggable={false} />
+                <img
+                    ref={setRefForAOS}
+                    src="/illustrations/giving.webp"
+                    alt="Hupa Giving to Luna"
+                    className="relative z-20 h-96 max-w-full animate-fade select-none"
+                    loading="lazy"
+                    draggable={false}
+                />
 
-                <img src="/patterns/3.svg" alt="" className="absolute bottom-0 left-0 z-10 hidden h-56 select-none md:block xl:h-72" loading="lazy" draggable={false} />
-                <img src="/patterns/4.svg" alt="" className="absolute bottom-0 right-0 z-10 h-56 select-none xl:h-72" loading="lazy" draggable={false} />
+                <img
+                    ref={setRefForAOS}
+                    src="/patterns/3.svg"
+                    alt=""
+                    className="absolute bottom-0 left-0 z-10 hidden h-56 animate-fade-right select-none animate-delay-200 md:block xl:h-72"
+                    loading="lazy"
+                    draggable={false}
+                />
 
-                <svg viewBox="0 0 1920 116" className="absolute bottom-0 left-0 w-full fill-green opacity-50">
+                <img
+                    ref={setRefForAOS}
+                    src="/patterns/4.svg"
+                    alt=""
+                    className="absolute bottom-0 right-0 z-10 h-56 animate-fade-left select-none animate-delay-200 xl:h-72"
+                    loading="lazy"
+                    draggable={false}
+                />
+
+                <svg ref={setRefForAOS} viewBox="0 0 1920 116" className="absolute bottom-0 left-0 w-full animate-fade fill-green opacity-50">
                     <path d="M0 32.4239C752.345 -8.49521 1173.01 -13.0605 1920 32.4239V116H0V32.4239Z" />
                 </svg>
             </section>
@@ -180,26 +215,35 @@ export default function HomePage() {
             <section className="relative flex flex-col items-center gap-10 bg-blue-light pt-32 xl:gap-14">
                 <h2 className="text-center font-playfair-display text-4xl font-semibold text-black md:text-6xl lg:text-7xl xl:text-8xl">
                     <span className="block pb-2 md:pb-4">
-                        <span>{t.contactTitle[0]} </span>
-                        <span className="font-medium">{t.contactTitle[1]}</span>
+                        <span ref={setRefForAOS} className="animate-fade">
+                            {t.contactTitle[0]}{" "}
+                        </span>
+
+                        <span ref={setRefForAOS} className="animate-fade font-medium animate-delay-500">
+                            {t.contactTitle[1]}
+                        </span>
                     </span>
 
                     <span>
-                        <span className="font-medium">{t.contactTitle[2]} </span>
-                        <span>
+                        <span ref={setRefForAOS} className="animate-fade font-medium animate-delay-700">
+                            {t.contactTitle[2]}{" "}
+                        </span>
+
+                        <span ref={setRefForAOS} className="animate-fade animate-delay-1000">
                             {t.contactTitle[3]} <i>{t.contactTitle[4]}</i>
                         </span>
                     </span>
                 </h2>
 
-                <p className="max-w-sm text-center font-mulish text-lg leading-normal text-black md:max-w-2xl lg:max-w-3xl lg:text-2xl xl:max-w-4xl">
+                <p ref={setRefForAOS} className="max-w-sm animate-fade text-center font-mulish text-lg leading-normal text-black animate-delay-1000 md:max-w-2xl lg:max-w-3xl lg:text-2xl xl:max-w-4xl">
                     <b>{t.contactSubtitle[0]}</b> {t.contactSubtitle[1]}
                 </p>
 
                 <div className="flex flex-col gap-4 md:flex-row md:gap-10">
                     <button
+                        ref={setRefForAOS}
                         onClick={onScheduleMeetingClick}
-                        className="flex items-center justify-center gap-4 rounded-full bg-yellow-light px-6 py-3 duration-200 hover:scale-105 lg:gap-6 lg:px-9 lg:py-5"
+                        className="flex animate-fade-up items-center justify-center gap-4 rounded-full bg-yellow-light px-6 py-3 duration-200 hover:scale-105 lg:gap-6 lg:px-9 lg:py-5"
                     >
                         <IconCalendarTime className="h-6 w-6 shrink-0 stroke-black stroke-1.5 lg:h-10 lg:w-10" />
 
@@ -211,6 +255,7 @@ export default function HomePage() {
 
                     {Object.entries(typeformsIds).map(([langCode, typeformId]) => (
                         <button
+                            ref={setRefForAOS}
                             key={typeformId}
                             data-tf-popup={typeformId}
                             data-tf-opacity="100"
@@ -219,7 +264,7 @@ export default function HomePage() {
                             data-tf-transitive-search-params
                             data-tf-medium="snippet"
                             className={clsx(
-                                "flex items-center justify-center gap-4 rounded-full bg-black px-6 py-3 duration-200 hover:scale-105 lg:gap-6 lg:px-9 lg:py-5",
+                                "flex animate-fade-up items-center justify-center gap-4 rounded-full bg-black px-6 py-3 duration-200 animate-delay-200 hover:scale-105 lg:gap-6 lg:px-9 lg:py-5",
                                 langCode !== languageCode && "hidden"
                             )}
                         >
@@ -230,10 +275,10 @@ export default function HomePage() {
                     ))}
                 </div>
 
-                <img src="/illustrations/work-together.webp" alt="Work Together" className="relative z-10 max-w-full select-none" draggable={false} />
+                <img ref={setRefForAOS} src="/illustrations/work-together.webp" alt="Work Together" className="relative z-10 max-w-full animate-fade-up select-none" draggable={false} />
 
                 <div className="absolute bottom-0 left-0 flex w-full justify-center">
-                    <img src="/patterns/6.svg" alt="" className="w-full max-w-7xl select-none" loading="lazy" draggable={false} />
+                    <img ref={setRefForAOS} src="/patterns/6.svg" alt="" className="w-full max-w-7xl animate-fade-up select-none animate-delay-200" loading="lazy" draggable={false} />
                 </div>
             </section>
 

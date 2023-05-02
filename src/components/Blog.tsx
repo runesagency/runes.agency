@@ -1,8 +1,10 @@
+import { useAOS } from "@/lib/hooks/use-aos";
 import { useDragScroll } from "@/lib/hooks/use-drag-scroll";
 import { useLatest } from "@/lib/hooks/use-latest";
 import { useLanguage } from "@/lib/i18n";
 
 import clsx from "clsx";
+import { useEffect } from "react";
 import useSWR from "swr";
 
 const usePosts = () => {
@@ -22,6 +24,7 @@ const usePosts = () => {
 
 export default function Blog() {
     const { t } = useLanguage();
+    const { setRefForAOS } = useAOS();
     const { isDragging, setBlockRef, headerRef, containerProps, containerRef } = useDragScroll<HTMLAnchorElement | HTMLDivElement>();
     const isActuallyDragging = useLatest(isDragging);
 
@@ -44,17 +47,34 @@ export default function Blog() {
         }, 100);
     };
 
+    useEffect(() => {
+        if (!containerRef.current) return;
+        setRefForAOS(containerRef.current);
+    }, [containerRef, setRefForAOS]);
+
     return (
         <section className="flex flex-col gap-10 py-20">
             <div ref={headerRef} className="mx-auto flex w-full max-w-sm flex-col items-center justify-between gap-4 md:max-w-2xl md:flex-row lg:max-w-4xl 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
-                <h2 className="font-playfair-display text-4.5xl font-semibold text-black">{t.blogTitle}</h2>
+                <h2 ref={setRefForAOS} className="animate-fade-right font-playfair-display text-4.5xl font-semibold text-black">
+                    {t.blogTitle}
+                </h2>
 
-                <a href="https://blog.runes.agency" target="_blank" className="rounded-full bg-black px-7 py-3 font-mulish font-bold text-white duration-200 hover:scale-105" rel="noreferrer">
+                <a
+                    ref={setRefForAOS}
+                    href="https://blog.runes.agency"
+                    target="_blank"
+                    className="animate-fade-left rounded-full bg-black px-7 py-3 font-mulish font-bold text-white duration-200 hover:scale-105"
+                    rel="noreferrer"
+                >
                     {t.blogButton}
                 </a>
             </div>
 
-            <div ref={containerRef} className={clsx("hide-scrollbar group flex w-full select-none gap-7 overflow-auto", isDragging ? "cursor-grabbing" : "cursor-grab")} {...containerProps}>
+            <div
+                ref={containerRef}
+                className={clsx("hide-scrollbar group flex w-full animate-fade-left select-none gap-7 overflow-auto", isDragging ? "cursor-grabbing" : "cursor-grab")}
+                {...containerProps}
+            >
                 <div className="h-full w-full max-w-sm shrink-0 md:max-w-lg" />
 
                 {!isLoading &&

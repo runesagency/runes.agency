@@ -35,9 +35,10 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
 
 type LanguageChooserProps = {
     className?: string;
+    innerRef?: React.Ref<HTMLDivElement>;
 };
 
-export const LanguageChooser = ({ className }: LanguageChooserProps) => {
+export const LanguageChooser = ({ className, innerRef }: LanguageChooserProps) => {
     const { languageCode, setLanguageCode } = useContext(LanguageContext);
     const { flag } = translations[languageCode];
 
@@ -54,7 +55,7 @@ export const LanguageChooser = ({ className }: LanguageChooserProps) => {
     );
 
     return (
-        <div className={clsx("flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2", className)}>
+        <div ref={innerRef} className={clsx("flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2", className)}>
             {flag}
 
             <select onChange={onLanguageChange} value={languageCode} className="cursor-pointer bg-transparent font-mulish text-base text-white outline-none duration-200 hover:opacity-75 md:text-lg">

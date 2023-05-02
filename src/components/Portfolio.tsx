@@ -1,3 +1,4 @@
+import { useAOS } from "@/lib/hooks/use-aos";
 import { useLanguage } from "@/lib/i18n";
 import { theme } from "tailwind.config";
 
@@ -265,22 +266,27 @@ const portfolio: PortfolioContainer[][] = [
 
 type PortfolioBlockProps = {
     item: PortfolioItem | PortfolioContainer;
+    index: number;
 };
 
-const PortfolioBlock = ({ item }: PortfolioBlockProps) => {
+const PortfolioBlock = ({ item, index }: PortfolioBlockProps) => {
+    const { setRefForAOS } = useAOS();
+
     if (item.type === "portfolio") {
         return (
             <a
+                ref={setRefForAOS}
                 href={item.url}
                 target="_blank"
                 rel="noreferrer"
                 className={clsx(
-                    "relative flex w-full flex-1 shrink-0 cursor-pointer flex-col justify-between gap-6 overflow-hidden rounded-3xl text-left font-mulish duration-200 hover:!opacity-100 group-hover:opacity-75",
+                    "relative flex w-full flex-1 shrink-0 animate-fade-up cursor-pointer flex-col justify-between gap-6 overflow-hidden rounded-3xl text-left font-mulish duration-200 hover:!opacity-100 group-hover:opacity-75",
                     item.textColor === "white" ? "text-white" : "text-black",
                     item.backgroundColor === theme.colors.green && "border border-white"
                 )}
                 style={{
                     backgroundColor: item.backgroundColor ?? "transparent",
+                    animationDelay: `${index * 150}ms`,
                 }}
             >
                 <div className="relative z-20 flex flex-col gap-2 pl-8 pt-8">
@@ -315,7 +321,7 @@ const PortfolioBlock = ({ item }: PortfolioBlockProps) => {
         return (
             <div className={clsx("flex flex-1 shrink-0 flex-col items-stretch gap-8", item.align === "horizontal" && "lg:flex-row")}>
                 {item.items.map((item, index) => (
-                    <PortfolioBlock key={index} item={item} />
+                    <PortfolioBlock key={index} item={item} index={index} />
                 ))}
             </div>
         );
@@ -324,6 +330,7 @@ const PortfolioBlock = ({ item }: PortfolioBlockProps) => {
 
 export default function Portfolio() {
     const { t } = useLanguage();
+    const { setRefForAOS } = useAOS();
     const [categoryId, setCategoryId] = useState(0);
 
     const onCategorySelect = useCallback(
@@ -336,17 +343,23 @@ export default function Portfolio() {
     return (
         <section className="flex flex-col items-center gap-20 bg-green py-20">
             <div className="flex w-full flex-col items-center gap-10 text-black">
-                <h2 className="text-center font-playfair-display text-6.5xl font-semibold">{t.portfolioTitle}</h2>
+                <h2 ref={setRefForAOS} className="animate-fade-down text-center font-playfair-display text-6.5xl font-semibold">
+                    {t.portfolioTitle}
+                </h2>
 
                 <div className="flex max-w-2xl flex-wrap items-center justify-center gap-4 lg:max-w-none xl:gap-8">
                     {t.portfolioCategories.map((item, index) => (
                         <button
                             key={index}
+                            ref={setRefForAOS}
                             onClick={onCategorySelect(index)}
                             className={clsx(
-                                "rounded-full border border-black px-6 py-3 font-mulish text-lg text-black duration-200 lg:text-xl",
+                                "animate-fade-up rounded-full border border-black px-6 py-3 font-mulish text-lg text-black duration-200 lg:text-xl",
                                 categoryId === index ? "bg-black text-white" : "text-black hover:bg-black hover:text-white hover:opacity-75"
                             )}
+                            style={{
+                                animationDelay: `${index * 150}ms`,
+                            }}
                         >
                             {item}
                         </button>
@@ -356,7 +369,7 @@ export default function Portfolio() {
 
             <div className="group mx-auto flex w-full max-w-sm flex-col gap-8 md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl 3xl:max-w-screen-2xl">
                 {portfolio[categoryId].map((item, index) => (
-                    <PortfolioBlock key={index} item={item} />
+                    <PortfolioBlock key={index} item={item} index={index} />
                 ))}
             </div>
 

@@ -1,9 +1,11 @@
+import { useAOS } from "@/lib/hooks/use-aos";
 import { useDragScroll } from "@/lib/hooks/use-drag-scroll";
 import { useLanguage } from "@/lib/i18n";
 import { theme } from "tailwind.config";
 
 import { IconArrowLeft, IconArrowRight, IconChevronRight } from "@tabler/icons-react";
 import clsx from "clsx";
+import { useEffect } from "react";
 
 type Service = {
     color: string;
@@ -104,19 +106,25 @@ const services: Service[] = [
 
 export default function Services() {
     const { t } = useLanguage();
+    const { setRefForAOS } = useAOS();
     const { headerRef, onScrollLeftClick, onScrollRightClick, containerRef, containerProps, setBlockRef, isDragging } = useDragScroll();
+
+    useEffect(() => {
+        if (!containerRef.current) return;
+        setRefForAOS(containerRef.current);
+    }, [containerRef, setRefForAOS]);
 
     return (
         <section className="flex flex-col gap-10 py-20 md:gap-20 lg:py-32">
             <div ref={headerRef} className="mx-auto flex w-full max-w-sm items-center justify-between gap-4 md:max-w-2xl lg:max-w-4xl 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
-                <h2 className="font-playfair-display text-5xl font-medium leading-tight text-black lg:text-6.5xl">
+                <h2 ref={setRefForAOS} className="animate-fade-right font-playfair-display text-5xl font-medium leading-tight text-black lg:text-6.5xl">
                     <span>{t.servicesTitle[0]} </span>
                     <span className="font-semibold">{t.servicesTitle[1]} </span>
                     <span>{t.servicesTitle[2]} </span>
                     <span className="font-semibold italic">{t.servicesTitle[3]}</span>
                 </h2>
 
-                <div className="group hidden gap-6 md:flex">
+                <div ref={setRefForAOS} className="group hidden animate-fade-left gap-6 md:flex">
                     <button
                         className="flex h-14 w-14 items-center justify-center rounded-full bg-black duration-200 hover:!opacity-100 group-hover:opacity-50"
                         onClick={onScrollLeftClick}
@@ -135,7 +143,11 @@ export default function Services() {
                 </div>
             </div>
 
-            <div ref={containerRef} className={clsx("hide-scrollbar flex w-full select-none gap-10 overflow-auto", isDragging ? "cursor-grabbing" : "cursor-grab")} {...containerProps}>
+            <div
+                ref={containerRef}
+                className={clsx("hide-scrollbar flex w-full animate-fade-left select-none gap-10 overflow-auto", isDragging ? "cursor-grabbing" : "cursor-grab")}
+                {...containerProps}
+            >
                 <div className="aspect-square h-full w-full max-w-sm shrink-0 md:max-w-md xl:max-w-lg" />
 
                 {services.map(({ color, icon: Icon }, i) => {
