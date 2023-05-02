@@ -3,7 +3,7 @@ import { useLanguage } from "@/lib/i18n";
 import { theme } from "tailwind.config";
 
 import clsx from "clsx";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type PortfolioItem = {
     type: "portfolio";
@@ -331,7 +331,10 @@ const PortfolioBlock = ({ item, index }: PortfolioBlockProps) => {
 export default function Portfolio() {
     const { t } = useLanguage();
     const { setRefForAOS } = useAOS();
+
+    const containerRef = useRef<HTMLDivElement>(null);
     const [categoryId, setCategoryId] = useState(0);
+    const [intersectionRatio, setIntersectionRatio] = useState(0);
 
     const onCategorySelect = useCallback(
         (id: number) => () => {
@@ -340,8 +343,28 @@ export default function Portfolio() {
         []
     );
 
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        const { top } = container.getBoundingClientRect();
+        const start = top + window.scrollY - window.innerHeight + 200;
+        const end = top + window.scrollY + 200;
+
+        const onScroll = () => {
+            const ratio = (window.scrollY - start) / (end - start);
+            setIntersectionRatio(Math.max(0, Math.min(1, ratio)));
+        };
+
+        window.addEventListener("scroll", onScroll);
+
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+        };
+    }, []);
+
     return (
-        <section className="flex flex-col items-center gap-20 bg-green py-20">
+        <section ref={containerRef} className="flex flex-col items-center gap-20 bg-green py-20" style={{ "--tw-bg-opacity": intersectionRatio } as React.CSSProperties}>
             <div className="flex w-full flex-col items-center gap-10 text-black">
                 <h2 ref={setRefForAOS} className="animate-fade-down text-center font-playfair-display text-6.5xl font-semibold">
                     {t.portfolioTitle}

@@ -17,6 +17,7 @@ export default function Hero() {
 
     const [storyIndex, setStoryIndex] = useState(0);
     const [storyPercentage, setStoryPercentage] = useState(0);
+    const [intersectionRatio, setIntersectionRatio] = useState(1);
 
     const setStoryRef = useCallback((element: HTMLDivElement | null, index: number) => {
         if (!element) return;
@@ -138,9 +139,29 @@ export default function Hero() {
         setRefForAOS(storyboardContainerRef.current);
     }, [storyboardContainerRef, setRefForAOS]);
 
+    useEffect(() => {
+        const element = containerRef.current;
+        if (!element) return;
+
+        const { top, height } = element.getBoundingClientRect();
+        const start = top + window.scrollY - window.innerHeight + height;
+        const end = top + window.scrollY + height;
+
+        const onScroll = () => {
+            const ratio = (window.scrollY - start) / (end - start);
+            setIntersectionRatio(1 - Math.max(0, Math.min(1, ratio)));
+        };
+
+        window.addEventListener("scroll", onScroll);
+
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+        };
+    }, []);
+
     return (
         // eslint-disable-next-line tailwindcss/no-arbitrary-value
-        <section ref={containerRef} className="relative flex h-[8000px] flex-col items-center gap-20 bg-yellow-light pt-20">
+        <section ref={containerRef} className="relative flex h-[8000px] flex-col items-center gap-20 bg-yellow-light pt-20" style={{ "--tw-bg-opacity": intersectionRatio } as React.CSSProperties}>
             <div className="relative z-10 flex w-full flex-col items-center justify-between gap-4 md:max-w-2xl md:flex-row lg:max-w-4xl xl:max-w-7xl">
                 <img ref={setRefForAOS} src="/logo.svg" alt="Logo" className="h-10 animate-fade-right" />
 

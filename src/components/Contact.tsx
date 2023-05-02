@@ -3,11 +3,13 @@ import { useLanguage } from "@/lib/i18n";
 
 import { IconCalendarTime, IconHeartHandshake } from "@tabler/icons-react";
 import clsx from "clsx";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function Contact() {
     const { t, code: languageCode } = useLanguage();
     const { setRefForAOS } = useAOS();
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [intersectionRatio, setIntersectionRatio] = useState(0);
 
     const typeformsIds = {
         en: "XWnO26mK",
@@ -19,8 +21,28 @@ export default function Contact() {
         return false;
     }, []);
 
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        const { top } = container.getBoundingClientRect();
+        const start = top + window.scrollY - window.innerHeight + 200;
+        const end = top + window.scrollY + 200;
+
+        const onScroll = () => {
+            const ratio = (window.scrollY - start) / (end - start);
+            setIntersectionRatio(Math.max(0, Math.min(1, ratio)));
+        };
+
+        window.addEventListener("scroll", onScroll);
+
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+        };
+    }, []);
+
     return (
-        <section className="relative flex flex-col items-center gap-10 bg-blue-light pt-32 xl:gap-14">
+        <section ref={containerRef} className="relative flex flex-col items-center gap-10 bg-blue-light pt-32 xl:gap-14" style={{ "--tw-bg-opacity": intersectionRatio } as React.CSSProperties}>
             <h2 className="text-center font-playfair-display text-4xl font-semibold text-black md:text-6xl lg:text-7xl xl:text-8xl">
                 <span className="block pb-2 md:pb-4">
                     <span ref={setRefForAOS} className="animate-fade">
