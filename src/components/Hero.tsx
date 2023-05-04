@@ -8,9 +8,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 export default function Hero() {
     const { t } = useLanguage();
     const { setRefForAOS } = useAOS();
-    const { elementRef, intersectionRatio } = useIntersectionRatio("bottom");
+    const { elementRef: containerRef, intersectionRatio } = useIntersectionRatio("bottom");
 
-    const containerRef = useRef<HTMLDivElement>(null);
     const storyboardContainerRef = useRef<HTMLDivElement>(null);
     const storyboardRef = useRef<HTMLDivElement>(null);
     const storiesRefs = useRef<HTMLDivElement[]>([]);
@@ -50,8 +49,8 @@ export default function Hero() {
         let lastTypewritingInterval: NodeJS.Timeout | undefined = undefined;
         let lastSubtitle = "";
 
-        const heroGapSize = Number(getComputedStyle(containerRef.current).gap.replace("px", ""));
-        const heroHeightSize = containerRef.current.getBoundingClientRect().height ?? 0;
+        const heroGapSize = Number(getComputedStyle(container).gap.replace("px", ""));
+        const heroHeightSize = container.getBoundingClientRect().height ?? 0;
 
         const storyboardContainerPreviousSibling = storyboardContainer.previousElementSibling;
         if (!storyboardContainerPreviousSibling) return;
@@ -132,13 +131,12 @@ export default function Hero() {
         return () => {
             window.removeEventListener("scroll", onScroll);
         };
-    }, [getSubtitle]);
+    }, [containerRef, getSubtitle]);
 
     useEffect(() => {
         if (!storyboardContainerRef.current) return;
         setRefForAOS(storyboardContainerRef.current);
-        elementRef.current = containerRef.current;
-    }, [storyboardContainerRef, setRefForAOS, elementRef]);
+    }, [storyboardContainerRef, setRefForAOS, containerRef]);
 
     return (
         // eslint-disable-next-line tailwindcss/no-arbitrary-value
