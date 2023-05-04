@@ -4,7 +4,7 @@ import { useLanguage } from "@/lib/i18n";
 import { theme } from "tailwind.config";
 
 import clsx from "clsx";
-import { useCallback, useState } from "react";
+import { Fragment, useCallback, useState } from "react";
 
 type PortfolioItem = {
     type: "portfolio";
@@ -268,9 +268,10 @@ const portfolio: PortfolioContainer[][] = [
 type PortfolioBlockProps = {
     item: PortfolioItem | PortfolioContainer;
     index: number;
+    hidden: boolean;
 };
 
-const PortfolioBlock = ({ item, index }: PortfolioBlockProps) => {
+const PortfolioBlock = ({ item, index, hidden }: PortfolioBlockProps) => {
     const { setRefForAOS } = useAOS();
 
     if (item.type === "portfolio") {
@@ -281,9 +282,10 @@ const PortfolioBlock = ({ item, index }: PortfolioBlockProps) => {
                 target="_blank"
                 rel="noreferrer"
                 className={clsx(
-                    "relative flex w-full flex-1 shrink-0 animate-fade-up cursor-pointer flex-col justify-between gap-6 overflow-hidden rounded-3xl text-left font-mulish duration-200 hover:!opacity-100 group-hover:opacity-75",
+                    "relative w-full flex-1 shrink-0 animate-fade-up cursor-pointer flex-col justify-between gap-6 overflow-hidden rounded-3xl text-left font-mulish duration-200 hover:!opacity-100 group-hover:opacity-75",
                     item.textColor === "white" ? "text-white" : "text-black",
-                    item.backgroundColor === theme.colors.green && "border border-white"
+                    item.backgroundColor === theme.colors.green && "border border-white",
+                    hidden ? "hidden" : "flex"
                 )}
                 style={{
                     backgroundColor: item.backgroundColor ?? "transparent",
@@ -320,9 +322,9 @@ const PortfolioBlock = ({ item, index }: PortfolioBlockProps) => {
         );
     } else {
         return (
-            <div className={clsx("flex flex-1 shrink-0 flex-col items-stretch gap-8", item.align === "horizontal" && "lg:flex-row")}>
+            <div className={clsx("flex-1 shrink-0 flex-col items-stretch gap-8", item.align === "horizontal" && "lg:flex-row", hidden ? "hidden" : "flex")}>
                 {item.items.map((item, index) => (
-                    <PortfolioBlock key={index} item={item} index={index} />
+                    <PortfolioBlock key={index} item={item} index={index} hidden={false} />
                 ))}
             </div>
         );
@@ -334,11 +336,11 @@ export default function Portfolio() {
     const { setRefForAOS } = useAOS();
 
     const { elementRef, intersectionRatio } = useIntersectionRatio("top");
-    const [categoryId, setCategoryId] = useState(0);
+    const [currentCategoryId, setCurrentCategoryId] = useState(0);
 
     const onCategorySelect = useCallback(
         (id: number) => () => {
-            setCategoryId(id);
+            setCurrentCategoryId(id);
         },
         []
     );
@@ -358,7 +360,7 @@ export default function Portfolio() {
                             onClick={onCategorySelect(index)}
                             className={clsx(
                                 "animate-fade-up rounded-full border border-black px-6 py-3 font-mulish text-lg text-black duration-200 lg:text-xl",
-                                categoryId === index ? "bg-black text-white" : "text-black hover:bg-black hover:text-white hover:opacity-75"
+                                currentCategoryId === index ? "bg-black text-white" : "text-black hover:bg-black hover:text-white hover:opacity-75"
                             )}
                             style={{
                                 animationDelay: `${index * 150}ms`,
@@ -371,8 +373,12 @@ export default function Portfolio() {
             </div>
 
             <div className="group mx-auto flex w-full max-w-sm flex-col gap-8 md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl 3xl:max-w-screen-2xl">
-                {portfolio[categoryId].map((item, index) => (
-                    <PortfolioBlock key={index} item={item} index={index} />
+                {portfolio.map((item, categoryId) => (
+                    <Fragment key={categoryId}>
+                        {item.map((item, index) => (
+                            <PortfolioBlock key={index} item={item} index={index} hidden={categoryId !== currentCategoryId} />
+                        ))}
+                    </Fragment>
                 ))}
             </div>
 
