@@ -173,7 +173,7 @@ export default function Hero() {
                     {t.mainStoryButton}
                 </a>
 
-                <a
+                {/* <a
                     ref={setRefForAOS}
                     href="/runes-capabilities-deck.pdf"
                     target="_blank"
@@ -181,9 +181,9 @@ export default function Hero() {
                 >
                     <IconPresentation className="h-6 w-6" />
                     <span>{t.mainDeckButton}</span>
-                </a>
+                </a> */}
 
-                <a
+                {/* <a
                     ref={setRefForAOS}
                     href="/pricing-guide.pdf"
                     target="_blank"
@@ -191,7 +191,7 @@ export default function Hero() {
                 >
                     <IconCurrencyDollar className="h-6 w-6" />
                     <span>{t.mainPricingButton}</span>
-                </a>
+                </a> */}
             </div>
 
             <div ref={storyboardContainerRef} className="sticky top-0 z-10 min-h-screen w-full animate-fade-up pb-40">
