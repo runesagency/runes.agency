@@ -2,7 +2,6 @@ import { useAOS } from "@/lib/hooks/use-aos";
 import { useIntersectionRatio } from "@/lib/hooks/use-intersection-ratio";
 import { LanguageChooser, useLanguage } from "@/lib/i18n";
 
-import { IconCurrencyDollar, IconPresentation } from "@tabler/icons-react";
 import clsx from "clsx";
 import { useCallback, useEffect, useRef, useState } from "react";
 
