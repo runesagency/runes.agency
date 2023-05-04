@@ -77,27 +77,32 @@ export default function Blog() {
             >
                 <div className="h-full w-full max-w-sm shrink-0 md:max-w-lg" />
 
-                {!isLoading &&
-                    data &&
-                    data.posts.map(({ feature_image, title, url }, i) => (
-                        <a
-                            key={i}
-                            ref={setBlockRef}
-                            href={url}
-                            target="_blank"
-                            className="flex w-full max-w-sm shrink-0 flex-col gap-5 duration-200 hover:!opacity-100 group-hover:opacity-50 md:max-w-lg"
-                            draggable={false}
-                            onClick={onLinkClick}
-                            onMouseDown={onLinkPress}
-                            rel="noreferrer"
-                        >
-                            <div className="h-80 w-full overflow-hidden rounded-xl bg-gray">
-                                {feature_image && <img src={feature_image} alt="Cover" className="h-full w-full object-cover object-center" loading="lazy" draggable={false} />}
-                            </div>
+                {!isLoading && data
+                    ? data.posts.map(({ feature_image, title, url }, i) => (
+                          <a
+                              key={i}
+                              ref={setBlockRef}
+                              href={url}
+                              target="_blank"
+                              className="flex w-full max-w-sm shrink-0 flex-col gap-5 duration-200 hover:!opacity-100 group-hover:opacity-50 md:max-w-lg"
+                              draggable={false}
+                              onClick={onLinkClick}
+                              onMouseDown={onLinkPress}
+                              rel="noreferrer"
+                          >
+                              <div className="h-80 w-full overflow-hidden rounded-xl bg-gray">
+                                  {feature_image && <img src={feature_image} alt="Cover" className="h-full w-full object-cover object-center" loading="lazy" draggable={false} />}
+                              </div>
 
-                            <p className="font-mulish text-2xl font-medium text-black">{title}</p>
-                        </a>
-                    ))}
+                              <p className="font-mulish text-2xl font-medium text-black">{title}</p>
+                          </a>
+                      ))
+                    : [...Array(3)].map((_, i) => (
+                          <div key={i} className="flex w-full max-w-sm shrink-0 animate-pulse flex-col gap-5 md:max-w-lg">
+                              <div className="h-80 w-full rounded-xl bg-gray" />
+                              <div className="h-8 w-1/2 rounded-full bg-gray" />
+                          </div>
+                      ))}
 
                 <div className="h-full w-full max-w-sm shrink-0 md:max-w-lg" />
             </div>
