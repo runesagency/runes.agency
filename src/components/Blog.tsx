@@ -16,8 +16,8 @@ const usePosts = () => {
         }[];
     };
 
-    const fetcher = (url: string) => fetch(url).then((res) => res.json());
-    const response = useSWR<Data>("/blogs", fetcher);
+    const fetcher = (url: string) => fetch(url, { method: "GET" }).then((res) => res.json());
+    const response = useSWR<Data>("/blog", fetcher);
 
     return response;
 };

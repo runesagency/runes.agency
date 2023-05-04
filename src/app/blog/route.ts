@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
+    return NextResponse.redirect("https://blog.runes.agency/");
+}
+
+export async function POST() {
     const res = await fetch("https://blog.runes.agency/ghost/api/content/posts/?key=e6d6d1558b13a2d6b0a6b8edda", {
         method: "GET",
         headers: {
