@@ -1,4 +1,5 @@
 import { useAOS } from "@/lib/hooks/use-aos";
+import { useIntersectionRatio } from "@/lib/hooks/use-intersection-ratio";
 import { LanguageChooser, useLanguage } from "@/lib/i18n";
 
 import { IconCurrencyDollar, IconPresentation } from "@tabler/icons-react";
@@ -8,6 +9,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 export default function Hero() {
     const { t } = useLanguage();
     const { setRefForAOS } = useAOS();
+    const { elementRef, intersectionRatio } = useIntersectionRatio("bottom");
 
     const containerRef = useRef<HTMLDivElement>(null);
     const storyboardContainerRef = useRef<HTMLDivElement>(null);
@@ -17,7 +19,6 @@ export default function Hero() {
 
     const [storyIndex, setStoryIndex] = useState(0);
     const [storyPercentage, setStoryPercentage] = useState(0);
-    const [intersectionRatio, setIntersectionRatio] = useState(1);
 
     const setStoryRef = useCallback((element: HTMLDivElement | null, index: number) => {
         if (!element) return;
@@ -137,27 +138,8 @@ export default function Hero() {
     useEffect(() => {
         if (!storyboardContainerRef.current) return;
         setRefForAOS(storyboardContainerRef.current);
-    }, [storyboardContainerRef, setRefForAOS]);
-
-    useEffect(() => {
-        const element = containerRef.current;
-        if (!element) return;
-
-        const { top, height } = element.getBoundingClientRect();
-        const start = top + window.scrollY - window.innerHeight + height;
-        const end = top + window.scrollY + height;
-
-        const onScroll = () => {
-            const ratio = (window.scrollY - start) / (end - start);
-            setIntersectionRatio(1 - Math.max(0, Math.min(1, ratio)));
-        };
-
-        window.addEventListener("scroll", onScroll);
-
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-        };
-    }, []);
+        elementRef.current = containerRef.current;
+    }, [storyboardContainerRef, setRefForAOS, elementRef]);
 
     return (
         // eslint-disable-next-line tailwindcss/no-arbitrary-value

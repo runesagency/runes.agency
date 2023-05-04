@@ -1,15 +1,15 @@
 import { useAOS } from "@/lib/hooks/use-aos";
+import { useIntersectionRatio } from "@/lib/hooks/use-intersection-ratio";
 import { useLanguage } from "@/lib/i18n";
 
 import { IconCalendarTime, IconHeartHandshake } from "@tabler/icons-react";
 import clsx from "clsx";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback } from "react";
 
 export default function Contact() {
     const { t, code: languageCode } = useLanguage();
     const { setRefForAOS } = useAOS();
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [intersectionRatio, setIntersectionRatio] = useState(0);
+    const { elementRef, intersectionRatio } = useIntersectionRatio("top");
 
     const typeformsIds = {
         en: "XWnO26mK",
@@ -21,35 +21,8 @@ export default function Contact() {
         return false;
     }, []);
 
-    useEffect(() => {
-        const container = containerRef.current;
-        if (!container) return;
-
-        const { top } = container.getBoundingClientRect();
-        let start = top + window.scrollY - window.innerHeight + 200;
-        let end = top + window.scrollY + 200;
-
-        const onScroll = () => {
-            const ratio = (window.scrollY - start) / (end - start);
-            setIntersectionRatio(Math.max(0, Math.min(1, ratio)));
-        };
-
-        const observer = new ResizeObserver(() => {
-            const { top } = container.getBoundingClientRect();
-            start = top + window.scrollY - window.innerHeight + 200;
-            end = top + window.scrollY + 200;
-        });
-
-        observer.observe(document.body);
-        window.addEventListener("scroll", onScroll);
-
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-        };
-    }, []);
-
     return (
-        <section ref={containerRef} className="relative flex flex-col items-center gap-10 bg-blue-light pt-32 xl:gap-14" style={{ "--tw-bg-opacity": intersectionRatio } as React.CSSProperties}>
+        <section ref={elementRef} className="relative flex flex-col items-center gap-10 bg-blue-light pt-32 xl:gap-14" style={{ "--tw-bg-opacity": intersectionRatio } as React.CSSProperties}>
             <h2 className="text-center font-playfair-display text-4xl font-semibold text-black md:text-6xl lg:text-7xl xl:text-8xl">
                 <span className="block pb-2 md:pb-4">
                     <span ref={setRefForAOS} className="animate-fade">
