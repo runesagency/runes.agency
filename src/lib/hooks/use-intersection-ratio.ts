@@ -14,20 +14,21 @@ export const useIntersectionRatio = (pinpoint: "top" | "bottom") => {
         let start = top + window.scrollY - window.innerHeight + addConstant;
         let end = top + window.scrollY + addConstant;
 
-        const onScroll = () => {
-            const ratio = (window.scrollY - start) / (end - start);
-            let percentage = Math.max(0, Math.min(1, ratio));
-            if (pinpoint === "bottom") percentage = 1 - percentage;
-            setIntersectionRatio(percentage);
-        };
-
         const observer = new ResizeObserver(() => {
-            const { top } = element.getBoundingClientRect();
+            const { top, height } = element.getBoundingClientRect();
+            const addConstant = pinpoint === "top" ? 200 : height;
+
             start = top + window.scrollY - window.innerHeight + addConstant;
             end = top + window.scrollY + addConstant;
         });
 
         observer.observe(document.body);
+
+        const onScroll = () => {
+            const ratio = (window.scrollY - start) / (end - start);
+            const percentage = Math.max(0, Math.min(1, ratio));
+            setIntersectionRatio(pinpoint === "top" ? percentage : 1 - percentage);
+        };
 
         window.addEventListener("scroll", onScroll);
 
