@@ -34,6 +34,7 @@ export const useIntersectionRatio = (pinpoint: "top" | "bottom") => {
 
         return () => {
             window.removeEventListener("scroll", onScroll);
+            observer.disconnect();
         };
     }, [pinpoint]);
 
