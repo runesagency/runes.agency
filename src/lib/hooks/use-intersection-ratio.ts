@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 export const useIntersectionRatio = (pinpoint: "top" | "bottom") => {
     const elementRef = useRef<HTMLDivElement | null>(null);
-    const [intersectionRatio, setIntersectionRatio] = useState(1);
+    const [intersectionRatio, setIntersectionRatio] = useState(pinpoint === "top" ? 0 : 1);
 
     useEffect(() => {
         const element = elementRef.current;
