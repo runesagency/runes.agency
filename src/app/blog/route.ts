@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
         blogURL = blogURL.slice(0, -1);
     }
 
-    if (requester === request.nextUrl.host) {
+    if (requester === "runes.agency") {
         const res = await fetch(blogURL + "/ghost/api/content/posts/?key=" + blogAPIKey, {
             method: "GET",
             headers: {

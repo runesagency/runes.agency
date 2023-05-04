@@ -16,7 +16,7 @@ const usePosts = () => {
         }[];
     };
 
-    const fetcher = (url: string) => fetch(url, { headers: { "X-Requested-By": window.location.host } }).then((res) => res.json());
+    const fetcher = (url: string) => fetch(url, { headers: { "X-Requested-By": "runes.agency" } }).then((res) => res.json());
     const response = useSWR<Data>("/blog", fetcher);
 
     return response;
