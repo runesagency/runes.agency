@@ -5,6 +5,7 @@ export async function GET() {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
+            "cache-control": "public, max-age=" + 60 * 60 * 24 * 1, // 1 day
         },
     });
 
