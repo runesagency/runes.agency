@@ -1,19 +1,28 @@
+import type { NextRequest } from "next/server";
+
 import { NextResponse } from "next/server";
 
-export async function GET() {
-    return NextResponse.redirect("https://blog.runes.agency/");
-}
+export async function GET(request: NextRequest) {
+    const requester = request.headers.get("X-Requested-By");
+    let blogURL = process.env.GHOST_BLOG_URL;
 
-export async function POST() {
-    const res = await fetch("https://blog.runes.agency/ghost/api/content/posts/?key=e6d6d1558b13a2d6b0a6b8edda", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "cache-control": "public, max-age=" + 60 * 60 * 24 * 1, // 1 day
-        },
-    });
+    if (blogURL.endsWith("/")) {
+        blogURL = blogURL.slice(0, -1);
+    }
 
-    const data = await res.json();
+    if (requester === request.nextUrl.host) {
+        const res = await fetch(process.env.GHOST_BLOG_URL + "/ghost/api/content/posts/?key=" + process.env.GHOST_BLOG_CONTENT_API_KEY, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "cache-control": "public, max-age=" + 60 * 60 * 24 * 1, // 1 day
+            },
+        });
 
-    return NextResponse.json(data);
+        const data = await res.json();
+
+        return NextResponse.json(data);
+    }
+
+    return NextResponse.redirect(process.env.GHOST_BLOG_URL);
 }
