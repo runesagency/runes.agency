@@ -26,14 +26,21 @@ export default function Contact() {
         if (!container) return;
 
         const { top } = container.getBoundingClientRect();
-        const start = top + window.scrollY - window.innerHeight + 200;
-        const end = top + window.scrollY + 200;
+        let start = top + window.scrollY - window.innerHeight + 200;
+        let end = top + window.scrollY + 200;
 
         const onScroll = () => {
             const ratio = (window.scrollY - start) / (end - start);
             setIntersectionRatio(Math.max(0, Math.min(1, ratio)));
         };
 
+        const observer = new ResizeObserver(() => {
+            const { top } = container.getBoundingClientRect();
+            start = top + window.scrollY - window.innerHeight + 200;
+            end = top + window.scrollY + 200;
+        });
+
+        observer.observe(document.body);
         window.addEventListener("scroll", onScroll);
 
         return () => {
