@@ -35,12 +35,7 @@ export default function FAQ() {
 
                     <div className="group flex flex-col gap-10">
                         {t.faqContents.map(({ question, answer }, i) => (
-                            <button
-                                ref={setRefForAOS}
-                                key={i}
-                                className="group/faq flex animate-fade-right flex-col gap-5 text-left font-mulish text-black"
-                                style={{ animationDelay: `${i * 100 + 100}ms` }}
-                            >
+                            <button ref={setRefForAOS} key={i} className="group/faq flex animate-fade-right flex-col text-left font-mulish text-black" style={{ animationDelay: `${i * 100 + 100}ms` }}>
                                 <section
                                     className={clsx("flex w-full items-center justify-between gap-4 duration-200", faqIndex !== i && "hover:!opacity-100 group-hover:opacity-40")}
                                     onClick={onFaqClick(i)}
@@ -49,12 +44,16 @@ export default function FAQ() {
                                     <IconChevronDown className={clsx("w-6 stroke-black duration-200", faqIndex === i && "rotate-180")} />
                                 </section>
 
-                                {faqIndex === i &&
-                                    answer.map((paragraph, i) => (
-                                        <p key={i} className="text-lg leading-normal">
-                                            {paragraph}
-                                        </p>
-                                    ))}
+                                {/* eslint-disable-next-line tailwindcss/no-arbitrary-value */}
+                                <div className={clsx("grid transition-all duration-500", faqIndex === i ? "grid-rows-[1fr] pt-5" : "grid-rows-[0fr] pt-0")}>
+                                    <div className="flex flex-col gap-5 overflow-hidden">
+                                        {answer.map((paragraph, i) => (
+                                            <p key={i} className="text-lg leading-normal">
+                                                {paragraph}
+                                            </p>
+                                        ))}
+                                    </div>
+                                </div>
                             </button>
                         ))}
                     </div>
