@@ -126,6 +126,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                 <Script src="//embed.typeform.com/next/embed.js" />
                 <Script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async />
+
+                <Script async src="https://www.googletagmanager.com/gtag/js?id=G-28KTD5HK3R" strategy="afterInteractive" />
+                <Script id="google-analytics" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+
+                        gtag('config', 'G-28KTD5HK3R');
+                    `}
+                </Script>
             </body>
         </html>
     );
