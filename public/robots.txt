@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: 
+Disallow: /illustrations/
+Disallow: /patterns/
+Disallow: /success-story/
