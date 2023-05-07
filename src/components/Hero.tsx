@@ -167,12 +167,14 @@ export default function Hero() {
     return (
         // eslint-disable-next-line tailwindcss/no-arbitrary-value
         <section ref={containerRef} className="relative flex h-[8000px] flex-col items-center gap-20 bg-yellow-light pt-20" style={{ "--tw-bg-opacity": intersectionRatio } as React.CSSProperties}>
+            {/* Header */}
             <div className="relative z-10 flex w-full flex-col items-center justify-between gap-4 md:max-w-2xl md:flex-row lg:max-w-4xl xl:max-w-7xl">
                 <img ref={setRefForAOS} src="/logo.svg" alt="Logo" className="h-10 animate-fade-right" />
 
                 <LanguageChooser innerRef={setRefForAOS} className="animate-fade-left" />
             </div>
 
+            {/* Title */}
             <div className="relative z-10 flex flex-col items-center gap-4 text-black md:gap-10">
                 <h1 ref={setRefForAOS} className="animate-fade-up text-center font-playfair-display text-5.5xl font-medium md:text-8xl xl:text-9xl">
                     <span className="block md:pb-6">{t.mainTitle[0]}</span>
@@ -187,6 +189,7 @@ export default function Hero() {
                 </p>
             </div>
 
+            {/* Buttons */}
             <div className="relative z-10 flex flex-wrap justify-center gap-6 stroke-black text-center font-mulish text-xl font-semibold text-black md:gap-10">
                 <a
                     ref={setRefForAOS}
@@ -217,9 +220,12 @@ export default function Hero() {
                 </a> */}
             </div>
 
+            {/* Story (Images + Subtitle) */}
             <div ref={setStoryboardContainerRef} className="sticky top-0 z-10 min-h-screen w-full animate-fade-up pb-40">
+                {/* Images + Subtitle + Skip Button */}
                 <div className="relative z-10 flex h-screen w-full flex-col items-center justify-center gap-12">
                     <div ref={storyboardRef} className="hide-scrollbar relative flex w-full snap-x items-center gap-20 overflow-x-auto overflow-y-visible">
+                    {/* Images */}
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
 
@@ -242,6 +248,7 @@ export default function Hero() {
                     </div>
 
                     <div className="relative z-20 flex max-w-md flex-col items-center gap-4 font-mulish">
+                    {/* Subtitle + Skip Button */}
                         <span ref={subtitleRef} id="story" className="text-center text-2xl font-medium text-black" />
 
                         <a
@@ -255,9 +262,11 @@ export default function Hero() {
                         </a>
                     </div>
 
+                    {/* Touch Blocker */}
                     <div className="absolute z-10 h-full w-full" />
                 </div>
 
+                {/* Pattern Left Bottom */}
                 <img
                     ref={setRefForAOS}
                     src="/patterns/2.svg"
@@ -267,6 +276,7 @@ export default function Hero() {
                     draggable={false}
                 />
 
+                {/* Progress Bar */}
                 <div className="absolute left-0 top-0 z-10 h-1 w-full">
                     <div
                         className={clsx("h-full bg-black duration-500", (storyPercentage < 10 || storyPercentage > 90) && "opacity-0")}
@@ -277,6 +287,7 @@ export default function Hero() {
                 </div>
             </div>
 
+            {/* Pattern Right Top */}
             <img
                 ref={setRefForAOS}
                 src="/patterns/1.svg"
