@@ -15,6 +15,9 @@ export default function Hero() {
     const storiesRefs = useRef<HTMLDivElement[]>([]);
     const subtitleRef = useRef<HTMLSpanElement>(null);
 
+    const lastTypewritingIntervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
+    const lastSubtitleRef = useRef<string>("");
+
     const [storyIndex, setStoryIndex] = useState(0);
     const [storyPercentage, setStoryPercentage] = useState(0);
 
@@ -62,20 +65,13 @@ export default function Hero() {
 
     useEffect(() => {
         const container = containerRef.current;
-        if (!container) return;
-
         const storyboardContainer = storyboardContainerRef.current;
-        if (!storyboardContainer) return;
-
         const storyboard = storyboardRef.current;
-        if (!storyboard) return;
+        const stories = storiesRefs.current;
 
-        // Get the scroll of the previous sibling so the current story was snapped in the middle
-        const storiesScrollLength = storiesRefs.current.map((story) => (story?.previousElementSibling as HTMLDivElement)?.offsetLeft);
+        if (!container || !storyboardContainer || !storyboard || stories.length === 0) return;
 
         let lastSlideIndex = -1;
-        let lastTypewritingInterval: NodeJS.Timeout | undefined = undefined;
-        let lastSubtitle = "";
 
         const heroGapSize = Number(getComputedStyle(container).gap.replace("px", ""));
         const heroHeightSize = container.getBoundingClientRect().height ?? 0;
@@ -114,45 +110,47 @@ export default function Hero() {
 
                 setStoryPercentage(scrollPercentage);
 
-                const distanceBetweenSlide = 100 / storiesRefs.current.length;
+                const distanceBetweenSlide = 100 / stories.length;
                 const slideIndex = Math.round(scrollPercentage / distanceBetweenSlide);
 
-                if (slideIndex === lastSlideIndex || slideIndex < 0) return;
+                if (slideIndex !== lastSlideIndex && slideIndex >= 0 && slideIndex < stories.length) {
+                    const subtitleText = getSubtitle(slideIndex);
+                    const subtitle = subtitleRef.current;
+                    const lastTypewritingInterval = lastTypewritingIntervalRef.current;
 
-                const subtitle = getSubtitle(slideIndex);
-
-                if (subtitleRef.current && subtitle !== lastSubtitle) {
-                    if (lastTypewritingInterval) {
-                        clearInterval(lastTypewritingInterval);
-                        lastTypewritingInterval = undefined;
-                        subtitleRef.current.innerText = "";
-                    }
-
-                    const subtitleText = subtitle.split("");
-                    let subtitleIndex = 0;
-
-                    lastTypewritingInterval = setInterval(() => {
-                        if (subtitleIndex >= subtitleText.length) {
+                    if (subtitle && subtitleText !== lastSubtitleRef.current) {
+                        if (lastTypewritingInterval) {
                             clearInterval(lastTypewritingInterval);
-                            return;
+                            lastTypewritingIntervalRef.current = undefined;
+                            subtitle.innerText = "";
                         }
 
-                        subtitleRef.current?.append(subtitleText[subtitleIndex]);
-                        subtitleIndex++;
-                    }, 50);
+                        const subtitleTextSplitted = subtitleText.split("");
+                        let subtitleIndex = 0;
 
-                    lastSubtitle = subtitle;
-                }
+                        lastTypewritingIntervalRef.current = setInterval(() => {
+                            if (subtitleIndex >= subtitleTextSplitted.length) {
+                                clearInterval(lastTypewritingInterval);
+                                return;
+                            }
 
-                storyboardRef.current?.scrollTo({
-                    left: storiesScrollLength[slideIndex],
-                    behavior: "smooth",
-                });
+                            subtitle.append(subtitleTextSplitted[subtitleIndex]);
+                            subtitleIndex++;
+                        }, 50);
 
-                lastSlideIndex = slideIndex;
+                        lastSubtitleRef.current = subtitleText;
+                    }
 
-                if (slideIndex >= 0 && slideIndex < storiesRefs.current.length) {
+                    const currentStory = stories[slideIndex];
+                    const scrollLength = currentStory.offsetLeft - window.innerWidth / 2 + currentStory.getBoundingClientRect().width / 2;
+
+                    storyboard.scrollTo({
+                        left: scrollLength,
+                        behavior: "smooth",
+                    });
+
                     setStoryIndex(slideIndex);
+                    lastSlideIndex = slideIndex;
                 }
             }
         };
@@ -225,22 +223,20 @@ export default function Hero() {
             <div ref={setStoryboardContainerRef} className="sticky top-0 z-10 min-h-screen w-full animate-fade-up pb-40">
                 {/* Images + Subtitle + Skip Button */}
                 <div className="relative z-10 flex h-screen w-full flex-col items-center justify-center gap-12">
-                    <div ref={storyboardRef} className="hide-scrollbar relative flex w-full snap-x items-center gap-20 overflow-x-auto overflow-y-visible">
                     {/* Images */}
+                    <div ref={storyboardRef} className="hide-scrollbar relative flex w-full gap-20 overflow-x-auto overflow-y-visible">
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
 
                         {[...Array(t.mainStorySubtitles.length)].map((_, i) => (
-                            <div
-                                key={i}
-                                ref={(ref) => setStoryRef(ref, i)}
-                                data-index={i}
-                                className={clsx(
-                                    "aspect-square max-w-sm shrink-0 select-none snap-center overflow-hidden rounded-xl transition-all duration-500 xl:max-w-md",
-                                    storyIndex === i ? "scale-100" : "scale-90 opacity-40"
-                                )}
-                            >
-                                <img src={`/success-story/${i + 1}.webp`} alt="Story 1" className="h-full w-full object-cover object-center" loading="lazy" draggable={false} />
+                            <div key={i} ref={(ref) => setStoryRef(ref, i)} data-index={i} className="relative aspect-square max-w-sm shrink-0 select-none overflow-hidden xl:max-w-md">
+                                <img
+                                    src={`/success-story/${i + 1}.webp`}
+                                    alt="Story 1"
+                                    className={clsx("h-full w-full origin-center rounded-xl object-cover object-center duration-500", storyIndex === i ? "scale-100" : "scale-90 opacity-40")}
+                                    loading="lazy"
+                                    draggable={false}
+                                />
                             </div>
                         ))}
 
