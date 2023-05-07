@@ -41,6 +41,11 @@ export default function Hero() {
         [t]
     );
 
+    const onStorySkipClick = useCallback(() => {
+        const posY = containerRef.current?.getBoundingClientRect().height ?? 0;
+        window.scrollTo({ top: posY, behavior: "smooth" });
+    }, [containerRef]);
+
     const onCompanyDeckClick = useCallback(() => {
         window.gtag("event", "button_click", {
             event_category: "engagement",
@@ -110,7 +115,7 @@ export default function Hero() {
                 setStoryPercentage(scrollPercentage);
 
                 const distanceBetweenSlide = 100 / storiesRefs.current.length;
-                const slideIndex = Math.round(scrollPercentage / distanceBetweenSlide) - 1;
+                const slideIndex = Math.round(scrollPercentage / distanceBetweenSlide);
 
                 if (slideIndex === lastSlideIndex || slideIndex < 0) return;
 
@@ -212,8 +217,8 @@ export default function Hero() {
                 </a> */}
             </div>
 
-                <div className="relative z-10 flex w-full translate-y-10 flex-col items-center gap-12 md:translate-y-12 xl:translate-y-24 xl:gap-20 3xl:translate-y-1/3">
             <div ref={setStoryboardContainerRef} className="sticky top-0 z-10 min-h-screen w-full animate-fade-up pb-40">
+                <div className="relative z-10 flex h-screen w-full flex-col items-center justify-center gap-12">
                     <div ref={storyboardRef} className="hide-scrollbar relative flex w-full snap-x items-center gap-20 overflow-x-auto overflow-y-visible">
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
@@ -236,7 +241,19 @@ export default function Hero() {
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
                     </div>
 
-                    <span ref={subtitleRef} id="story" className="max-w-md text-center font-mulish text-2xl font-medium text-black" />
+                    <div className="relative z-20 flex max-w-md flex-col items-center gap-4 font-mulish">
+                        <span ref={subtitleRef} id="story" className="text-center text-2xl font-medium text-black" />
+
+                        <a
+                            onClick={onStorySkipClick}
+                            className={clsx(
+                                "w-max cursor-pointer rounded-full bg-black px-4 py-1.5 text-base font-bold text-yellow-light duration-200 hover:scale-105",
+                                (storyPercentage < 10 || storyPercentage > 90) && "opacity-0"
+                            )}
+                        >
+                            Skip Story
+                        </a>
+                    </div>
 
                     <div className="absolute z-10 h-full w-full" />
                 </div>
