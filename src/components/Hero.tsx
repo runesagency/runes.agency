@@ -157,6 +157,7 @@ export default function Hero() {
             }
         };
 
+        onScroll();
         window.addEventListener("scroll", onScroll);
 
         return () => {
