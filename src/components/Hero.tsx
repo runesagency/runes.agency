@@ -10,7 +10,7 @@ export default function Hero() {
     const { setRefForAOS } = useAOS();
     const { elementRef: containerRef, intersectionRatio } = useIntersectionRatio("bottom");
 
-    const storyboardContainerRef = useRef<HTMLDivElement>(null);
+    const storyboardContainerRef = useRef<HTMLDivElement | null>(null);
     const storyboardRef = useRef<HTMLDivElement>(null);
     const storiesRefs = useRef<HTMLDivElement[]>([]);
     const subtitleRef = useRef<HTMLSpanElement>(null);
@@ -22,6 +22,15 @@ export default function Hero() {
         if (!element) return;
         storiesRefs.current[index] = element;
     }, []);
+
+    const setStoryboardContainerRef = useCallback(
+        (element: HTMLDivElement | null) => {
+            if (!element) return;
+            storyboardContainerRef.current = element;
+            setRefForAOS(element);
+        },
+        [setRefForAOS]
+    );
 
     const getSubtitle = useCallback(
         (index: number): string => {
@@ -133,11 +142,6 @@ export default function Hero() {
         };
     }, [containerRef, getSubtitle]);
 
-    useEffect(() => {
-        if (!storyboardContainerRef.current) return;
-        setRefForAOS(storyboardContainerRef.current);
-    }, [storyboardContainerRef, setRefForAOS, containerRef]);
-
     return (
         // eslint-disable-next-line tailwindcss/no-arbitrary-value
         <section ref={containerRef} className="relative flex h-[8000px] flex-col items-center gap-20 bg-yellow-light pt-20" style={{ "--tw-bg-opacity": intersectionRatio } as React.CSSProperties}>
@@ -191,8 +195,8 @@ export default function Hero() {
                 </a> */}
             </div>
 
-            <div ref={storyboardContainerRef} className="sticky top-0 z-10 min-h-screen w-full animate-fade-up pb-40">
                 <div className="relative z-10 flex w-full translate-y-10 flex-col items-center gap-12 md:translate-y-12 xl:translate-y-24 xl:gap-20 3xl:translate-y-1/3">
+            <div ref={setStoryboardContainerRef} className="sticky top-0 z-10 min-h-screen w-full animate-fade-up pb-40">
                     <div ref={storyboardRef} className="hide-scrollbar relative flex w-full snap-x items-center gap-20 overflow-x-auto overflow-y-visible">
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
