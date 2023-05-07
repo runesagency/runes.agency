@@ -249,7 +249,7 @@ export default function Hero() {
 
                 <div className="absolute left-0 top-0 z-10 h-1 w-full">
                     <div
-                        className={clsx("h-full bg-black duration-500", (storyPercentage < 10 || storyPercentage > 93) && "opacity-0")}
+                        className={clsx("h-full bg-black duration-500", (storyPercentage < 10 || storyPercentage > 90) && "opacity-0")}
                         style={{
                             width: storyPercentage + "%",
                         }}
