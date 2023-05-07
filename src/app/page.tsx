@@ -130,7 +130,7 @@ export default function HomePage() {
                         {t.introText1[0]} <b>{t.introText1[1]}</b> {t.introText1[2]}
                     </p>
 
-                    <p ref={setRefForAOS} className="animate-fade-up leading-normal animate-delay-500 animate-duration-1000">
+                    <p ref={setRefForAOS} className="animate-fade-up leading-normal animate-delay-200 animate-duration-1000">
                         {t.introText2[0]} <b>{t.introText2[1]}</b> {t.introText2[2]}
                     </p>
                 </div>
