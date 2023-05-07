@@ -247,8 +247,8 @@ export default function Hero() {
                         <div className="aspect-square h-full w-full max-w-md shrink-0" />
                     </div>
 
-                    <div className="relative z-20 flex max-w-md flex-col items-center gap-4 font-mulish">
                     {/* Subtitle + Skip Button */}
+                    <div className="relative z-20 flex max-w-sm flex-col items-center gap-4 font-mulish md:max-w-md">
                         <span ref={subtitleRef} id="story" className="text-center text-2xl font-medium text-black" />
 
                         <a
