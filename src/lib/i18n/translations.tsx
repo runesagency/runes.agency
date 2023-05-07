@@ -50,7 +50,7 @@ const en = {
             {
                 name: "Graphic Design",
                 description: "Build your own imaginative world.",
-                sub: ["Poster", "Logo", "Illustrations", "Icon Design"],
+                sub: ["Logo", "Poster", "Illustrations", "Icon Design"],
             },
             {
                 name: "UI/UX Design",
@@ -185,7 +185,7 @@ const id: typeof en = {
             {
                 name: "Desain Grafis",
                 description: "Bangun dunia imajinatif Anda sendiri.",
-                sub: ["Poster", "Logo", "Ilustrasi", "Desain Ikon"],
+                sub: ["Logo", "Poster", "Ilustrasi", "Desain Ikon"],
             },
             {
                 name: "Desain UI/UX",
