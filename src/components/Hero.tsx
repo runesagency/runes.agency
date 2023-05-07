@@ -144,8 +144,11 @@ export default function Hero() {
                     behavior: "smooth",
                 });
 
-                setStoryIndex(slideIndex);
                 lastSlideIndex = slideIndex;
+
+                if (slideIndex >= 0 && slideIndex < storiesRefs.current.length) {
+                    setStoryIndex(slideIndex);
+                }
             }
         };
 
