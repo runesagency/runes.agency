@@ -41,6 +41,20 @@ export default function Hero() {
         [t]
     );
 
+    const onCompanyDeckClick = useCallback(() => {
+        window.gtag("event", "button_click", {
+            event_category: "engagement",
+            event_label: "company_deck",
+        });
+    }, []);
+
+    const onPricingGuideClick = useCallback(() => {
+        window.gtag("event", "button_click", {
+            event_category: "engagement",
+            event_label: "pricing_guide",
+        });
+    }, []);
+
     useEffect(() => {
         const container = containerRef.current;
         if (!container) return;
