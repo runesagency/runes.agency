@@ -252,7 +252,7 @@ export default function Hero() {
                             onClick={onStorySkipClick}
                             className={clsx(
                                 "w-max cursor-pointer rounded-full bg-black px-4 py-1.5 text-base font-bold text-yellow-light duration-200 hover:scale-105",
-                                (storyPercentage < 10 || storyPercentage > 90) && "opacity-0"
+                                (storyIndex === 0 || storyIndex === storiesRefs.current.length - 1) && "opacity-0"
                             )}
                         >
                             Skip Story
@@ -276,7 +276,7 @@ export default function Hero() {
                 {/* Progress Bar */}
                 <div className="absolute left-0 top-0 z-10 h-1 w-full">
                     <div
-                        className={clsx("h-full bg-black duration-500", (storyPercentage < 10 || storyPercentage > 90) && "opacity-0")}
+                        className={clsx("h-full bg-black duration-500", (storyIndex === 0 || storyIndex === storiesRefs.current.length - 1) && "opacity-0")}
                         style={{
                             width: storyPercentage + "%",
                         }}
