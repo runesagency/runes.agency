@@ -2,6 +2,7 @@ import { useAOS } from "@/lib/hooks/use-aos";
 import { useIntersectionRatio } from "@/lib/hooks/use-intersection-ratio";
 import { LanguageChooser, useLanguage } from "@/lib/i18n";
 
+import { IconCurrencyDollar, IconPresentation } from "@tabler/icons-react";
 import clsx from "clsx";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -198,25 +199,29 @@ export default function Hero() {
                     {t.mainStoryButton}
                 </a>
 
-                {/* <a
+                <a
                     ref={setRefForAOS}
-                    href="/runes-capabilities-deck.pdf"
+                    onClick={onCompanyDeckClick}
+                    href={"/" + t.mainDeckFile}
                     target="_blank"
+                    rel="noreferrer"
                     className="flex animate-fade-up items-center gap-4 rounded-full bg-blue-light px-7 py-3 font-bold duration-200 animate-delay-500 hover:scale-105"
                 >
                     <IconPresentation className="h-6 w-6" />
                     <span>{t.mainDeckButton}</span>
-                </a> */}
+                </a>
 
-                {/* <a
+                <a
                     ref={setRefForAOS}
-                    href="/pricing-guide.pdf"
+                    onClick={onPricingGuideClick}
+                    href={"/" + t.mainPricingFile}
                     target="_blank"
+                    rel="noreferrer"
                     className="flex animate-fade-up items-center gap-4 rounded-full bg-pink px-7 py-3 font-bold duration-200 animate-delay-700 hover:scale-105"
                 >
                     <IconCurrencyDollar className="h-6 w-6" />
                     <span>{t.mainPricingButton}</span>
-                </a> */}
+                </a>
             </div>
 
             {/* Story (Images + Subtitle) */}

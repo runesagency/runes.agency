@@ -28,7 +28,9 @@ const en = {
         mainSubtitle: ["Let's grow your brand together.", "We know handling business is hard, let us help you so you don't have to do everything yourself."],
         mainStoryButton: "See The Story",
         mainDeckButton: "View Our Company Deck",
+        mainDeckFile: "company-deck.pdf",
         mainPricingButton: "View Our Pricing",
+        mainPricingFile: "pricing-deck.pdf",
         mainStorySubtitles: [
             "Running a business alone is hard...",
             undefined,
@@ -164,7 +166,9 @@ const id: typeof en = {
         mainSubtitle: ["Mari berkembang bersama.", "Kami tahu menangani bisnis itu sulit, biarkan kami membantu Anda sehingga Anda tidak perlu melakukan semuanya sendiri."],
         mainStoryButton: "Lihat Cerita Kami",
         mainDeckButton: "Lihat Presentasi Kami",
+        mainDeckFile: "company-deck-id.pdf",
         mainPricingButton: "Cek Harga Kami",
+        mainPricingFile: "pricing-deck-id.pdf",
         mainStorySubtitles: [
             "Menjalankan bisnis sendirian itu sulit...",
             undefined,
