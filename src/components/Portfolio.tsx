@@ -294,7 +294,8 @@ const PortfolioBlock = ({ item, index, hidden }: PortfolioBlockProps) => {
                     "relative w-full flex-1 shrink-0 animate-fade-up cursor-pointer flex-col justify-between gap-6 overflow-hidden rounded-3xl text-left font-mulish duration-200 hover:!opacity-100 group-hover:opacity-75",
                     item.textColor === "white" ? "text-white" : "text-black",
                     item.backgroundColor === theme.colors.green && "border border-white",
-                    hidden ? "hidden" : "flex"
+                    hidden ? "hidden" : "flex",
+                    item.url === "#0" && "pointer-events-none"
                 )}
                 style={{
                     backgroundColor: item.backgroundColor ?? "transparent",
@@ -310,7 +311,7 @@ const PortfolioBlock = ({ item, index, hidden }: PortfolioBlockProps) => {
                     src={`/portfolio/${item.imageUrl}`}
                     alt={item.title}
                     loading="lazy"
-                    className="w-full object-contain"
+                    className="w-full select-none object-contain"
                     style={{
                         objectPosition: item.imagePosition ?? "center bottom",
                     }}
