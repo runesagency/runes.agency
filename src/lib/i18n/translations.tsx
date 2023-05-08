@@ -140,6 +140,7 @@ const en = {
         contactMeetingButton: ["Schedule A", "Meeting"],
         contactUsButton: "Contact Us",
         footerContactTitle: ["Let's Get", "Connected"],
+        footerCopyright: "All Rights Reserved",
         footerAttributionText: ["A brand of", "company registered in Indonesia"],
     },
 } satisfies LanguageData;
@@ -275,6 +276,7 @@ const id: typeof en = {
         contactMeetingButton: ["Jadwalkan", "Meeting"],
         contactUsButton: "Kontak Kami",
         footerContactTitle: ["Mari", "Terhubung"],
+        footerCopyright: "Hak Cipta Dilindungi Undang-Undang",
         footerAttributionText: ["Merek dagang dari", "perusahaan terdaftar di Indonesia"],
     },
 };

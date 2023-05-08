@@ -238,7 +238,7 @@ export default function HomePage() {
 
                 <div className="flex w-full max-w-sm flex-col justify-between gap-6 font-mulish text-white md:max-w-2xl md:flex-row md:items-end lg:max-w-4xl xl:max-w-7xl">
                     <div className="max-w-sm space-y-2">
-                        <p>© 2023 Runes. All Rights Reserved.</p>
+                        <p>© 2023 Runes. {t.footerCopyright}.</p>
 
                         <p>
                             {t.footerAttributionText[0]} <b>PT Rumah Kreasi Bersama</b>, {t.footerAttributionText[1]}.
