@@ -181,7 +181,7 @@ const id: typeof en = {
         ],
         introText1: ["Kami percaya bahwa setiap proses seharusnya", "lebih sederhana dan mudah", "untuk semuanya."],
         introText2: ["Dan kami juga percaya bahwa produk hebat", "seharusnya dapat diberikan kepada semua orang", "terlepas dari tingkat pasar atau apapun."],
-        partnersText: "Ini adalah merek yang mempercayai kami untuk menumbuhkan merek mereka ke atas.",
+        partnersText: "Ini adalah brand yang mempercayai kami untuk menumbuhkan brand mereka ke atas.",
         portfolioTitle: "Pekerjaan Kami",
         portfolioCategories: ["Desain Grafis", "Desain UI/UX", "Chat Bot", "Pengembangan Web", "Manajemen Media Sosial"],
         portfolioButton: "Lihat Semua Pekerjaan Kami",
@@ -204,7 +204,7 @@ const id: typeof en = {
             },
             {
                 name: "Manajemen Media Sosial",
-                description: "Tingkatkan merek Anda dengan media sosial yang strategis.",
+                description: "Tingkatkan brand Anda dengan media sosial yang strategis.",
                 sub: ["Pembuatan Konten", "Manajemen Komunitas", "Penjangkauan Influencer"],
             },
             {
@@ -220,7 +220,7 @@ const id: typeof en = {
             {
                 name: "Branding",
                 description: "Membuat identitas yang meninggalkan kesan abadi.",
-                sub: ["Strategi Merek", "Desain Logo", "Pedoman Merek", "Pengembangan Web"],
+                sub: ["Strategi Brand", "Desain Logo", "Pedoman Brand", "Pengembangan Web"],
             },
             {
                 name: "Pengelolaan Hosting",
