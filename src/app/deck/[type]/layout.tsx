@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 const deckTitles = {
-    intro: "Runes | Intro Deck",
-    pricing: "Runes | Pricing Deck",
+    intro: "Runes | Agency Intro & Capabilities Deck",
+    pricing: "Runes | Agency Services & Pricing Deck",
 } as const;
 
 type Props = {
