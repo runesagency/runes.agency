@@ -4,6 +4,7 @@ import { LanguageChooser, useLanguage } from "@/lib/i18n";
 
 import { IconCurrencyDollar, IconPresentation } from "@tabler/icons-react";
 import clsx from "clsx";
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function Hero() {
@@ -49,21 +50,6 @@ export default function Hero() {
         const posY = containerRef.current?.getBoundingClientRect().height ?? 0;
         window.scrollTo({ top: posY, behavior: "smooth" });
     }, [containerRef]);
-
-    const onCompanyDeckClick = useCallback(() => {
-        window.gtag("event", "button_click", {
-            event_category: "engagement",
-            event_label: "company_deck",
-        });
-    }, []);
-
-    const onPricingGuideClick = useCallback(() => {
-        window.gtag("event", "button_click", {
-            event_category: "engagement",
-            event_label: "pricing_guide",
-        });
-    }, []);
-
     useEffect(() => {
         const container = containerRef.current;
         const storyboardContainer = storyboardContainerRef.current;
@@ -199,29 +185,23 @@ export default function Hero() {
                     {t.mainStoryButton}
                 </a>
 
-                <a
+                <Link
                     ref={setRefForAOS}
-                    onClick={onCompanyDeckClick}
-                    href={"/" + t.mainDeckFile}
-                    target="_blank"
-                    rel="noreferrer"
+                    href="/deck/intro"
                     className="flex animate-fade-up items-center gap-4 rounded-full bg-blue-light px-7 py-3 font-bold duration-200 animate-delay-500 hover:scale-105"
                 >
                     <IconPresentation className="h-6 w-6" />
                     <span>{t.mainDeckButton}</span>
-                </a>
+                </Link>
 
-                <a
+                <Link
                     ref={setRefForAOS}
-                    onClick={onPricingGuideClick}
-                    href={"/" + t.mainPricingFile}
-                    target="_blank"
-                    rel="noreferrer"
+                    href="/deck/pricing"
                     className="flex animate-fade-up items-center gap-4 rounded-full bg-pink px-7 py-3 font-bold duration-200 animate-delay-700 hover:scale-105"
                 >
                     <IconCurrencyDollar className="h-6 w-6" />
                     <span>{t.mainPricingButton}</span>
-                </a>
+                </Link>
             </div>
 
             {/* Story (Images + Subtitle) */}
