@@ -1,5 +1,3 @@
-"use client";
-
 import "@/styles/globals.css";
 
 import type { Metadata } from "next";
@@ -10,7 +8,6 @@ import { theme } from "tailwind.config";
 import clsx from "clsx";
 import { Playfair_Display, Mulish } from "next/font/google";
 import Script from "next/script";
-import { Fragment } from "react";
 
 const playfairDisplay = Playfair_Display({
     variable: "--font-playfair-display",
@@ -34,7 +31,7 @@ const mulish = Mulish({
     subsets: ["latin", "latin-ext"],
 });
 
-const metadata = {
+export const metadata: Metadata = {
     title: "Runes | Digital Creative Agency",
     description: "We help grow, elevating your brand from other competitors. We make solutions so that you don’t have to work it yourself.",
     keywords: [
@@ -58,67 +55,31 @@ const metadata = {
         "visual storytelling",
     ],
     themeColor: theme.colors.yellow.light,
-    icons: {
-        icon: "/icon.png",
-    },
     category: "Digital Creative Agency",
     openGraph: {
+        title: "Runes | Digital Creative Agency",
+        description: "We help grow, elevating your brand from other competitors. We make solutions so that you don’t have to work it yourself.",
         type: "website",
         url: "https://runes.agency/",
-        images: [
-            {
-                url: "https://runes.agency/banner.png",
-                width: 1358,
-                height: 711,
-                alt: "Runes | Digital Creative Agency",
-            },
-        ],
         locale: "en_US",
     },
     twitter: {
+        title: "Runes | Digital Creative Agency",
+        description: "We help grow, elevating your brand from other competitors. We make solutions so that you don’t have to work it yourself.",
         card: "summary_large_image",
-        images: ["https://runes.agency/banner.png"],
     },
-} satisfies Metadata;
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
             <head>
-                <title>Runes | Digital Creative Agency</title>
-
-                <link rel="icon" href={metadata.icons.icon} />
                 <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
 
                 {/* <!-- Primary Meta Tags --> */}
-                <meta name="title" content={metadata.title} />
-                <meta name="description" content={metadata.description} />
-                <meta name="keywords" content={metadata.keywords.join(", ")} />
-                <meta name="theme-color" content={metadata.themeColor} />
                 <meta name="robots" content="index, follow" />
                 <meta name="language" content="English" />
                 <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-
-                {/* <!-- Open Graph / Facebook --> */}
-                <meta property="og:title" content={metadata.title} />
-                <meta property="og:description" content={metadata.description} />
-                <meta property="og:type" content={metadata.openGraph.type} />
-                <meta property="og:url" content={metadata.openGraph.url} />
-                {metadata.openGraph.images.map((image, index) => (
-                    <Fragment key={index}>
-                        {Object.entries(image).map(([key, value], jIndex) => {
-                            return <meta key={jIndex} property={`og:image:${key}`} content={String(value)} />;
-                        })}
-                    </Fragment>
-                ))}
-
-                {/* <!-- Twitter --> */}
-                <meta property="twitter:card" content={metadata.twitter.card} />
-                <meta property="twitter:title" content={metadata.title} />
-                <meta property="twitter:description" content={metadata.description} />
-                {metadata.twitter.images.map((image, index) => (
-                    <meta key={index} property="twitter:image" content={image} />
-                ))}
             </head>
 
             <body className={clsx(playfairDisplay.variable, mulish.variable, "h-full w-full")}>
