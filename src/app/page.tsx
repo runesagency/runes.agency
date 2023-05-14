@@ -9,12 +9,14 @@ import Services from "@/components/Services";
 import { useAOS } from "@/lib/hooks/use-aos";
 import { LanguageChooser, useLanguage } from "@/lib/i18n";
 
-import { IconBrandBehance, IconBrandInstagram, IconBrandLinkedin, IconBrandTiktok, IconBrandWhatsapp, IconMail, IconMapPin } from "@tabler/icons-react";
+import { IconArrowUp, IconBrandBehance, IconBrandInstagram, IconBrandLinkedin, IconBrandTiktok, IconBrandWhatsapp, IconMail, IconMapPin } from "@tabler/icons-react";
 import clsx from "clsx";
+import { useCallback, useEffect, useState } from "react";
 
 export default function HomePage() {
     const { t } = useLanguage();
     const { setRefForAOS } = useAOS();
+    const [isBTTButtonHidden, setIsBTTButtonHidden] = useState(true);
 
     type Partner = {
         name: string;
@@ -108,6 +110,26 @@ export default function HomePage() {
             label: "Jl. Inpres Raya No.5, Kelurahan Gaga, Larangan, Tangerang, Banten, Indonesia 15154",
         },
     ];
+
+    const onScrollToTop = useCallback(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
+
+    useEffect(() => {
+        const onScroll = () => {
+            if (window.scrollY > 100) {
+                if (isBTTButtonHidden) setIsBTTButtonHidden(false);
+            } else {
+                if (!isBTTButtonHidden) setIsBTTButtonHidden(true);
+            }
+        };
+
+        window.addEventListener("scroll", onScroll);
+
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+        };
+    }, [isBTTButtonHidden]);
 
     return (
         <main className="flex h-full w-full flex-col">
@@ -250,6 +272,13 @@ export default function HomePage() {
                     </span>
                 </div>
             </footer>
+
+            {/* Back To Top Button */}
+            {!isBTTButtonHidden && (
+                <button onClick={onScrollToTop} className="fixed bottom-6 right-6 z-50 flex animate-fade-up cursor-pointer items-center justify-center rounded-full bg-black p-3">
+                    <IconArrowUp className="stroke-yellow-light stroke-2" />
+                </button>
+            )}
         </main>
     );
 }
