@@ -68,6 +68,7 @@ export const metadata: Metadata = {
         description: "We help grow, elevating your brand from other competitors. We make solutions so that you don’t have to work it yourself.",
         card: "summary_large_image",
     },
+    metadataBase: new URL("https://runes.agency/"),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
