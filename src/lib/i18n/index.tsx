@@ -1,3 +1,5 @@
+"use client";
+
 import translations from "@/lib/i18n/translations";
 
 import clsx from "clsx";
