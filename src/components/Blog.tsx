@@ -77,7 +77,7 @@ export default function Blog() {
             >
                 <div className="h-full w-full max-w-sm shrink-0 md:max-w-lg" />
 
-                {!isLoading && data
+                {!isLoading && data?.posts
                     ? data.posts.map(({ feature_image, title, url }, i) => (
                           <a
                               key={i}
